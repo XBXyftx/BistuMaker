@@ -99,7 +99,7 @@ const handleCommand = (command)=>{
             </el-icon>
             <span>个人中心</span>
           </template>
-          <el-menu-item index="/user/info">
+          <el-menu-item index="/admin/user">
             <el-icon>
               <User />
             </el-icon>
@@ -146,22 +146,23 @@ const handleCommand = (command)=>{
       </el-header>
       <!-- 中间区域 -->
       <el-main>
-        <div style="width: 1290px; height: 570px;border: 1px solid red;">
+        <div style="width: 99%; height: 80%;border: 1px solid red;">
+          <router-view></router-view>
             <!-- 用户信息和欢迎界面 -->
-            <div class="user-info-box">
-              <h2>欢迎， 123</h2>
-              <p>这是您的后台管理首页。</p>
-            </div>
+<!--            <div class="user-info-box">-->
+<!--              <h2>欢迎， 123</h2>-->
+<!--              <p>这是您的后台管理首页。</p>-->
+<!--            </div>-->
 
-            <!-- 快捷操作 -->
-            <div class="quick-actions-box">
-              <h3>快捷操作</h3>
-              <el-button type="primary" icon="el-icon-plus">新增</el-button>
-              <el-button type="success" icon="el-icon-edit">编辑</el-button>
-              <!-- 添加其他操作按钮 -->
-            </div>
+<!--            &lt;!&ndash; 快捷操作 &ndash;&gt;-->
+<!--            <div class="quick-actions-box">-->
+<!--              <h3>快捷操作</h3>-->
+<!--              <el-button type="primary" icon="el-icon-plus">新增</el-button>-->
+<!--              <el-button type="success" icon="el-icon-edit">编辑</el-button>-->
+<!--              &lt;!&ndash; 添加其他操作按钮 &ndash;&gt;-->
+<!--            </div>-->
         </div>
-        <router-view></router-view>
+<!--        <router-view></router-view>-->
       </el-main>
       <!-- 底部区域 -->
       <el-footer>大事件 ©2023 Created by 黑马程序员</el-footer>

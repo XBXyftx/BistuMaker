@@ -1,5 +1,6 @@
 package com.example.demo.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import jakarta.validation.constraints.Pattern;
@@ -9,7 +10,10 @@ import java.time.LocalDateTime;
 public class User {
     private Integer id;
     @Pattern(regexp = "^\\S{1,10}$")
+
+
     private String username;
+    @JsonIgnore
     private String password;
     private String role;
     private LocalDateTime createTime;//创建时间

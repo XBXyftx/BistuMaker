@@ -32,3 +32,10 @@ export const userInfoService = ()=>{
 export const userInfoUpdateService = (userInfoData)=>{
     return request.put('/user/update',userInfoData)
 }
+
+//获取所有用户信息
+export const userAllInfoService = (userInfo)=>{
+    return request.get('/user/userAllInfo')
+}
+
+

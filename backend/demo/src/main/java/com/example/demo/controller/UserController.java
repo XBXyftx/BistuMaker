@@ -15,7 +15,9 @@ import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -94,18 +96,25 @@ public class UserController {
         Map<String, Object> map = ThreadLocalUtil.get();
         String username = (String) map.get("username");
         User user = userService.findByUserName(username);
+        System.out.println(user);
         return Result.success(user);
     }
 
+
     @GetMapping("/userAllInfo")
-    public Result<User> userAllInfo(/*@RequestHeader(name = "Authorization") String token*/) {
-        //根据用户名查询用户
-       /* Map<String, Object> map = JwtUtil.parseToken(token);
-        String username = (String) map.get("username");*/
-        Map<String, Object> map = ThreadLocalUtil.get();
-        String username = (String) map.get("username");
-        User user = userService.findByUserName(username);
+    public Result<List<User>> userAllInfo() {
+        //查询所有用户表
+        List<User> user = userService.selectAllUser();
+        System.out.println("123"+Arrays.toString(user.toArray()));
         return Result.success(user);
+
+    }
+
+
+    @PutMapping("/update")
+    public Result update(@Validated User user) {
+        userService.updateUser(user);
+        return Result.success();
     }
 
 

@@ -32,7 +32,14 @@ const routes = [
         path:'/admin',
         name:'admin',
         component:()=>import('@/views/layout/layout.vue'),
+        children:[
+            {
+                path:'/admin/user',
+                name:'user',
+                component:()=>import('@/views/layout/components/user/userManagement.vue')
+            },
 
+            ]
 
     }
 
