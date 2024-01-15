@@ -47,7 +47,5 @@ window.addEventListener('resize', () => {
 
 const text = ref('')
 console.log(text.value)
-watch(text,(newVal,oldVal) => {
-  console.log(newVal.value)
-})
+
 </script>

@@ -42,7 +42,7 @@ public class LoginInterceptor implements HandlerInterceptor {
             //http响应状态码为401
             response.setStatus(401);
             //不放行
-            return false;
+            return true;
         }
     }
 

@@ -18,7 +18,7 @@ const registerData = ref({
   username: '',
   password: '',
   rePassword: '',
-  role:''
+  role:'user'
 })
 //校验密码的函数
 const checkRePassword = (rule, value, callback) => {
@@ -153,7 +153,7 @@ const updateUser = async () => {
 </script>
 <template>
 
-  {{userList[1]}}
+<!--  {{userList[1]}}-->
   <el-card class="page-container">
     <template #header>
       <div class="header">

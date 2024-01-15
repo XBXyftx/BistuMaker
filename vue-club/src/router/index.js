@@ -38,7 +38,11 @@ const routes = [
                 name:'user',
                 component:()=>import('@/views/layout/components/user/userManagement.vue')
             },
-
+            {
+                path:'/admin/article',
+                name:'article',
+                component:()=>import('@/views/layout/components/article/articleManagement.vue')
+            }
             ]
 
     }

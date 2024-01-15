@@ -14,14 +14,15 @@ import avatar from '@/assets/default.png'
 import {userInfoService} from '@/api/user.js'
 import useUserInfoStore from '@/stores/userInfo.js'
 import {useTokenStore} from '@/stores/token.js'
+
 const tokenStore = useTokenStore();
 const userInfoStore = useUserInfoStore();
 
 // 调用函数,获取用户详细信息
-const getUserInfo = async()=>{
+const getUserInfo = async () => {
   //调用接口
   let result = await userInfoService();
-  console.log('用户信息'+result.data)
+  console.log('用户信息' + result.data)
 
   //数据存储到pinia中
   userInfoStore.setInfo(result.data);
@@ -30,10 +31,12 @@ const getUserInfo = async()=>{
 getUserInfo();
 //条目被点击后,调用的函数
 import {useRouter} from 'vue-router'
+
 const router = useRouter();
-import {ElMessage,ElMessageBox} from 'element-plus'
-const handleCommand = (command)=>{
-  if(command === 'logout'){
+import {ElMessage, ElMessageBox} from 'element-plus'
+
+const handleCommand = (command) => {
+  if (command === 'logout') {
     ElMessageBox.confirm(
         '您确认要退出吗?',
         '温馨提示',
@@ -63,11 +66,12 @@ const handleCommand = (command)=>{
             message: '用户取消了退出登录',
           })
         })
-  }else{
+  } else {
     //路由
-    router.push('/user/'+command)
+    router.push('/user/' + command)
   }
 }
+
 
 </script>
 
@@ -78,60 +82,60 @@ const handleCommand = (command)=>{
     <el-aside width="200px">
       <div class="el-aside__logo"></div>
       <!-- element-plus的菜单标签 -->
-      <el-menu active-text-color="#ffd04b" background-color="#232323"  text-color="#fff"
+      <el-menu active-text-color="#ffd04b" background-color="#232323" text-color="#fff" unique-opened="true"
                router>
-        <el-menu-item index="/article/category">
-          <el-icon>
-            <Management />
-          </el-icon>
-          <span>文章分类</span>
-        </el-menu-item>
-        <el-menu-item index="/article/manage">
-          <el-icon>
-            <Promotion />
-          </el-icon>
-          <span>文章管理</span>
-        </el-menu-item>
-        <el-sub-menu >
+
+        <el-sub-menu>
           <template #title>
             <el-icon>
-              <UserFilled />
+              <UserFilled/>
             </el-icon>
             <span>个人中心</span>
           </template>
           <el-menu-item index="/admin/user">
             <el-icon>
-              <User />
+              <User/>
             </el-icon>
             <span>基本资料</span>
           </el-menu-item>
-          <el-menu-item index="/user/avatar">
+        </el-sub-menu>
+
+        <!--        文章管理-->
+        <el-sub-menu>
+          <template #title>
             <el-icon>
-              <Crop />
+              <UserFilled/>
             </el-icon>
-            <span>更换头像</span>
+            <span>文章管理</span>
+          </template>
+          <el-menu-item index="/admin/article">
+            <el-icon>
+              <User />
+            </el-icon>
+            <span>添加文章</span>
           </el-menu-item>
-          <el-menu-item index="/user/resetPassword">
+          <el-menu-item>
             <el-icon>
-              <EditPen />
+              <User />
             </el-icon>
-            <span>重置密码</span>
+            <span>管理文章</span>
           </el-menu-item>
         </el-sub-menu>
+
       </el-menu>
     </el-aside>
     <!-- 右侧主区域 -->
     <el-container>
       <!-- 头部区域 -->
       <el-header>
-        <div>黑马程序员：<strong>{{userInfoStore.info.role}}</strong></div>
+        <div>黑马程序员：<strong>{{ userInfoStore.info.role }}</strong></div>
         <!-- 下拉菜单 -->
         <!-- command: 条目被点击后会触发,在事件函数上可以声明一个参数,接收条目对应的指令 -->
         <el-dropdown placement="bottom-end" @command="handleCommand">
                     <span class="el-dropdown__box">
-                        <el-avatar :src="avatar" />
+                        <el-avatar :src="avatar"/>
                         <el-icon>
-                            <CaretBottom />
+                            <CaretBottom/>
                         </el-icon>
                     </span>
           <template #dropdown>
@@ -148,21 +152,21 @@ const handleCommand = (command)=>{
       <el-main>
         <div style="width: 99%; height: 80%;border: 1px solid red;">
           <router-view></router-view>
-            <!-- 用户信息和欢迎界面 -->
-<!--            <div class="user-info-box">-->
-<!--              <h2>欢迎， 123</h2>-->
-<!--              <p>这是您的后台管理首页。</p>-->
-<!--            </div>-->
+          <!-- 用户信息和欢迎界面 -->
+          <!--            <div class="user-info-box">-->
+          <!--              <h2>欢迎， 123</h2>-->
+          <!--              <p>这是您的后台管理首页。</p>-->
+          <!--            </div>-->
 
-<!--            &lt;!&ndash; 快捷操作 &ndash;&gt;-->
-<!--            <div class="quick-actions-box">-->
-<!--              <h3>快捷操作</h3>-->
-<!--              <el-button type="primary" icon="el-icon-plus">新增</el-button>-->
-<!--              <el-button type="success" icon="el-icon-edit">编辑</el-button>-->
-<!--              &lt;!&ndash; 添加其他操作按钮 &ndash;&gt;-->
-<!--            </div>-->
+          <!--            &lt;!&ndash; 快捷操作 &ndash;&gt;-->
+          <!--            <div class="quick-actions-box">-->
+          <!--              <h3>快捷操作</h3>-->
+          <!--              <el-button type="primary" icon="el-icon-plus">新增</el-button>-->
+          <!--              <el-button type="success" icon="el-icon-edit">编辑</el-button>-->
+          <!--              &lt;!&ndash; 添加其他操作按钮 &ndash;&gt;-->
+          <!--            </div>-->
         </div>
-<!--        <router-view></router-view>-->
+        <!--        <router-view></router-view>-->
       </el-main>
       <!-- 底部区域 -->
       <el-footer>大事件 ©2023 Created by 黑马程序员</el-footer>
@@ -170,7 +174,7 @@ const handleCommand = (command)=>{
   </el-container>
 </template>
 
-<style  scoped>
+<style scoped>
 .layout-container {
   height: 100vh;
 
@@ -179,7 +183,7 @@ const handleCommand = (command)=>{
 
     &__logo {
       height: 120px;
-      //background: url('@/assets/logo.png') no-repeat center / 120px auto;
+    //background: url('@/assets/logo.png') no-repeat center / 120px auto;
     }
 
     .el-menu {
@@ -223,8 +227,6 @@ const handleCommand = (command)=>{
   color: #333;
   margin-right: 20px;
 }
-
-
 
 
 </style>
