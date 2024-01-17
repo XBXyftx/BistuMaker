@@ -19,7 +19,7 @@ export const userLoginService = (loginData)=>{
     for(let key in loginData){
         params.append(key,loginData[key]);
     }
-    console.log(params+'params'+loginData)
+    // console.log(params+'params'+loginData)
     return request.post('/user/login',params);
 }
 
@@ -34,8 +34,11 @@ export const userInfoUpdateService = (userInfoData)=>{
 }
 
 //获取所有用户信息
-export const userAllInfoService = (userInfo)=>{
+export const userAllInfoService = ()=>{
     return request.get('/user/userAllInfo')
 }
 
+export const userDeleteService = (deleteData)=>{
+    return request.delete('/user/delete',deleteData)
+}
 

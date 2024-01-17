@@ -2,9 +2,10 @@
 
 import {defineComponent} from "vue";
 import ArticleAdd from "@/views/layout/components/article/articleAdd/articleAdd.vue";
+import ArticleAllInfo from "@/views/layout/components/article/articleAllInfo/articleAllInfo.vue";
 
 export default defineComponent({
-  components: {ArticleAdd}
+  components: {ArticleAllInfo, ArticleAdd}
 })
 </script>
 
@@ -14,6 +15,11 @@ export default defineComponent({
     <el-tab-pane label="添加文章">
       <article-add></article-add>
     </el-tab-pane>
+
+    <el-tab-pane label="文章管理">
+      <article-all-info></article-all-info>
+    </el-tab-pane>>
+
 
   </el-tabs>
 </template>

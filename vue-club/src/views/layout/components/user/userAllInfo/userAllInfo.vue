@@ -7,7 +7,7 @@ import { ref } from 'vue'
 const userList = ref([
 ])
 
-import {userAllInfoService, userInfoUpdateService, userRegisterService} from "@/api/user.js";
+import {userAllInfoService, userDeleteService, userInfoUpdateService, userRegisterService} from "@/api/user.js";
 import {ElMessage} from "element-plus";
 //控制添加用户弹窗
 const dialogVisible = ref(false)
@@ -60,7 +60,7 @@ const addUser = async () => {
   // ElMessage.success(result.msg ? result.msg : '添加成功')
   // await getUserList()
   // dialogVisible.value = false;
-  console.log('用户为+'+registerData.value.role)
+  // console.log('用户为+'+registerData.value.role)
   if(registerData.value.password === registerData.value.rePassword){
     let  data = {
       username:registerData.value.username,
@@ -96,7 +96,7 @@ const deleteCategory = (row) => {
   )
       .then(async () => {
         //调用接口
-        let result = await articleCategoryDeleteService(row.id);
+        let result = await userDeleteService(row.id);
         ElMessage({
           type: 'success',
           message: '删除成功',

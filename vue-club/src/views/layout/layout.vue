@@ -112,15 +112,26 @@ const handleCommand = (command) => {
             <el-icon>
               <User />
             </el-icon>
-            <span>添加文章</span>
+            <span>文章管理</span>
           </el-menu-item>
-          <el-menu-item>
+        </el-sub-menu>
+
+        <!--        文章管理-->
+        <el-sub-menu>
+          <template #title>
+            <el-icon>
+              <UserFilled/>
+            </el-icon>
+            <span>报名名单</span>
+          </template>/*
+          <el-menu-item index="/admin/article">
             <el-icon>
               <User />
             </el-icon>
-            <span>管理文章</span>
+            <span>文章管理</span>
           </el-menu-item>
         </el-sub-menu>
+
 
       </el-menu>
     </el-aside>
@@ -128,7 +139,7 @@ const handleCommand = (command) => {
     <el-container>
       <!-- 头部区域 -->
       <el-header>
-        <div>黑马程序员：<strong>{{ userInfoStore.info.role }}</strong></div>
+        <div>用户：<strong>{{ userInfoStore.info.role }}</strong></div>
         <!-- 下拉菜单 -->
         <!-- command: 条目被点击后会触发,在事件函数上可以声明一个参数,接收条目对应的指令 -->
         <el-dropdown placement="bottom-end" @command="handleCommand">

@@ -43,6 +43,7 @@ const routes = [
                 name:'article',
                 component:()=>import('@/views/layout/components/article/articleManagement.vue')
             }
+
             ]
 
     }

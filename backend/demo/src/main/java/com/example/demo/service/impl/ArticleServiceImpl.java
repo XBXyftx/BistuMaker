@@ -3,16 +3,19 @@ package com.example.demo.service.impl;
 import com.example.demo.mapper.ArticleMapper;
 import com.example.demo.pojo.Article;
 import com.example.demo.service.ArticleService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class ArticleServiceImpl implements ArticleService {
+    @Autowired
     private ArticleMapper articleMapper;
 
     @Override
     public void addArticle(Article article) {
+        System.out.println("Service层"+article.toString());
         articleMapper.insert(article);
     }
 
@@ -27,7 +30,7 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public List<Article> selectArticleById() {
+    public List<Article> selectArticle() {
         List<Article> articles = articleMapper.selectAllArticles();
         return articles;
     }

@@ -1,6 +1,7 @@
 package com.example.demo.mapper;
 
 import com.example.demo.pojo.Article;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -22,7 +23,7 @@ public interface ArticleMapper {
     /*
     新增文章
      */
-    @Select("insert into articles(title, content, cover_image, authorId,author,create_time,modify_time) values(#{title}, #{content},#{coverImage},#{authorId},#{author},now(),now())")
+    @Insert("insert into articles(title, content, cover_image,author,create_time) values(#{title}, #{content},#{coverImage},#{author},now())")
     void insert(Article article);
 
     /*

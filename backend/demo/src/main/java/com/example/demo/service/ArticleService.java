@@ -15,7 +15,7 @@ public interface ArticleService {
     void updateArticle(Article article);
 
     //查全部
-    List<Article> selectArticleById();
+    List<Article> selectArticle();
 
     //查
     Article selectArticleById(Integer id);

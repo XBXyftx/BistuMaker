@@ -113,7 +113,7 @@ public class UserController {
 
     @PutMapping("/update")
     public Result update(@Validated User user) {
-        System.out.println("密码为:"+user.getPassword());
+//        System.out.println("密码为:"+user.getPassword());
         userService.updateUser(user);
         return Result.success();
     }
