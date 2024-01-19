@@ -13,6 +13,8 @@ public interface EnrollmentMapper {
      */
     @Select("select * from enrollments")
     List<Enrollment> selectAll();
+    @Select("select * from enrollments where id=#{id}")
+    Enrollment selectById(Integer id);
 
     /*
      *  删

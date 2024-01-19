@@ -8,6 +8,9 @@
       </carousel>
 
 
+      <answer></answer>
+
+
     </div>
 
   </div>
@@ -34,9 +37,11 @@
 
 
 <script setup>
+
 import Notice from "@/components/Content/notice/notice.vue";
 import { ref } from 'vue';
 import Carousel from "@/components/Content/notice/carousel.vue";
+import Answer from "@/views/home/answer/answer.vue";
 //判断是否是移动端
 const isMobile = ref(window.innerWidth < 768);
 //监听窗口大小变化

@@ -19,6 +19,11 @@ public class EnrollmentServiceImpl  implements EnrollmentService {
         return enrollments;
     }
 
+    @Override
+    public Enrollment selectEnrollmentById(Integer id) {
+        return enrollmentMapper.selectById(id);
+    }
+
 
     //删
     @Override

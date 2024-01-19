@@ -1,16 +1,9 @@
  
 import { createRouter, createWebHistory } from 'vue-router'
-
- 
-
-
-
 import Home from "@/views/home/home.vue";
 import About from "@/views/about/about.vue";
-
-
-
-
+import Enrollment from "@/views/enrollment/enrollment.vue";
+import Login from "@/views/login/login.vue";
 //定义路由关系
 const routes = [
     {
@@ -24,9 +17,9 @@ const routes = [
         component: About
     },
     {
-        path: '/login',
-        name: 'login',
-        component: () => import('@/views/login/login.vue')
+        path: '/enrollment',
+        name: 'enrollment1',
+        component: Enrollment
     },
     {
         path:'/admin',
@@ -42,12 +35,20 @@ const routes = [
                 path:'/admin/article',
                 name:'article',
                 component:()=>import('@/views/layout/components/article/articleManagement.vue')
+            },
+            {
+                path:'/admin/enrollment',
+                name:'enrollment',
+                component:()=>import('@/views/layout/components/enrollment/enrollmentManagement.vue')
             }
-
             ]
 
+    },
+    {
+        path:'/login',
+        name:'login',
+        component: Login
     }
-
 
 
 ]

@@ -28,9 +28,9 @@ const persist = createPersistedState();
 
 pinia.use(persist)
 const app = createApp(App)
-app.use(router)
+// app.use(router)
 app.use(ElementPlus)
-app.mount('#app')
+
 app.use(VueMarkdownEditor);
 // app.use(VMdPreview)
 app.use(pinia)
@@ -46,4 +46,17 @@ import hljs from 'highlight.js';
 VMdPreview.use(githubTheme, {
     Hljs: hljs,
 });
+
+// 导入打字机
+import vuetyped from 'vue3typed'
+// 设置Vue3的全局方法实例
+// 代替Vue2的 Vue.use的全局方法
+// const app = createApp(App)
+// 挂载打字机的全局方法 .use(vuetyped) 请无视.use(store).use(router)
+app.use(vuetyped)
+
+
+
 app.use(VMdPreview);
+app.use(router)
+app.mount('#app')

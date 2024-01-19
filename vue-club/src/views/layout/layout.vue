@@ -124,11 +124,11 @@ const handleCommand = (command) => {
             </el-icon>
             <span>报名名单</span>
           </template>/*
-          <el-menu-item index="/admin/article">
+          <el-menu-item index="/admin/enrollment">
             <el-icon>
               <User />
             </el-icon>
-            <span>文章管理</span>
+            <span>报名管理</span>
           </el-menu-item>
         </el-sub-menu>
 

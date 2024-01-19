@@ -14,7 +14,7 @@ public class ArticleController {
     private ArticleService articleService;
 
     @PostMapping("/add")
-    public Result addArticle(Article article){
+    public Result addArticle(@RequestBody Article article){
         System.out.println("接口层测试"+article.toString());
         articleService.addArticle(article);
         return Result.success("添加成功");

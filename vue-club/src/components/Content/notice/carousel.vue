@@ -15,7 +15,7 @@ window.addEventListener('resize', () => {
   isMobile.value = window.innerWidth < 768;
   Height.value=isMobile.value? '200px' : '30rem';
 });
-console.log("12312"+Height.value)
+// console.log("12312"+Height.value)
 
 
 </script>

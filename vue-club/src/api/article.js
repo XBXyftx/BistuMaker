@@ -1,13 +1,11 @@
 import request from "@/utils/request.js";
 
 export const articleAddService = (articleData)=> {
-    console.log("上传中的数据")
-    console.log(articleData)
-    const params = new URLSearchParams()
-    for(let key in articleData){
-        params.append(key,articleData[key]);
-    }
-    return request.post( "/article/add", params)
+    // const params = new URLSearchParams()
+    // for(let key in articleData){
+    //     params.append(key,articleData[key]);
+    // }
+    return request.post( "/article/add", articleData)
 };
 //查询全部
 export const articleAllInfoService = ()=> {
