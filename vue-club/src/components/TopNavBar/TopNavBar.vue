@@ -2,6 +2,10 @@
   <nav class="nav-container">
     <div class="logo-container">
       <img src="@/assets/man.png" alt="logo" />
+      <a href="/" class="logo-name">创客空间</a>
+    </div>
+    <div>
+
     </div>
     <div class="menu-container" :class="{ 'menu-open': menuOpen }">
       <ul v-if="!isMobile">
@@ -93,7 +97,13 @@ const toggleMenu = () => {
 </script>
 
 <style scoped>
+.logo-name{
+  padding-left: 10px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #1f1f1f;
 
+}
 .nav-container {
   width: 100%;
   display: flex;

@@ -132,15 +132,6 @@ if (isMobile.value) {
   background-color: royalblue;
 }
 
-
-
-
-
-
-
-
-
-
 .list-enter-active,
 .list-leave-active {
   transition: all 0.5s ease;
