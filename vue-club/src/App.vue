@@ -1,10 +1,4 @@
 <script setup>
- 
-
- 
-import Content from "@/components/Content/content.vue";
-import Notice from "@/components/Content/notice/notice.vue";
-import Carousel from "@/components/Content/notice/carousel.vue";
 
 </script>
 

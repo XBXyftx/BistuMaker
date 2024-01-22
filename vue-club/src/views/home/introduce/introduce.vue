@@ -14,10 +14,73 @@
         <br>
       </p>
     </div>
+
+<!--  显示图片 居中-->
+
+<!--    <img :src="img"  class="img" />-->
+<!--  为我创建个div盒子里面一行放着几个div，div里面上面是图标下面是描述  -->
+
+    <div class="container">
+      <div class="item">
+        <div class="icon" >
+          <el-icon><SwitchFilled/></el-icon>
+        </div>
+        <p>编程与开发</p>
+        <a>
+          电脑报修是飞扬俱乐部提供的免费公益电脑维修服务
+        </a>
+      </div>
+      <div class="item">
+        <i class="fas fa-chart-line"></i>
+        <p>数据分析</p>
+      </div>
+      <div class="item">
+        <i class="fas fa-server"></i>
+        <p>云计算服务</p>
+      </div>
+
+
+      <!-- 可以根据需要添加更多项目 -->
+    </div>
+
   </div>
 </template>
 
 <style scoped>
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.item:hover {
+  background-color: rgb(67, 150, 202);
+  border-radius: 20%;
+  color: white;
+  transform: perspective(1000px) rotateX(1deg) rotateY(-5deg) scale(1.05)
+}
+.item {
+  transition: all 0.1s ease;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  width: 22%;
+  //padding: 20px;
+  box-sizing: border-box;
+  text-align: center;
+  margin-bottom: 20px;
+  cursor: grab;
+  p{
+    font-weight: bold;
+    font-size: 1.2rem;
+    transition: all 0.1s ease;
+  }
+}
+
+.item i {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+
 .introduction-container {
   //display: flex;
   flex-direction: column;
@@ -59,4 +122,7 @@
 </style>
 
 <script setup>// 这个脚本部分无需编写任何逻辑，因为这个组件没有动态数据或方法
+import {SwitchFilled} from "@element-plus/icons-vue";
+
+const img = new URL('@/assets/img/homeImages/1.jpg',import.meta.url )
 </script>

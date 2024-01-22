@@ -53,7 +53,7 @@ const handleCommand = (command) => {
           userInfoStore.removeInfo()
 
           //2.跳转到登录页面
-          router.push('/login')
+          await router.push('/login')
           ElMessage({
             type: 'success',
             message: '退出登录成功',
@@ -99,6 +99,7 @@ const handleCommand = (command) => {
             <span>基本资料</span>
           </el-menu-item>
         </el-sub-menu>
+
 
         <!--        文章管理-->
         <el-sub-menu>

@@ -48,6 +48,11 @@ const routes = [
         path:'/login',
         name:'login',
         component: Login
+    },
+    {
+        path:'/article/:id',
+        name:'article1',
+        component:()=>import('@/components/Article/Article.vue')
     }
 
 

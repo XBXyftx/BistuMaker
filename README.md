@@ -59,3 +59,8 @@
 ![image.png](./img/img_2.png)
 ![image.png](./img/img_3.png)
 
+
+## 1月23日更新
+终于实现了文章的显示,以及侧边显示目录,早上起来再改改api连接之类的.
+![image.png](./img/img_4.png)
+
