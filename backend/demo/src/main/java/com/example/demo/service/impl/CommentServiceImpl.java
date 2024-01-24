@@ -27,15 +27,13 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public Comment selectCommentById(Integer id) {
-        Comment comment = commentMapper.selectById(id);
-        return comment;
+        return commentMapper.selectById(id);
 
 
     }
 
     @Override
     public List<Comment> selectAllComment() {
-        List<Comment> comments = commentMapper.selectAll();
-        return comments;
+        return commentMapper.selectAll();
     }
 }

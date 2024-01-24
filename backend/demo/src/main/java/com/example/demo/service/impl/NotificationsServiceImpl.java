@@ -30,7 +30,6 @@ private NotificationsMapper notificationsMapper;
 
     @Override
     public List<Notifications> selectNotificationsById() {
-        List<Notifications> notifications = notificationsMapper.selectAll();
-        return notifications;
+        return notificationsMapper.selectAll();
     }
 }

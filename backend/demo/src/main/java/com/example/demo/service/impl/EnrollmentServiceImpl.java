@@ -15,8 +15,7 @@ public class EnrollmentServiceImpl  implements EnrollmentService {
 
     @Override
     public List<Enrollment> selectAllEnrollment() {
-        List<Enrollment> enrollments = enrollmentMapper.selectAll();
-        return enrollments;
+        return enrollmentMapper.selectAll();
     }
 
     @Override

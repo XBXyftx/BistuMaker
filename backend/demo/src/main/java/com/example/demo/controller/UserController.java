@@ -41,7 +41,7 @@ public class UserController {
         if(u!=null){
             return Result.error("用户名已存在");
         }else{
-            if(role==null && role.equals("")){
+            if(role==null && role.isEmpty()){
                 role="user";
             }
             userService.register(username,password,role);

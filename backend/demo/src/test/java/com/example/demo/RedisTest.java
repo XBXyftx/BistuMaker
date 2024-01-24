@@ -31,18 +31,17 @@ public class RedisTest {
             System.out.println("null");
 //            return Result.error("用户名不存在");
         }
-        if(Md5Util.getMD5String("123456").equals(u.getPassword())){
-            Map<String , Object> claims=new HashMap<>();
-            claims.put("id",u.getId());
-            claims.put("username",u.getUsername());
+        //            return Result.error("密码错误");
+        if (u != null && Md5Util.getMD5String("123456").equals(u.getPassword())) {
+            Map<String, Object> claims = new HashMap<>();
+            claims.put("id", u.getId());
+            claims.put("username", u.getUsername());
             String token = JwtUtil.genToken(claims);
             //将token存入redis
-            ValueOperations<String,String> operations = stringRedisTemplate.opsForValue();
-            operations.set("token:"+u.getId(),token, 1,TimeUnit.HOURS);
+            ValueOperations<String, String> operations = stringRedisTemplate.opsForValue();
+            operations.set("token:" + u.getId(), token, 1, TimeUnit.HOURS);
 //            return Result.success(token);
 
-        }else{
-//            return Result.error("密码错误");
         }
     }
 

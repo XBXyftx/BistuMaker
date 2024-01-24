@@ -31,13 +31,11 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public List<Article> selectArticle() {
-        List<Article> articles = articleMapper.selectAllArticles();
-        return articles;
+        return articleMapper.selectAllArticles();
     }
 
     @Override
     public Article selectArticleById(Integer id) {
-        Article article = articleMapper.selectById(id);
-        return article;
+        return articleMapper.selectById(id);
     }
 }

@@ -29,7 +29,7 @@ public class uploadController {
     /**
      * 时间格式化
      */
-    private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd/");
+    private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd/");
 
     @PostMapping("/img")
     public Result upload(@RequestParam("file") MultipartFile file) throws IOException {
