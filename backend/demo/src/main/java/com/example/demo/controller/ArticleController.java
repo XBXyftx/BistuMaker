@@ -30,6 +30,12 @@ public class ArticleController {
         return Result.success(articleService.selectArticle());
     }
 
+    //根据type值查询
+    @GetMapping("/articleType")
+    public Result selectArticleByType(String type){
+        return Result.success(articleService.selectArticleByType(type));
+    }
+
     @PutMapping("/update")
     public Result updateArticle(@RequestBody Article article){
         articleService.updateArticle(article);

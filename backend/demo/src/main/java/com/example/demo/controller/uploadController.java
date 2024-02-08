@@ -2,7 +2,10 @@ package com.example.demo.controller;
 
 import com.example.demo.pojo.Result;
 
+import com.example.demo.service.ImagesService;
 import io.micrometer.common.util.StringUtils;
+import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.ResourceUtils;
 import org.springframework.validation.annotation.Validated;
@@ -31,24 +34,73 @@ public class uploadController {
      */
     private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd/");
 
+    @Autowired
+    private ImagesService imagesService;
+
+    @Value("${upload.location.os}")
+    String path;
+    @Value("${spring.profiles.active}")
+    String os;
+
+
     @PostMapping("/img")
-    public Result upload(@RequestParam("file") MultipartFile file) throws IOException {
+    public Result upload(@RequestParam("file") MultipartFile file, String imageType,String imageName , HttpServletRequest request) throws IOException {
+        System.out.println(imageType);
+        System.out.println(imageName);
+//        String directory = simpleDateFormat.format(new Date());
+//        System.out.println(directory);
+//
+//        if (file == null) {
+//            return Result.error("上传失败");
+//        }
+//
+//        //文件名字
+//        String fileName = file.getOriginalFilename();
+////        String filePath = "G:\\项目\\社团官网\\源代码\\backend\\demo\\target\\classes\\static\\images\\";
+//        String filePath = ResourceUtils.getURL("").getPath() + "static/images/";
+//        filePath = java.net.URLDecoder.decode(filePath, "utf-8");
+//        System.out.println("filepath目录为"+filePath);
+//        System.out.println(filePath + directory + fileName);
+//        File uploadFile = new File(filePath+directory);
+//        uploadFile.mkdir();
+//        if (!uploadFile.exists()) {
+//            System.out.println("文件不存在");
+//            uploadFile.getParentFile().mkdirs();
+//            uploadFile.mkdirs();
+//        }
+//
+//        try{
+//            file.transferTo(new File(filePath +directory+fileName ));
+//        }catch (Exception e ){
+//            return Result.error("上传失败");
+//        }
+//        String basePath = request.getScheme()+"://" +
+//                request.getServerName() + ":" + request.getServerPort() +
+//                request.getContextPath() + "/";
+//        String ImagesUrl =("/images/"+directory+fileName);
+//        System.out.println("图片路径：" + ImagesUrl);
+//
+//
+////        imagesService.upload(fileName,ImagesUrl,"封面");
+//        return Result.success(ImagesUrl);
 
+
+        System.out.println("os为"+os);
         String directory = simpleDateFormat.format(new Date());
-        System.out.println(directory);
-
+//        System.out.println(directory);
         if (file == null) {
             return Result.error("上传失败");
         }
-
-        //文件名字
-        String fileName = file.getOriginalFilename();
-//        String filePath = "G:\\项目\\社团官网\\源代码\\backend\\demo\\target\\classes\\static\\images\\";
-        String filePath = ResourceUtils.getURL("classpath:").getPath() + "static/images/";
-        filePath = java.net.URLDecoder.decode(filePath, "utf-8");
-
-        System.out.println(filePath + directory + fileName);
-        File uploadFile = new File(filePath+directory);
+//文件名字
+        String fileName = file.getOriginalFilename();//xxx.jpg
+        UUID uuid = UUID.randomUUID();
+//        System.out.println(uuid.toString());
+        String extension = fileName.substring(fileName.lastIndexOf(".")); // 获取 ".jpg"
+        fileName = uuid.toString() + extension;
+        path=path+'/';
+        System.out.println("path+"+path);
+        System.out.println(path+directory+fileName);
+        File uploadFile = new File(path+directory+fileName);
         uploadFile.mkdir();
         if (!uploadFile.exists()) {
             System.out.println("文件不存在");
@@ -57,12 +109,22 @@ public class uploadController {
         }
 
         try{
-            file.transferTo(new File(filePath +directory+fileName ));
+            file.transferTo(uploadFile);
         }catch (Exception e ){
             return Result.error("上传失败");
         }
 
-        return Result.success("上传成功");
+        System.out.println(directory+fileName);
+
+
+        if(imageName!=null){
+            if(imageType!=null){
+                imagesService.upload(imageName,"/images/"+directory+fileName,imageType);
+                return Result.success("/images/"+directory+fileName);
+            }
+        }
+        imagesService.upload(fileName,"/images/"+directory+fileName,"封面");
+        return Result.success("/images/"+directory+fileName);
 
     }
 

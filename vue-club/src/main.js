@@ -53,10 +53,24 @@ import vuetyped from 'vue3typed'
 // 代替Vue2的 Vue.use的全局方法
 // const app = createApp(App)
 // 挂载打字机的全局方法 .use(vuetyped) 请无视.use(store).use(router)
+
+
+
 app.use(vuetyped)
 
 
 
 app.use(VMdPreview);
 app.use(router)
+
+
+
+import UndrawUi from 'undraw-ui'
+import 'undraw-ui/dist/style.css'
+app.use(UndrawUi)
+
+// Vue.prototype.baseUrl = "https://www.example.com/api"
+//定义全局变量
+app.config.globalProperties.$baseURL = "http://localhost:8080"
+
 app.mount('#app')

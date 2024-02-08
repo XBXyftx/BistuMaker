@@ -15,6 +15,14 @@ public interface NotificationsService {
     //改
     void updateNotifications(Notifications notifications);
 
-    //查
-    List<Notifications> selectNotificationsById();
+    //查id
+    Notifications selectNotificationsById(Integer id);
+
+    //查全部
+    List<Notifications> selectAllNotifications();
+
+    void updateIsRead(Integer id);
+
+    //获取isRead为1的
+    List<Notifications> selectIsRead();
 }

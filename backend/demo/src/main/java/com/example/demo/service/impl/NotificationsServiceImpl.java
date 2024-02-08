@@ -29,7 +29,22 @@ private NotificationsMapper notificationsMapper;
     }
 
     @Override
-    public List<Notifications> selectNotificationsById() {
+    public Notifications selectNotificationsById(Integer id) {
+        return notificationsMapper.selectById(id);
+    }
+
+    @Override
+    public List<Notifications> selectAllNotifications() {
         return notificationsMapper.selectAll();
+    }
+
+    @Override
+    public void updateIsRead(Integer id) {
+        notificationsMapper.updateIsRead(id);
+    }
+
+    @Override
+    public List<Notifications> selectIsRead() {
+        return notificationsMapper.selectIsRead();
     }
 }

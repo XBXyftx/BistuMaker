@@ -1,6 +1,7 @@
 package com.example.demo.mapper;
 
 import com.example.demo.pojo.Images;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -12,10 +13,16 @@ public interface ImagesMapper {
     public List<Images> selectAll();
 
 
-    @Select("insert into images(image_url, image_type, create_time) values(#{imagesUrl},#{imagesType},now())")
+    @Select("insert into images(image_name,image_url, image_type, create_time) values(#{imageName},#{imagesUrl},#{imagesType},now())")
     public void insert(Images images);
 
-    @Select("delete from images where id = #{id}")
+    @Delete("delete from images where id = #{id}")
     public void deleteById(Integer id);
 
+    @Select("select * from images where image_type = #{imageType}")
+    public List<Images> selectByImageType(Integer imageType);
+
+
+    @Select("select * from images where id =#{id}")
+    public Images selectById(Integer id);
 }

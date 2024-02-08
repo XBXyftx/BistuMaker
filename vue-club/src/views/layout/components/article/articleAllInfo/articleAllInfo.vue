@@ -1,5 +1,5 @@
 <script setup>
-
+import {getCurrentInstance} from 'vue'
 const articleAllInfo = async ()=> {
   let result = await  articleAllInfoService()
   articleList1.value=result.data
@@ -86,7 +86,21 @@ const updateArticle = async () => {
   }
 
 }
-
+import { uploadImg } from "@/api/uploadImg.js"
+const {proxy} = getCurrentInstance()
+const handleUploadImage=async (event,insertImage,files)=>{
+  let url;
+  for(let i in files){
+    const formData = new FormData()
+    formData.append("file", files[i]);
+    const res =await uploadImg(formData)
+    url = res.data
+  }
+  insertImage({
+    url:proxy.$baseURL+url,
+    desc: '',
+  });
+}
 </script>
 
 <template>

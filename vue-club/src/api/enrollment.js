@@ -1,5 +1,6 @@
 import request from "@/utils/request.js";
 export const enrollmentAddService = (enrollmentData)=> {
+  console.log(enrollmentData)
   return request.post("/enrollment/add", enrollmentData);
 }
 export const enrollmentAllInfoService = ()=> {

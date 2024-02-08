@@ -1,6 +1,7 @@
 package com.example.demo.mapper;
 
 import com.example.demo.pojo.Enrollment;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -25,8 +26,9 @@ public interface EnrollmentMapper {
     /*
      *  增
      */
-    @Select("insert into enrollments(name,student_id,signup_time,signup_reason,department,email,hobbies) values(#{name}, #{studentId},now(),#{signupReason}, #{department},#{email},#{hobbies})")
+    @Insert( "insert into enrollments(name, student_id, department, phone_number, email, reason, custom_reason, desired_position, introduction, signup_time) values(#{name},#{studentId},#{department},#{phoneNumber},#{email},#{reason},#{customReason},#{desiredPosition},#{introduction},now())")
     void insert(Enrollment enrollment);
+
 
     /*
      *  改

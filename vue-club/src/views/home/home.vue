@@ -14,7 +14,6 @@ import Content from "@/components/Content/content.vue";
     <Content >
     </Content>
 
-
     <footer1>
     </footer1>
 

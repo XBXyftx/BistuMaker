@@ -11,8 +11,8 @@
       <ul v-if="!isMobile">
         <li><a href="/">首页</a></li>
         <li><a href="#">关于</a></li>
-        <li><a href="#">社团活动</a></li>
-        <li><a href="#">社团相册</a></li>
+        <li><a href="/activity">社团活动</a></li>
+        <li><a href="/phoneAlbum">社团相册</a></li>
         <li><a href="#">教学资源</a></li>
 
         <li>

@@ -6,28 +6,40 @@
 
 
         <h3><el-icon><Tickets /></el-icon> 公告</h3>
-        <transition name="fade">
+
+
+        <transition name="fade" v-for="item in noticeList">
         <div class="details" v-if="showDetails">
-          <p>具体的活动安排：</p>
-          <div>
-            注意注意！大家最期待的社團課程即將開始啦！還在猶豫要不要加入 iOS Club 嗎？先來試上課體驗一下吧٩(˃̶͈̀௰˂̶͈́)و
-            <br>
-            日期：112/9/26(二)
-            時間：18:30~20:30​
-            地點：行政大樓二樓 204 RTC教室
+          <p style=" color: #fff;font-size: 1.5rem;margin: 10px   ">
+          {{item.title}}
+          </p>
+          <div v-html="item.content">
           </div>
         </div>
         </transition>
+
+
       </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
 import {ArrowDownBold, ArrowUp, ArrowUpBold, Tickets} from "@element-plus/icons-vue";
+import {notificationsGetIsReadService} from "@/api/notifications.js";
 const showDetails = ref(false);
 const toggleDetails = () => {
   showDetails.value = !showDetails.value;
 }
+const noticeList = ref([]);
+const getData =async () => {
+ const result =await notificationsGetIsReadService()
+  console.log(result.data)
+  noticeList.value = result.data;
+}
+
+getData()
+
+
 </script>
 
 <style scoped>

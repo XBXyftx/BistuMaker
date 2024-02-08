@@ -19,4 +19,7 @@ public interface CommentService {
 
     //查所有
     List<Comment> selectAllComment();
+
+    //根据发帖id查询
+    List<Comment> selectCommentByArticleId(Integer articleId);
 }

@@ -15,6 +15,7 @@ public class EnrollmentController {
 
     @PostMapping("/add")
     public Result addEnrollment(@RequestBody Enrollment enrollment){
+        System.out.println(enrollment.toString());
         enrollmentService.addEnrollment(enrollment);
         return Result.success("添加成功");
     }

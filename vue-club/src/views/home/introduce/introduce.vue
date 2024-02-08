@@ -1,7 +1,14 @@
 <!-- MyIntroduction.vue -->
 <template>
   <div class="introduction-container">
-    <h1 class="title" style="font-size: 50px">信息科大<span style="color:#4ab1f4">创客空间</span>  </h1>
+
+    <h1 class="title" style="font-size: 50px" v-if="!isMobile">信息科大<span style="color:#4ab1f4">创客空间</span>  </h1>
+    <h1 class="title" style="font-size: 50px;padding: 0" v-else>
+      信息科大<br>
+      <span style="color:#4ab1f4">创客空间</span>
+    </h1>
+
+
     <div class="description">
       <!-- 这里填写具体的介绍内容 -->
       <p>四川大学飞扬俱乐部，创建于2003年9月
@@ -32,11 +39,23 @@
       </div>
       <div class="item">
         <i class="fas fa-chart-line"></i>
-        <p>数据分析</p>
+        <div class="icon" >
+          <el-icon><Platform /></el-icon>
+        </div>
+        <p>嵌入式开发</p>
+        <a>
+          电脑报修是飞扬俱乐部提供的免费公益电脑维修服务
+        </a>
       </div>
       <div class="item">
+        <div class="icon">
+          <el-icon><MessageBox /></el-icon>
+        </div>
         <i class="fas fa-server"></i>
-        <p>云计算服务</p>
+        <p>学业规划</p>
+        <a>
+          电脑报修是飞扬俱乐部提供的免费公益电脑维修服务
+        </a>
       </div>
 
 
@@ -48,6 +67,7 @@
 
 <style scoped>
 .container {
+  margin-top: 100px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
@@ -122,7 +142,14 @@
 </style>
 
 <script setup>// 这个脚本部分无需编写任何逻辑，因为这个组件没有动态数据或方法
-import {SwitchFilled} from "@element-plus/icons-vue";
+import {MessageBox, Platform, SwitchFilled} from "@element-plus/icons-vue";
+import {ref} from "vue";
 
 const img = new URL('@/assets/img/homeImages/1.jpg',import.meta.url )
+const isMobile = ref(window.innerWidth < 768);
+//监听窗口大小变化
+window.addEventListener('resize', () => {
+  isMobile.value = window.innerWidth < 768;
+});
+
 </script>

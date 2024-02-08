@@ -26,6 +26,10 @@ export const articleInfoService = (params)=> {
     return request.get("/article/articleInfo", { params: { id: params } });
 };
 
+export const articleTypeService = (params)=> {
+    return request.get("/article/articleType", { params: { type: params } });
+};
+
 //修改文章
 export const articleUpdateService = (articleData)=> {
     return request.put( "/article/update", articleData)
@@ -35,4 +39,12 @@ export const articleUpdateService = (articleData)=> {
 export const articleDeleteService = (deleteData)=> {
     return request.delete( "/article/delete", {params:{id:deleteData}})
 };
+//根据文章类型查询
+export const articleTypeQueryService = (params)=> {
+    return request.get("/article/articleType", { params: { type: params } });
+};
+//根据id查询文章
+// export const articleIdQueryService = (params)=> {
+//     return request.get("/article/articleInfo", { params: { id: params } });
+// };
 

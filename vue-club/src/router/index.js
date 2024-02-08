@@ -1,4 +1,4 @@
- 
+
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from "@/views/home/home.vue";
 import About from "@/views/about/about.vue";
@@ -40,8 +40,18 @@ const routes = [
                 path:'/admin/enrollment',
                 name:'enrollment',
                 component:()=>import('@/views/layout/components/enrollment/enrollmentManagement.vue')
+            },
+            {
+                path:'/admin/notifications',
+                name:'notifications',
+                component:()=>import('@/views/layout/components/notifications/notifications.vue')
+            },
+            {
+                path:'/admin/phoneAlbum',
+                name:'phoneAlbum1',
+                component:()=>import('@/views/layout/components/phoneAlbum/phoneAlbum.vue')
             }
-            ]
+        ]
 
     },
     {
@@ -53,6 +63,16 @@ const routes = [
         path:'/article/:id',
         name:'article1',
         component:()=>import('@/components/Article/Article.vue')
+    },
+    {
+        path:'/activity',
+        name:'activity1',
+        component:()=>import('@/views/activity/activity.vue')
+    },
+    {
+        path:'/phoneAlbum',
+        name:'phoneAlbum',
+        component:()=>import('@/views/phoneAlbum/phoneAlbum.vue')
     }
 
 

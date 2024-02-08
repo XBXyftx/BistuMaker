@@ -1,5 +1,6 @@
 <script setup>
-import {ref} from "vue";
+import {getCurrentInstance, ref} from "vue";
+import {getPhoneAlbumAllImage} from "@/api/Images.js";
 
 const images = ref([
   {id: 0, idView: new URL('@/assets/img/homeImages/1.jpg',import.meta.url )},
@@ -17,20 +18,30 @@ window.addEventListener('resize', () => {
 });
 // console.log("12312"+Height.value)
 
+const {proxy} = getCurrentInstance()
+const baseURL = proxy.$baseURL
 
+const imagesList=ref({})
+const getImages = async () => {
+  let res = await getPhoneAlbumAllImage()
+  imagesList.value = res.data
+  // console.log(res.data)
+  console.log(imagesList.value)
+}
+getImages()
 </script>
 
 <template>
   <div class="carousel">
     <el-carousel :interval="2000" arrow="always" height="25vw" type="card" v-if="!isMobile">
-      <el-carousel-item v-for="item in images" :key="item.id">
-        <img :src="item.idView" alt="" height="100%" width="auto">
+      <el-carousel-item v-for="item in imagesList" :key="item.id">
+        <img :src="`${baseURL+item.imagesUrl}`" alt=""  width="100%" height="100%" >
       </el-carousel-item>
     </el-carousel>
 
     <el-carousel :interval="2000" arrow="always" height="60vw"  v-else>
-      <el-carousel-item v-for="item in images" :key="item.id">
-        <img :src="item.idView" alt="" height="100%" width="auto">
+      <el-carousel-item v-for="item in imagesList" :key="item.id">
+        <img :src="`${baseURL+item.imagesUrl}`" alt="" height="100%" width="100%">
       </el-carousel-item>
     </el-carousel>
   </div>

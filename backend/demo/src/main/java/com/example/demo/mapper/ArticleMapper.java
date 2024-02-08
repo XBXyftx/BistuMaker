@@ -1,6 +1,7 @@
 package com.example.demo.mapper;
 
 import com.example.demo.pojo.Article;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -23,7 +24,7 @@ public interface ArticleMapper {
     /*
     新增文章
      */
-    @Insert("insert into articles(title, content, cover_image,author,create_time) values(#{title}, #{content},#{coverImage},#{author},now())")
+    @Insert("insert into articles(title, content, cover_image,author,create_time,type,synopsis) values(#{title}, #{content},#{coverImage},#{author},now(),#{type},#{synopsis})")
     void insert(Article article);
 
     /*
@@ -35,8 +36,13 @@ public interface ArticleMapper {
     /*
     删除文章
      */
-    @Select("delete from articles where id = #{id}")
+    @Delete("delete from articles where id = #{id}")
     void deleteById(Integer id);
+
+
+    @Select("select * from articles where type = #{type}")
+    List<Article> selectByType(String type);
+
 
 
 }

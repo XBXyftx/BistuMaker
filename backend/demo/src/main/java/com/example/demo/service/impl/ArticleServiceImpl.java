@@ -38,4 +38,9 @@ public class ArticleServiceImpl implements ArticleService {
     public Article selectArticleById(Integer id) {
         return articleMapper.selectById(id);
     }
+
+    @Override
+    public List<Article> selectArticleByType(String type) {
+        return articleMapper.selectByType(type);
+    }
 }

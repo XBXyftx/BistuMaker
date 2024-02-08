@@ -1,16 +1,19 @@
 package com.example.demo.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class HttpConverterConfig implements WebMvcConfigurer {
-
+    @Value("${upload.location.os}")
+    String path;
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        path=path+'/';
         //其中image表示访问的前缀。"file:F:/img/"是文件真实的存储路径
-        registry.addResourceHandler("/image/**").addResourceLocations("file:G:\\项目\\社团官网\\源代码\\backend\\demo\\target\\classes\\static\\images\\");
+        registry.addResourceHandler("/images/**").addResourceLocations("file:"+path);
     }
 
 }

@@ -8,6 +8,10 @@
       <introduce>
       </introduce>
 
+      <department>
+      </department>
+
+
       <carousel>
       </carousel>
 
@@ -19,7 +23,7 @@
 
   </div>
 
-<!--  <v-md-editor v-model="text" height="400px"></v-md-editor>-->
+  <!--  <v-md-editor v-model="text" height="400px"></v-md-editor>-->
 </template>
 
 <style scoped>
@@ -31,9 +35,9 @@
   align-items: center;
   width: 85%;
   justify-content: center;
-  margin: 0 auto;
   height: 100%;
   background-color: #ffffff;
+  margin: 0 auto;
 }
 
 
@@ -47,6 +51,7 @@ import { ref } from 'vue';
 import Carousel from "@/components/Content/notice/carousel.vue";
 import Answer from "@/views/home/answer/answer.vue";
 import Introduce from "@/views/home/introduce/introduce.vue";
+import Department from "@/views/home/department/department.vue";
 //判断是否是移动端
 const isMobile = ref(window.innerWidth < 768);
 //监听窗口大小变化

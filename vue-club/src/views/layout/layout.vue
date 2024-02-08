@@ -9,7 +9,7 @@ import {
   SwitchButton,
   CaretBottom
 } from '@element-plus/icons-vue'
-import avatar from '@/assets/default.png'
+// import avatar from '@/assets/default.png'
 
 import {userInfoService} from '@/api/user.js'
 import useUserInfoStore from '@/stores/userInfo.js'
@@ -124,7 +124,7 @@ const handleCommand = (command) => {
               <UserFilled/>
             </el-icon>
             <span>报名名单</span>
-          </template>/*
+          </template>
           <el-menu-item index="/admin/enrollment">
             <el-icon>
               <User />
@@ -134,6 +134,38 @@ const handleCommand = (command) => {
         </el-sub-menu>
 
 
+<!--        报名表-->
+
+        <el-sub-menu>
+          <template #title>
+            <el-icon>
+              <UserFilled/>
+            </el-icon>
+            <span>通知表</span>
+          </template>
+          <el-menu-item index="/admin/notifications">
+            <el-icon>
+              <User />
+            </el-icon>
+            <span>通知管理</span>
+          </el-menu-item>
+        </el-sub-menu>
+
+<!--        相册管理-->
+        <el-sub-menu>
+          <template #title>
+            <el-icon>
+              <UserFilled/>
+            </el-icon>
+            <span>相册管理</span>
+          </template>
+          <el-menu-item index="/admin/phoneAlbum">
+            <el-icon>
+              <User />
+            </el-icon>
+            <span>相册管理</span>
+          </el-menu-item>
+        </el-sub-menu>
       </el-menu>
     </el-aside>
     <!-- 右侧主区域 -->
@@ -195,7 +227,7 @@ const handleCommand = (command) => {
 
     &__logo {
       height: 120px;
-    //background: url('@/assets/logo.png') no-repeat center / 120px auto;
+
     }
 
     .el-menu {

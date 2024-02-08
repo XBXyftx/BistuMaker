@@ -94,6 +94,9 @@ public class UserController {
        /* Map<String, Object> map = JwtUtil.parseToken(token);
         String username = (String) map.get("username");*/
         Map<String, Object> map = ThreadLocalUtil.get();
+        if (map == null){
+            return Result.error("请先登录");
+        }
         String username = (String) map.get("username");
         User user = userService.findByUserName(username);
         System.out.println(user);

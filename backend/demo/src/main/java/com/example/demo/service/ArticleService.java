@@ -19,4 +19,7 @@ public interface ArticleService {
 
     //查
     Article selectArticleById(Integer id);
+
+    //根据type查询
+    List<Article> selectArticleByType(String type);
 }

@@ -1,12 +1,10 @@
-<script>
+<script setup>
 
-import {defineComponent} from "vue";
+
+
+
 import ArticleAdd from "@/views/layout/components/article/articleAdd/articleAdd.vue";
 import ArticleAllInfo from "@/views/layout/components/article/articleAllInfo/articleAllInfo.vue";
-
-export default defineComponent({
-  components: {ArticleAllInfo, ArticleAdd}
-})
 </script>
 
 <template>

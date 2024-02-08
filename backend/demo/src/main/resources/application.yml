@@ -1,28 +1,4 @@
 spring:
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/club
-    username: root
-    password: 123456
-  data:
-    redis:
-      host: 8.146.211.219
-      port: 6379
-      password: song111711
-      servlet:
-        multipart:
-         max-file-size: 10MB
-         max-request-size: 10MB
-    resources:
-      static-locations: classpath:static/
-
-mybatis:
-  configuration:
-    map-underscore-to-camel-case: true #开启驼峰命名和下划线命名的自动转换
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-server:
-  port: 8080
-
-
-
+  profiles:
+    active: dev
 

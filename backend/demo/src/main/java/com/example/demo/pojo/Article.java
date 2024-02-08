@@ -15,6 +15,8 @@ public class Article {
     private String author;//作者
     private LocalDateTime createTime; // 创建时间
     private LocalDateTime  modifyTime; // 修改时间
+    private String type;
+    private String synopsis;
 
     @Override
     public String toString() {

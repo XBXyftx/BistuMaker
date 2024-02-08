@@ -13,7 +13,7 @@ public interface CommentMapper {
     /*
      * 增加评论
      */
-    @Insert("insert into comments(content, article_id,creator_id,create_time) values(#{content}, #{articleId}, #{creatorId}, now())")
+    @Insert("insert into comments(content, article_id,create_time,creator_email,ip,nick_name) values(#{content}, #{articleId}, now(),#{creatorEmail},#{ip},#{nickName})")
     void insert(Comment comment);
 
     /*
@@ -38,4 +38,10 @@ public interface CommentMapper {
      */
     @Select("update comments set content=#{content} where id=#{id}")
     void update(Comment comment);
+
+    /*
+    根据文章id查找
+     */
+    @Select("select * from comments where article_id = #{articleId} order by create_time desc ")
+    List<Comment> selectByArticleId(Integer articleId);
 }
