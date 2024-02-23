@@ -162,7 +162,7 @@ const changeStatus = async (id) =>{
 
 
   </el-card>
-  {{notificationsList}}
+<!--  {{notificationsList}}-->
 </template>
 
 <style lang="scss" scoped>

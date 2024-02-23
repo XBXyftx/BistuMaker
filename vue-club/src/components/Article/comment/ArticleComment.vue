@@ -1,5 +1,8 @@
 <template>
   <div class="commentListCpn">
+
+
+
     <!-- 练习 小项目 题目 -->
     <!--  -->
     <div class="commentListCont">
@@ -17,8 +20,17 @@
         </div>
       </div>
 
+
+      <!--      骨架屏-->
+      <div class='screen-root' v-if="loading===false">
+        <ul>
+          <li/>
+          <li/>
+          <li/>
+        </ul>
+      </div>
       <!-- 评论渲染 -->
-      <div class="commentList">
+      <div class="commentList" v-else>
         <!-- 评论item -->
         <div class="commentItemCont" v-for='item in renderData' :key='item.id'>
           <!-- ！！！！一级评论 -->
@@ -50,21 +62,21 @@ import {onMounted,onUpdated,ref,reactive,computed,watch,nextTick} from 'vue'
 const props = defineProps({
   articleId:String
 })
-/*
-🐵🐶🐺🐱🦁🐯🦒🦊🐮🐷🐗🐭🐹🐰🐻🐨🐼🐸🦓🐴🦄🐔🐲🐱‍🐉🤑
-*/
 
-// 申明 响应式数据 ====================
+
+// // 申明 响应式数据 ====================
 let originCommentListData = reactive({
   data:[
     { id: 1, nick_name: "冬天的雨", content: "非常好的文章！", parent_id: 0, time: 1625454585},
     { id: 2, nick_name: "半栈java", content: "底层实现有点看蒙圈了。java和c代码都有。c是class还差不多！", parent_id: 0, time: 1625368185, boolChild: false },
   ]
 })
+let loading = ref(false)
 import {commentInfoService} from "@/api/comment.js"
 const getCommentList = async (id)=>{
   let result= await commentInfoService(id)
   renderData.value=result.data
+  loading.value=true
 }
 getCommentList(props.articleId)
 
@@ -271,16 +283,7 @@ hr{
    flex: 1;
    position: relative;
  }.commentInput .input>input{
-    //width: 100%;
-    //display: block;
-    //box-sizing: border-box;
-    //height: 30px;
-    //border: 1px solid black;
-    //border-right: none;
-    //border-radius:20px ;
-    //outline: none;
-    //padding: 0 30px 0 10px ;
-    //color: #666;
+
   }.commentInput .input>button{
      position: absolute;
      right: 0;
@@ -300,9 +303,10 @@ hr{
 /* 评论列表 */
 .commentList{
   flex: 1;
-  width: 100%;
-  padding: 0 5px;
-  overflow: auto;
+  width: 80%;
+  margin: 0 auto;
+
+  //overflow: auto;
 
 }
 
@@ -336,21 +340,64 @@ hr{
 
 
 .commentItem .userComment{
+  width: 100%;
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  word-wrap:break-word;
 }.commentItem .userComment .userName{
    font-weight: bolder;
  }.commentItem .userComment .content{
     flex:1;
-    display: flex;
+
     align-items: center;
-  margin-top: -20px;
+    margin-top: -10px;
+     word-wrap:break-word;
+
+
   }.commentItem .userComment .operationBar{
      display: inline-flex;
      justify-content: space-between;
      color: #999;
         margin-top: -20px;
    }
+
+
+
+ul {
+  background-color: #fff;
+  margin: 0 auto;
+  padding: 20px;
+  width: 40vw;
+}
+
+li {
+  background-image: linear-gradient(90deg, #f2f2f2 25%, #e6e6e6 37%, #f2f2f2 63%);
+  width: 100%;
+  height: 0.6rem;
+  list-style: none;
+  background-size: 400% 100%;
+  margin-top: 0.6rem;
+  background-position: 100% 50%;
+  animation: skeleton-loading 1.4s ease infinite;
+}
+
+li:first-child {
+  width: 38%;
+}
+
+li:last-child {
+  width: 61%;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0 50%;
+  }
+}
 </style>

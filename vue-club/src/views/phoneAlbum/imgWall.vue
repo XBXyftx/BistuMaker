@@ -4,20 +4,9 @@ import 'vue-waterfall-plugin-next/dist/style.css'
 import {getCurrentInstance, ref, toRaw} from 'vue'
 import {phoneAlbumAllInfoService} from "@/api/phoneAlbum.js";
 import {selectImagesByImagesType} from "@/api/Images.js";
-// let list =[
-//     {
-//       url: 'https://kaguranotamashii-1308648145.cos.ap-beijing.myqcloud.com/image1.png'
-//     },
-//   {
-//     url: 'https://kaguranotamashii-1308648145.cos.ap-beijing.myqcloud.com/image2.jpeg'
-//   },
-//   {
-//     url: 'https://kaguranotamashii-1308648145.cos.ap-beijing.myqcloud.com/image3.png'
-//   },
-//
-// ]
-
 let imageAlbumAllList = ref([])
+let loading = ref(false)
+
 const getImageAlbumAllInfo = async () => {
   const res = await phoneAlbumAllInfoService()
   console.log(res)
@@ -28,7 +17,8 @@ const getImageAlbumAllInfo = async () => {
     imageAlbumAllList.value[i].List=await getImageAlbumList(imageAlbumAllList.value[i].id)
   }
   // PhoneAlbumNameList.value=res.data
-  console.log(toRaw(imageAlbumAllList.value))
+  // console.log(toRaw(imageAlbumAllList.value))
+  loading.value=true
 
 }
 getImageAlbumAllInfo()
@@ -45,7 +35,16 @@ const baseURL = proxy.$baseURL
 </script>
 
 <template>
-  <div v-for="item1 in imageAlbumAllList">
+  <!--      骨架屏-->
+  <div class='screen-root'  v-if="loading===false">
+    <ul>
+      <li/>
+      <li/>
+      <li/>
+    </ul>
+  </div>
+
+  <div v-for="item1 in imageAlbumAllList"  v-if="loading!==false">
     <h1 class="">{{item1.phoneAlbumName}}</h1>
     <Waterfall :list="item1.List" :gutter="40"  :width="550" :crossOrigin="false">
       <template #item="{ item, url, index }">
@@ -89,4 +88,55 @@ h1 {
     text-shadow: none;
   }
 }
+
+
+
+
+
+.screen-root {
+  //width: 100%;
+  //height: 100%;
+  //display: flex;
+  //justify-content: center;
+  //margin-top: 20vh;
+}
+
+ul {
+  background-color: #fff;
+  margin: 0 auto;
+  padding: 20px;
+  width: 40vw;
+}
+
+li {
+  background-image: linear-gradient(90deg, #f2f2f2 25%, #e6e6e6 37%, #f2f2f2 63%);
+  width: 100%;
+  height: 0.6rem;
+  list-style: none;
+  background-size: 400% 100%;
+  margin-top: 0.6rem;
+  background-position: 100% 50%;
+  animation: skeleton-loading 1.4s ease infinite;
+}
+
+li:first-child {
+  width: 38%;
+}
+
+li:last-child {
+  width: 61%;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0 50%;
+  }
+}
+
+
+
 </style>

@@ -26,9 +26,10 @@ const getImages = async () => {
   let res = await getPhoneAlbumAllImage()
   imagesList.value = res.data
   // console.log(res.data)
-  console.log(imagesList.value)
+  // console.log(imagesList.value)
 }
 getImages()
+
 </script>
 
 <template>
@@ -36,6 +37,7 @@ getImages()
     <el-carousel :interval="2000" arrow="always" height="25vw" type="card" v-if="!isMobile">
       <el-carousel-item v-for="item in imagesList" :key="item.id">
         <img :src="`${baseURL+item.imagesUrl}`" alt=""  width="100%" height="100%" >
+        {{`${baseURL+item.imagesUrl}`}}
       </el-carousel-item>
     </el-carousel>
 
@@ -48,8 +50,12 @@ getImages()
 
 </template>
 
-<style scoped>
+<style>
 
 
+.el-carousel__indicator--horizontal{
+  display: none;
+
+}
 
 </style>

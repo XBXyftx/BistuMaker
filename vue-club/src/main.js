@@ -71,6 +71,8 @@ app.use(UndrawUi)
 
 // Vue.prototype.baseUrl = "https://www.example.com/api"
 //定义全局变量
-app.config.globalProperties.$baseURL = "http://localhost:8080"
+import {baseURL} from "@/utils/baseURL.js";
+
+app.config.globalProperties.$baseURL = baseURL
 
 app.mount('#app')

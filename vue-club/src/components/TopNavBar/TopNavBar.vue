@@ -1,8 +1,8 @@
 <template>
-  <nav class="nav-container">
+  <nav class="nav-container ">
     <div class="logo-container">
-      <img src="@/assets/man.png" alt="logo" />
-      <a href="/" class="logo-name">创客空间</a>
+<!--      <img src="@/assets/man.png" alt="logo" />-->
+      <a href="/" class="logo-name" >创客空间</a>
     </div>
     <div>
 
@@ -13,8 +13,7 @@
         <li><a href="#">关于</a></li>
         <li><a href="/activity">社团活动</a></li>
         <li><a href="/phoneAlbum">社团相册</a></li>
-        <li><a href="#">教学资源</a></li>
-
+<!--        <li><a href="#">教学资源</a></li>-->
         <li>
           <a
              href="/enrollment"
@@ -63,8 +62,8 @@
       <ul class="mobile-menu" v-if="isMobile && menuOpen">
         <li><a href="/" @click="toggleMenu">首页</a></li>
         <li><a href="#" @click="toggleMenu">关于</a></li>
-        <li><a href="#" @click="toggleMenu">社团活动</a></li>
-        <li><a href="#" @click="toggleMenu">社团相册</a></li>
+        <li><a href="/activity" @click="toggleMenu">社团活动</a></li>
+        <li><a href="/phoneAlbum" @click="toggleMenu">社团相册</a></li>
       </ul>
 
     </div>
@@ -98,17 +97,21 @@ const toggleMenu = () => {
 
 <style scoped>
 .logo-name{
-  padding-left: 10px;
+  padding-left: 30px;
   font-size: 1.5rem;
   font-weight: bold;
   color: #1f1f1f;
-
+  text-decoration: none;
 }
+
 .nav-container {
+  left: 0; right: 0;
+  height: 60px;
+  //position: fixed;
   width: 100%;
   display: flex;
   justify-content: space-between;
-  height: 60px;
+
   align-items: center;
   //padding: 0.5rem 1rem;
   background-color: #ffffff;
@@ -169,20 +172,21 @@ const toggleMenu = () => {
 
 
 .mobile-menu {
+  z-index: 2147483647;
   display: flex;
   flex-direction: column;
   list-style-type: none;
   margin: 0;
   padding: 0;
-  position: absolute;
-  top: 70px;
-  left: 0;
+  position: fixed;
+  top: 0px;
+  left: -15px;
   background-color: #ffffff;
   width: 100%;
 
   //height: calc(100vh - 100px);
   overflow-y: auto;
-  z-index: 100000;
+
 }
 
 .mobile-menu li a {

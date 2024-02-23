@@ -2,6 +2,9 @@
   <div class="main">
     <div class="content-main" :style="{ width: isMobile ? '100%' : '85%'}">
 
+
+
+
       <notice>
       </notice>
 
@@ -15,8 +18,13 @@
       <carousel>
       </carousel>
 
-      <answer>
-      </answer>
+
+      <br>
+      <br>      <br>
+      <br>
+      <br>
+<!--      <answer>-->
+<!--      </answer>-->
 
 
     </div>
@@ -28,7 +36,7 @@
 
 <style scoped>
 .main{
-  background-color: #bebcff;
+  background-color: rgba(177,196,210);
 }
 .content-main {
   //display: flex;
@@ -52,6 +60,7 @@ import Carousel from "@/components/Content/notice/carousel.vue";
 import Answer from "@/views/home/answer/answer.vue";
 import Introduce from "@/views/home/introduce/introduce.vue";
 import Department from "@/views/home/department/department.vue";
+import CarouselMain from "@/views/home/carouselMain/carouselMain.vue";
 //判断是否是移动端
 const isMobile = ref(window.innerWidth < 768);
 //监听窗口大小变化

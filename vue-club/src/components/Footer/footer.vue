@@ -62,7 +62,6 @@
 }
 
 body{
-  display: flex;
   justify-content: flex-end;
   align-items: center;
   min-height: 100vh;
@@ -131,7 +130,6 @@ footer p{
   width: 40px;
   height: 40px;
   background: #222;
-  display: flex;
   justify-content: center;
   align-items: center;
   margin-right: 10px;
@@ -226,5 +224,11 @@ footer p{
   .copyrightText{
     padding: 8px 40px;
   }
+}
+
+footer{
+  position: absolute;
+
+
 }
 </style>

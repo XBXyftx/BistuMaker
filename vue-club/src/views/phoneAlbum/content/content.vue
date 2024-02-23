@@ -1,21 +1,17 @@
 <template>
   <div class="main">
     <div class="content-main" :style="{ width: isMobile ? '100%' : '85%'}">
-
       <h1 style=" text-align: center;font-size: 3rem">  社团相册 </h1>
-
       <img-wall></img-wall>
-
     </div>
-
   </div>
-
-  <!--  <v-md-editor v-model="text" height="400px"></v-md-editor>-->
 </template>
 
 <style scoped>
+
+
 .main{
-  background-color: #bebcff;
+  background-color: rgba(177,196,210);
 }
 .content-main {
 //display: flex;
@@ -42,6 +38,7 @@ import Department from "@/views/home/department/department.vue";
 import ImgWall from "@/views/phoneAlbum/imgWall.vue";
 //判断是否是移动端
 const isMobile = ref(window.innerWidth < 768);
+
 //监听窗口大小变化
 window.addEventListener('resize', () => {
   isMobile.value = window.innerWidth < 768;

@@ -1,11 +1,12 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { fileURLToPath, URL } from "node:url";
-
-
+import {getCurrentInstance, ref} from "vue";
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+
+import {baseURL} from "./src/utils/baseURL.js";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -28,6 +29,7 @@ export default defineConfig({
       '/api':{
         // target:'http://8.146.211.219:8080',
         target:'http://localhost:8080',
+        // target: 'http://124.70.107.226:8080',
         changeOrigin:true,
         rewrite:(path)=>path.replace(/^\/api/,'')///api替换为''
       }
