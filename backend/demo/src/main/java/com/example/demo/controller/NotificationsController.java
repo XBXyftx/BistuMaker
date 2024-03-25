@@ -1,9 +1,11 @@
 package com.example.demo.controller;
 
+import com.example.demo.aop.MyLog;
 import com.example.demo.mapper.NotificationsMapper;
 import com.example.demo.pojo.Notifications;
 import com.example.demo.pojo.Result;
 import com.example.demo.service.NotificationsService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,10 +14,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/notifications")
+@RequiredArgsConstructor
 public class NotificationsController {
-    @Autowired
-    private NotificationsService notificationsController;
 
+    private final NotificationsService notificationsController;
+
+    @MyLog(value = "")
     @PostMapping("/add")
     public Result addNotifications(@RequestBody Notifications notifications){
         System.out.println(notifications.toString());

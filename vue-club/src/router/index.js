@@ -50,6 +50,11 @@ const routes = [
                 path:'/admin/phoneAlbum',
                 name:'phoneAlbum1',
                 component:()=>import('@/views/layout/components/phoneAlbum/phoneAlbum.vue')
+            },
+            {
+                path:'/admin/home',
+                name:'adminHome',
+                component:()=>import('@/views/layout/components/adminHome/adminHome.vue')
             }
         ]
 

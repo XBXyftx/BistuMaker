@@ -21,34 +21,35 @@
             <el-table-column label="图片" width="150px">
               <template #default="scope">
 
+<!--                {{scope}}-->
+
                 <el-image
+                    @click="onImageClick(baseURL + scope.row.imagesUrl)"
+                    preview-teleported="true"
                     :src= "`${baseURL + scope.row.imagesUrl}`"
+                    :preview-src-list="`${baseURL + scope.row.imagesUrl}`"
                 ></el-image>
+<!--                <el-image-viewer-->
+<!--                    :on-close="closeViewer"-->
+<!--                    :src="onImageUrl"-->
+<!--                    :urlList="onImageUrl"-->
+<!--                  v-if="onImage"-->
+<!--                />-->
               </template>
             </el-table-column>
             <el-table-column label="创建时间" prop="createTime" />
-
             <el-table-column label="操作" width="100" prop="id">
               <template #default="{ row }">
 <!--                <el-button :icon="Edit" circle plain type="primary" @click="showDialog(row)"></el-button>-->
                 <el-button :icon="Delete" circle plain type="danger" @click="deleteCategory(row)"></el-button>
               </template>
             </el-table-column>
-
-
           </el-table>
-
-
-
 
       </template>
     </el-table-column>
 <!--    <el-table-column label="时间" prop="date" />-->
     <el-table-column label="相册名" prop="phoneAlbumName" />
-
-
-
-
   </el-table>
 
   <!-- 添加弹窗 -->
@@ -102,10 +103,36 @@
     </template>
   </el-dialog>
 
+
+   <div class="image-container" v-if="onImage" @click="onImage=false">
+      <el-image
+          v-if="onImage"
+          :src="onImageUrl"
+          style="width: 60%; max-width: 100%; display: block; margin: auto;"
+          class="img1"
+      >
+      </el-image>
+    </div>
 </template>
 
+<style scoped>
+.image-container {
+  z-index: 9999999;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+</style>
+
 <script  setup>
-import {getCurrentInstance, ref, toRaw} from 'vue'
+import { ClickOutside as vClickOutside } from 'element-plus'
+import {getCurrentInstance, ref, toRaw,onMounted } from 'vue'
+import {onBeforeMount,onBeforeUpdate,onUpdated,onBeforeUnmount,onUnmounted} from  'vue'
 import {phoneAlbumAddService, phoneAlbumAllInfoService} from "@/api/phoneAlbum.js"
 import {Delete} from "@element-plus/icons-vue";
 import {ElMessage, ElMessageBox} from "element-plus";
@@ -116,6 +143,48 @@ let dialogVisible = ref(false)
 let dialogVisible1 = ref(false)
 const parentBorder = ref(false)
 const childBorder = ref(false)
+
+// onMounted(()=>{
+//   if(onImage.value!==false){
+//     // 模拟外部点击
+//     document.addEventListener('click', (e) => {
+//       onImage.value=false
+//       if (e.target.className !== '') {
+//         onImage.value=false
+//       }
+//     })
+//   }
+// })
+// onBeforeUnmount(()=>{
+//   window.removeEventListener('click', () => {}, true)
+// })
+
+const url =
+    'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg'
+const list = [
+  'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg',
+  'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg',
+  'https://fuss10.elemecdn.com/0/6f/e35ff375812e6b0020b6b4e8f9583jpeg.jpeg',
+  'https://fuss10.elemecdn.com/9/bb/e27858e973f5d7d3904835f46abbdjpeg.jpeg',
+  'https://fuss10.elemecdn.com/d/e6/c4d93a3805b3ce3f323f7974e6f78jpeg.jpeg',
+  'https://fuss10.elemecdn.com/3/28/bbf893f792f03a54408b3b7a7ebf0jpeg.jpeg',
+  'https://fuss10.elemecdn.com/2/11/6535bcfb26e4c79b48ddde44f4b6fjpeg.jpeg',
+]
+
+//点击图片
+const onImage = ref(false)
+const onImageUrl = ref('')
+
+const onImageClick = (url)=>{
+  onImageUrl.value=url
+  onImage.value=true
+  console.log(url)
+}
+const closeViewer = ()=>{
+  onImage.value=false
+}
+
+
 const tableData = [
   {
     date: '2016-05-03',

@@ -28,7 +28,6 @@ const rules ={
     {required: true, message: '请输入密码', trigger: 'blur'},
     {min:5,max:16,message: '密码长度不符合要求', trigger: 'blur'}
   ],
-
 }
 
 import {userLoginService} from "@/api/user.js";

@@ -3,16 +3,18 @@ package com.example.demo.service.impl;
 import com.example.demo.mapper.NotificationsMapper;
 import com.example.demo.pojo.Notifications;
 import com.example.demo.service.NotificationsService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class NotificationsServiceImpl implements NotificationsService {
 
-@Autowired
-private NotificationsMapper notificationsMapper;
+
+    private final NotificationsMapper notificationsMapper;
     @Override
     public void addNotifications(Notifications notifications) {
         notificationsMapper.insert(notifications);

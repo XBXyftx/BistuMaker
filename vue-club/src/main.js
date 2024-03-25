@@ -29,7 +29,12 @@ const persist = createPersistedState();
 pinia.use(persist)
 const app = createApp(App)
 // app.use(router)
-app.use(ElementPlus)
+
+import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
+
+app.use(ElementPlus,{
+    locale:zhCn
+})
 
 app.use(VueMarkdownEditor);
 // app.use(VMdPreview)
@@ -74,5 +79,8 @@ app.use(UndrawUi)
 import {baseURL} from "@/utils/baseURL.js";
 
 app.config.globalProperties.$baseURL = baseURL
+// app.config.globalProperties.$baseURL = 'http://124.70.107.226:8080'
+
+
 
 app.mount('#app')

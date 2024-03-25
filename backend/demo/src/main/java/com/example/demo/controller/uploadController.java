@@ -1,10 +1,12 @@
 package com.example.demo.controller;
 
+import com.example.demo.aop.MyLog;
 import com.example.demo.pojo.Result;
 
 import com.example.demo.service.ImagesService;
 import io.micrometer.common.util.StringUtils;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.ResourceUtils;
@@ -27,15 +29,14 @@ import java.util.UUID;
 @RequestMapping("/upload")
 @RestController//支持自动将接口返回的数据类型转换为JSON格式
 @Validated//它可以在保存实体类之前对其进行验证，并根据指定的验证规则进行校验。该注解可用于字段、集合、实体类等。
+@RequiredArgsConstructor
 public class uploadController {
 
     /**
      * 时间格式化
      */
     private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd/");
-
-    @Autowired
-    private ImagesService imagesService;
+    private final ImagesService imagesService;
 
     @Value("${upload.location.os}")
     String path;
@@ -43,6 +44,7 @@ public class uploadController {
     String os;
 
 
+    @MyLog(value = "添加照片")
     @PostMapping("/img")
     public Result upload(@RequestParam("file") MultipartFile file, String imageType,String imageName , HttpServletRequest request) throws IOException {
         System.out.println(imageType);

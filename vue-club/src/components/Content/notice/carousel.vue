@@ -55,7 +55,9 @@ getImages()
 
 .el-carousel__indicator--horizontal{
   display: none;
-
+}
+.el-carousel__indicator .el-carousel__indicator--horizontal{
+  display: none;
 }
 
 </style>

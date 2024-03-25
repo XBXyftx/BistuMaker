@@ -5,6 +5,7 @@ import com.example.demo.pojo.PhoneAlbum;
 import com.example.demo.pojo.Result;
 import com.example.demo.service.ImagesService;
 import com.example.demo.service.PhoneAlbumService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,12 +14,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/phoneAlbum")
+@RequiredArgsConstructor
 public class PhoneAlbumController {
-    @Autowired
-    private PhoneAlbumService phoneAlbumService;
 
-    @Autowired
-    private ImagesService imagesService;
+    private final PhoneAlbumService phoneAlbumService;
+    private final ImagesService imagesService;
 
 
     @GetMapping("/add")

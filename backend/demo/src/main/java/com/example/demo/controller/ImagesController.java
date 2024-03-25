@@ -1,8 +1,10 @@
 package com.example.demo.controller;
 
+import com.example.demo.aop.MyLog;
 import com.example.demo.pojo.Images;
 import com.example.demo.pojo.Result;
 import com.example.demo.service.ImagesService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,14 +16,16 @@ import java.io.File;
 
 @RestController
 @RequestMapping("/images")
+@RequiredArgsConstructor
 public class ImagesController {
-    @Autowired
-    private ImagesService imagesService;
+
+    private final ImagesService imagesService;
 
 
     @Value("${upload.location.os1}")
     String path;
 
+    @MyLog(value = "")
     @GetMapping("/imageType")
     public Result selectImagesByImagesType(Integer imageType) {
         return Result.success(imagesService.selectImagesType(imageType));
@@ -32,6 +36,7 @@ public class ImagesController {
 //        return Result.success(imagesService.selectAll());
 //    }
 
+    @MyLog(value = "删除图片")
     @DeleteMapping("/delete")
     public Result deleteImages(Integer id) {
 
@@ -44,10 +49,11 @@ public class ImagesController {
         if (file.exists()){
             file.delete();
             imagesService.delete(id);
-            return Result.success("操作成功");
+            return Result.success("操作异常图片成功");
+        }else{
+            imagesService.delete(id);
+            return Result.error("操作失败");
         }
-
-        return Result.error("操作失败");
 
     }
 

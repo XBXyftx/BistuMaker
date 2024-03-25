@@ -3,15 +3,17 @@ package com.example.demo.service.impl;
 import com.example.demo.mapper.ArticleMapper;
 import com.example.demo.pojo.Article;
 import com.example.demo.service.ArticleService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class ArticleServiceImpl implements ArticleService {
-    @Autowired
-    private ArticleMapper articleMapper;
+
+    private final ArticleMapper articleMapper;
 
     @Override
     public void addArticle(Article article) {

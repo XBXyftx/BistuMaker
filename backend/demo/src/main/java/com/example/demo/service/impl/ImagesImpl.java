@@ -3,15 +3,17 @@ package com.example.demo.service.impl;
 import com.example.demo.mapper.ImagesMapper;
 import com.example.demo.pojo.Images;
 import com.example.demo.service.ImagesService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class ImagesImpl implements ImagesService {
-    @Autowired
-    private ImagesMapper imagesMapper;
+
+    private final ImagesMapper imagesMapper;
 
     @Override
     public void upload(String imagesName, String imagesUrl, String imagesType) {

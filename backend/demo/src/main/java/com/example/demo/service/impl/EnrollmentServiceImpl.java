@@ -3,15 +3,17 @@ package com.example.demo.service.impl;
 import com.example.demo.mapper.EnrollmentMapper;
 import com.example.demo.pojo.Enrollment;
 import com.example.demo.service.EnrollmentService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class EnrollmentServiceImpl  implements EnrollmentService {
-    @Autowired
-    private EnrollmentMapper enrollmentMapper;
+
+    private final EnrollmentMapper enrollmentMapper;
 
     @Override
     public List<Enrollment> selectAllEnrollment() {

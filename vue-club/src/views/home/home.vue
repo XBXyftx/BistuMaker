@@ -12,6 +12,8 @@ import CarouselMain from "@/views/home/carouselMain/carouselMain.vue";
 
   <carousel-main>
   </carousel-main>
+
+
     <TopNavBar>
     </TopNavBar>
 
@@ -22,6 +24,9 @@ import CarouselMain from "@/views/home/carouselMain/carouselMain.vue";
     </footer1>
 
 </template>
-<style scoped>
-
+<style >
+body{
+  margin:0;
+  padding:0;
+}
 </style>

@@ -3,15 +3,17 @@ package com.example.demo.service.impl;
 import com.example.demo.mapper.CommentMapper;
 import com.example.demo.pojo.Comment;
 import com.example.demo.service.CommentService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class CommentServiceImpl implements CommentService {
-    @Autowired
-    private CommentMapper commentMapper;
+
+    private final CommentMapper commentMapper;
     @Override
     public void addComment(Comment comment) {
         commentMapper.insert(comment);

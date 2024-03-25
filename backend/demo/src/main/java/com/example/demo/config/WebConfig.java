@@ -27,7 +27,8 @@ public class WebConfig implements WebMvcConfigurer {
                 "/notifications/isRead",
                 "/images/imageType",
                 "/phoneAlbum/allInfo",
-                "/phoneAlbum/allImage"
+                "/phoneAlbum/allImage",
+                "/images/**"
                 );
 
 
