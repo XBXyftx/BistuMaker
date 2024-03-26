@@ -150,7 +150,7 @@ let levelTwoCommentContent = ref()
 
 import { defineProps } from 'vue';
 import {commentAddService} from "@/api/comment.js";
-import article from "@/components/Article/Article.vue";
+import article from "@/views/article/Article.vue";
 
 // console.log(props)
 function  handlerlevelOneComment()

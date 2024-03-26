@@ -109,7 +109,7 @@ const routes = [
     {
         path:'/article/:id',
         name:'article1',
-        component:()=>import('@/components/Article/Article.vue'),
+        component:()=>import('@/views/Article/Article.vue'),
         meta: {
             title: '文章详情'
         }
@@ -128,6 +128,14 @@ const routes = [
         component:()=>import('@/views/phoneAlbum/phoneAlbum.vue'),
         meta: {
             title: '相册'
+        }
+    },
+    {
+     path:'/404',
+        name:'404',
+        component:()=>import('@/views/article/404/a404.vue'),
+        meta: {
+            title: '404'
         }
     }
 

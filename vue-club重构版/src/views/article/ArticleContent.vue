@@ -230,7 +230,7 @@ center{
 
 <script setup>
 import {reactive, computed, onMounted, ref} from 'vue';
-import ArticleComment from "@/components/Article/comment/ArticleComment.vue";
+import ArticleComment from "@/views/Article/comment/ArticleComment.vue";
 import {articleInfoService} from '@/api/article.js'
 import {Comment} from "@element-plus/icons-vue";
 //判断是否是移动端

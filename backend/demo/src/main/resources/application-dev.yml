@@ -1,10 +1,16 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://124.70.107.226:3306/club?erverTimezone=CST
+    username: root1
+    password: song111711
+
 
   data:
     redis:
-
+      host: 124.70.107.226
+      port: 6379
+      password: song111711
       servlet:
         multipart:
          max-file-size: 10MB
