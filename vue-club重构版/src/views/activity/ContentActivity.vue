@@ -65,7 +65,7 @@
                :class="{
          active: index % 2 === 0 && isMobile === false,
          active1: isMobile !== false}">
-          <div class="btn-article">查看详细</div>
+          <div class="btn-article" @click="getArticle(activity.id)">查看详细</div>
           <h2 class="content-title">{{ activity.createTime }}</h2>
           <p class="content-desc">{{ activity.synopsis }}</p>
         </div>
@@ -140,29 +140,42 @@ const setupTimeline = () => {
   }, {threshold: 0.5});
   items.forEach(item => observer.observe(item));
 };
+
+import { useRoute, useRouter } from 'vue-router'
+const router = useRouter()
+const getArticle=(id)=>{
+  if (id) {
+    router.push({path: `/article/${id}`})
+  }
+}
+
+
+
 </script>
 
 
 <style scoped>
-.btn-article{
-
-
+.btn-article {
   color: #fff;
   display: flex;
-
+  align-items: center;
+  justify-content: center; /* 使内容垂直和水平居中 */
   background-color: rgba(0, 0, 0, 0.5);
-
-  transition: opacity 0.3s ease;
+  transition: all 0.3s ease; /* 将transition应用到所有属性，包括opacity */
   z-index: 1;
   border-radius: 5px;
   font-size: 20px;
- 
   width: 100px;
   height: 40px;
+  text-decoration: none; /* 去除默认的下划线，使其看起来更像按钮 */
+  font-weight: bold; /* 加粗字体以增强按钮感 */
+  cursor: pointer; /* 更改鼠标指针，提示用户该元素可点击 */
+  user-select: none; /* 防止文本被选中 */
+  outline: none; /* 移除聚焦时的轮廓线 */
   margin: 10px;
-
-
 }
+
+
 .content-container {
   display: flex; //align-items: center; /* 保持垂直居中 */ //justify-content: center; /* 添加这一行以实现水平居中 */ //margin: 0 auto; /* 如果父元素不是绝对定位，则可使用这种方式进行水平居中 */
   margin: 100px;

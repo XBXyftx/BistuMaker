@@ -12,7 +12,7 @@ const id = params.id
 import {articleInfoService} from '@/api/article.js'
 import A404 from "@/views/article/404/a404.vue";
 
-const articleInfo=ref(null)
+const articleInfo=ref(1)
 
 const getArticleInfo=async ()=>{
   const res = await articleInfoService(id)

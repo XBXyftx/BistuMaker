@@ -3,14 +3,11 @@
 
 
 
-    <!-- 练习 小项目 题目 -->
     <!--  -->
     <div class="commentListCont">
       <!-- 一级评论 输入 -->
       <div class="levelOneCommentInput commentInput">
-        <div class="userPhoto">
-          <img src="https://c2.im5i.com/2022/09/14/50cQ1.jpg" alt="">
-        </div>
+
         <div class="input">
 <!--          <input type="text" placeholder="文本中的评论将被发送" v-model.lazy.trim='levelOneCommentContent'>-->
           <el-input v-model="nike" placeholder="输入匿名" />
@@ -66,10 +63,7 @@ const props = defineProps({
 
 // // 申明 响应式数据 ====================
 let originCommentListData = reactive({
-  data:[
-    { id: 1, nick_name: "冬天的雨", content: "非常好的文章！", parent_id: 0, time: 1625454585},
-    { id: 2, nick_name: "半栈java", content: "底层实现有点看蒙圈了。java和c代码都有。c是class还差不多！", parent_id: 0, time: 1625368185, boolChild: false },
-  ]
+
 })
 let loading = ref(false)
 import {commentInfoService} from "@/api/comment.js"
@@ -231,140 +225,136 @@ function timeToggle(_time){
 </script>
 
 
-<style scoped>
 
-.commentListCpn{
+<style scoped>
+/* 组件整体样式 */
+.commentListCpn {
   padding: 5px;
-  //height: 100%;
-  //display: flex;
   flex-direction: column;
-  //justify-content: flex-start;
 }
-h1{
+
+/* 标题 */
+h1 {
   font-size: 25px;
-  font-weight: bolder;
+  font-weight: bold;
 }
-hr{
-  border-top:1px solid #eee ;
+
+/* 分割线 */
+hr {
+  border-top: 1px solid #eee;
   width: 100%;
 }
-.commentListCont{
-  /*border: 1px solid #eee;*/
+
+/* 评论区容器 */
+.commentListCont {
   margin: 10px auto;
-  //width: 80%;
-  /*temp height*/
-  /*height: 600px;*/
-
-
+  /* 若需要限制宽度，请取消注释下面一行 */
+  /* width: 80%; */
 }
 
-/* 头像 */
-.userPhoto{
+/* 用户头像 */
+.userPhoto {
   width: 50px;
   height: 50px;
-  border-radius: 50px;
+  border-radius: 50%;
   overflow: hidden;
   margin-right: 15px;
-}.userPhoto img{
-   width: 100%;
-   height: 100%;
- }
-
-/*一级,二级,评论输入*/
-.commentInput{
+}
+.userPhoto img {
   width: 100%;
-  padding: 15px;
+  height: 100%;
+}
+
+/* 评论输入框 */
+.commentInput {
+  width: 100%;
+
   background-color: #dedfe0;
   height: 60px;
   display: flex;
-  /*justify-content: ;*/
   align-items: center;
-}.commentInput .input{
-   flex: 1;
-   position: relative;
- }.commentInput .input>input{
-
-  }.commentInput .input>button{
-     position: absolute;
-     right: 0;
-     top: 0;
-     border-radius: 20px;
-     height: 30px;
-     padding: 0 15px;
-     border: none;
-     box-sizing: border-box;
-     box-shadow: 1px 1px 5px 5px #999;
-   }.commentInput .input>button:active{
-      box-shadow: 1px 1px 5px 5px #999 inset;
-    }
-
-
+}
+.commentInput .input {
+  flex: 1;
+  position: relative;
+}
+.commentInput .input input {
+  width: 100%;
+  height: 100%;
+  padding: 0 15px; /* 可根据需要添加内边距 */
+  box-sizing: border-box;
+}
+.commentInput .input button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  border-radius: 20px;
+  height: 30px;
+  padding: 0 15px;
+  border: none;
+  box-sizing: border-box;
+  box-shadow: 1px 1px 5px 5px #999;
+  transition: box-shadow 0.3s ease;
+}
+.commentInput .input button:active {
+  box-shadow: 1px 1px 5px 5px #999 inset;
+}
 
 /* 评论列表 */
-.commentList{
+.commentList {
   flex: 1;
   width: 80%;
   margin: 0 auto;
-
-  //overflow: auto;
-
 }
 
-/*一级评论*/
-.levelOneComment{
-  /*border: 1px solid tomato; */
+/* 一级评论 */
+.levelOneComment {}
 
+/* 二级评论 */
+.levelTwoComment {
+  display: none;
+  padding-left: 80px;
 }
-/*二级评论*/
-.levelTwoComment{
-  display:none;
-  /*border: 1px solid skyblue; */
-  padding: 0 0 0 80px ;
-}
-/*二级评论展示控制*/
-.levelTwoCommentShow{
-  display:block;
-}
-/*评论item*/
-.commentItem{
 
-  padding:10px 15px;
+/* 二级评论展示控制 */
+.levelTwoCommentShow {
+  display: block;
+}
+
+/* 评论项 */
+.commentItem {
+  padding: 10px 15px;
   color: #666 !important;
-
   display: flex;
   justify-content: space-between;
-}
-.isShowLine{
-  border-bottom: 1px solid #aaa;
+  border-bottom: 1px solid #ddd;
 }
 
-
-.commentItem .userComment{
+.commentItem .userComment {
   width: 100%;
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  word-wrap:break-word;
-}.commentItem .userComment .userName{
-   font-weight: bolder;
- }.commentItem .userComment .content{
-    flex:1;
+  word-wrap: break-word;
+}
+.commentItem .userComment .userName {
+  font-weight: bold;
+}
+.commentItem .userComment .content {
+  flex: 1;
+  align-items: center;
+  margin-top: -10px;
+  word-wrap: break-word;
+}
+.commentItem .userComment .operationBar {
+  display: inline-flex;
+  justify-content: space-between;
+  color: #999;
+  margin-top: -10px; /* 调整负值，避免重叠 */
+}
 
-    align-items: center;
-    margin-top: -10px;
-     word-wrap:break-word;
-
-
-  }.commentItem .userComment .operationBar{
-     display: inline-flex;
-     justify-content: space-between;
-     color: #999;
-        margin-top: -20px;
-   }
-
-
-
+/* 骨架屏样式 */
 ul {
   background-color: #fff;
   margin: 0 auto;
@@ -395,7 +385,6 @@ li:last-child {
   0% {
     background-position: 100% 50%;
   }
-
   100% {
     background-position: 0 50%;
   }
