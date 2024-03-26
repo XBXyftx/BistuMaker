@@ -49,7 +49,7 @@ public class ImagesController {
         if (file.exists()){
             file.delete();
             imagesService.delete(id);
-            return Result.success("操作异常图片成功");
+            return Result.success("操作图片成功");
         }else{
             imagesService.delete(id);
             return Result.error("操作失败");

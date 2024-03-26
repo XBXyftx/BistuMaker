@@ -12,6 +12,7 @@
           <div class="header">
             <div class="extra">
               <el-button type="primary" @click="changeState(props.row)"> 添加相册图片</el-button>
+              <el-button type="primary" @click="changeState(props.row)"> 删除相册(需要把所有照片先删除)</el-button>
             </div>
           </div>
 
@@ -20,28 +21,19 @@
 <!--            <el-table-column label="State" prop="image_url" />-->
             <el-table-column label="图片" width="150px">
               <template #default="scope">
-
-<!--                {{scope}}-->
-
                 <el-image
                     @click="onImageClick(baseURL + scope.row.imagesUrl)"
                     preview-teleported="true"
                     :src= "`${baseURL + scope.row.imagesUrl}`"
                     :preview-src-list="`${baseURL + scope.row.imagesUrl}`"
                 ></el-image>
-<!--                <el-image-viewer-->
-<!--                    :on-close="closeViewer"-->
-<!--                    :src="onImageUrl"-->
-<!--                    :urlList="onImageUrl"-->
-<!--                  v-if="onImage"-->
-<!--                />-->
               </template>
             </el-table-column>
             <el-table-column label="创建时间" prop="createTime" />
             <el-table-column label="操作" width="100" prop="id">
               <template #default="{ row }">
 <!--                <el-button :icon="Edit" circle plain type="primary" @click="showDialog(row)"></el-button>-->
-                <el-button :icon="Delete" circle plain type="danger" @click="deleteCategory(row)"></el-button>
+                <el-button :icon="Delete" circle plain type="danger" @click="deleteCategory(row,props.row)"></el-button>
               </template>
             </el-table-column>
           </el-table>
@@ -51,6 +43,9 @@
 <!--    <el-table-column label="时间" prop="date" />-->
     <el-table-column label="相册名" prop="phoneAlbumName" />
   </el-table>
+
+
+
 
   <!-- 添加弹窗 -->
   <el-dialog v-model="dialogVisible" title="添加相册图片" width="66%">
@@ -63,8 +58,6 @@
       <el-upload action=""
                  :http-request="handleRequest"
                  :show-file-list="false">
-<!--        http://localhost:8080/images2024/02/07/d7d3df54-c9e5-42b6-9486-f6add75a1d40.jpg-->
-<!--        http://localhost:8080/images/2024/02/07/82694166-4217-466f-b8cb-1855e8c2b2e6.jpg-->
         <img
             style="width: 99%;height: auto"
              :src= "`${imageUrl}`"
@@ -168,8 +161,10 @@ const PhoneAlbumNameList=ref([
 ])
 
 
-const deleteCategory = (row) => {
+const deleteCategory = (row,id) => {
   //提示用户  确认框
+  phoneAlbumId.value=id.id-1
+  console.log(id.id)
   console.log("id为"+row.id)
   ElMessageBox.confirm(
       '你确认要删除该分类信息吗?',
@@ -184,13 +179,23 @@ const deleteCategory = (row) => {
         //调用接口
         // let result = await articleDeleteService(row.id)
         let result = await deleteImages(row.id)
-        ElMessage({
-          type: 'success',
-          message: '删除成功',
-        })
+        console.log(result)
+        if (result.code===0){
+          ElMessage({
+            type: 'success',
+            message: '删除成功',
+          })
+        }else{
+          ElMessage({
+            type: 'error',
+            message: '删除失败',
+          })
+        }
+
         //刷新列表
         // await articleAllInfo()
         // await getImageAlbumAllInfo()
+        // phoneAlbumId
         await updatePhoneAlbumImage()
 
       })
@@ -204,6 +209,7 @@ const deleteCategory = (row) => {
 
 
 const changeState = (row) => {
+  console.log(row.id)
   phoneAlbumId.value=row.id
   dialogVisible.value= true
 }
@@ -222,19 +228,14 @@ const addImages = async () =>{
   formData.append('imageType', imagesInfo.value.imageType)
   formData.append('imageName', imagesInfo.value.imageName)
   const res =await uploadImg(formData)
-  console.log(res.data)
   dialogVisible.value=false
-  console.log(res.data)
   imagesInfo.value.image=''
   imagesInfo.value.imageName=''
   imagesInfo.value.imageType=''
-
-
-
-
-  // const res= await
-
+  imageAlbumAllList.value=[]
+  await getImageAlbumAllInfo()
 }
+
 const {proxy} = getCurrentInstance()
 const baseURL = proxy.$baseURL
 const imagesInfo = ref({
@@ -246,37 +247,10 @@ const imageUrl = ref()
 
 
 const handleRequest = async (params) => {
-  // if (imagesInfo.value.imageName===''){
-  //   ElMessage.error("标题不能为空")
-  //   return
-  // }
-
-  // console.log(params)
-  // const _file = params.raw;
-  // let blob = new Blob([_file]);
-  //
-  //
-  // // let blob = new Blob([JSON.stringify(params)], { type: 'application/json' });
-  // imageUrl.value = params.raw
-  // console.log(imageUrl.value)
-
   imageUrl.value = window.URL.createObjectURL(params.file)
   imagesInfo.value.image=params
   imagesInfo.value.imageType=phoneAlbumId.value
   console.log(imageUrl)
-  // var { file } = params;
-  // var formData = new FormData();
-  // // formData.append("token", data.params.token);
-  // formData.append("file", file);
-  // formData.append('imageType', imagesInfo.value.imageType)
-  // formData.append('imageName', imagesInfo.value.imageName)
-  //
-  //
-  // const res =await uploadImg(formData)
-  // console.log(res.data)
-  // imagesInfo.value.imageUrl = (res.data)
-  // console.log(  imagesInfo.value.imageUrl)
-
 }
 
 
@@ -289,12 +263,13 @@ const addPhoneAlbum= async () => {
     return
   }
   const res = await phoneAlbumAddService(phoneAlbumName.value)
-  console.log(res.data)
+  imageAlbumAllList.value=[]
+  await getImageAlbumAllInfo()
 }
 let imageAlbumAllList = ref([])
 const getImageAlbumAllInfo = async () => {
   const res = await phoneAlbumAllInfoService()
-  console.log(res)
+
   imageAlbumAllList.value=res.data
   // console.log(imageAlbumAllList.value)
   for (let i = 0; i < imageAlbumAllList.value.length; i++) {
@@ -302,7 +277,7 @@ const getImageAlbumAllInfo = async () => {
     imageAlbumAllList.value[i].List=await getImageAlbumList(imageAlbumAllList.value[i].id)
   }
   // PhoneAlbumNameList.value=res.data
-  console.log(toRaw(imageAlbumAllList.value))
+  // console.log(toRaw(imageAlbumAllList.value))
 
 }
 getImageAlbumAllInfo()
@@ -314,8 +289,16 @@ const getImageAlbumList = async (type) => {
 getImageAlbumList()
 
 const updatePhoneAlbumImage = async () => {
-  console.log(phoneAlbumId.value)
-  imageAlbumAllList.value[phoneAlbumId].List = await getImageAlbumList(phoneAlbumId)
+  // console.log("更新前"+toRaw(imageAlbumAllList.value[phoneAlbumId.value].List))
+  // // console.log(phoneAlbumId.value)
+  // imageAlbumAllList.value[phoneAlbumId.value].List.length=0
+  // console.log("更新清零"+imageAlbumAllList.value[phoneAlbumId.value].List)
+  // imageAlbumAllList.value[phoneAlbumId.value].List = await getImageAlbumList(phoneAlbumId.value)
+  // console.log("更新后"+toRaw(imageAlbumAllList.value[phoneAlbumId.value].List))
+
+  imageAlbumAllList.value=[]
+  await getImageAlbumAllInfo()
+
 }
 
 

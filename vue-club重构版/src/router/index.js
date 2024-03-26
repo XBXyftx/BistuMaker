@@ -88,6 +88,14 @@ const routes = [
                 }
             },
             {
+                path:'/admin/other',
+                name:'other',
+                component:()=>import('@/views/layout/components/other/other.vue'),
+                meta: {
+                    title: '相册管理'
+                }
+            },
+            {
                 path:'/admin/home',
                 name:'adminHome',
                 component:()=>import('@/views/layout/components/adminHome/adminHome.vue'),
