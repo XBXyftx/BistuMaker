@@ -96,6 +96,9 @@ public class SysLogAspect {
         //通过工具类获取Request对象
         RequestAttributes reqa = RequestContextHolder.getRequestAttributes();
         ServletRequestAttributes sra = (ServletRequestAttributes)reqa;
+        if (sra==null){
+            return;
+        }
         HttpServletRequest request = sra.getRequest();
         //访问的url
         String url = request.getRequestURI().toString();

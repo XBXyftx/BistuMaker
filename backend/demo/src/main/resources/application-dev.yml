@@ -7,14 +7,6 @@ spring:
 
 
   data:
-    redis:
-      host: 124.70.107.226
-      port: 6379
-      password: song111711
-      servlet:
-        multipart:
-         max-file-size: 10MB
-         max-request-size: 10MB
     resources:
       static-locations: classpath:static/
   servlet:

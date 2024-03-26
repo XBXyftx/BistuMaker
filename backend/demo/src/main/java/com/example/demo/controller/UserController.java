@@ -2,18 +2,22 @@ package com.example.demo.controller;
 
 import com.example.demo.aop.MyLog;
 import com.example.demo.pojo.Result;
+import com.example.demo.pojo.Token;
 import com.example.demo.pojo.User;
+import com.example.demo.service.TokenService;
 import com.example.demo.service.UserService;
 import com.example.demo.utils.JwtUtil;
 import com.example.demo.utils.Md5Util;
 import com.example.demo.utils.ThreadLocalUtil;
 import jakarta.validation.constraints.Pattern;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.data.redis.core.ValueOperations;
+import net.sf.jsqlparser.expression.DateTimeLiteralExpression;
+
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -27,7 +31,8 @@ import java.util.concurrent.TimeUnit;
 public class UserController {
 
     private final UserService userService;
-    private final StringRedisTemplate stringRedisTemplate;
+//    private final StringRedisTemplate stringRedisTemplate;
+    private final TokenService tokenService;
 
 
     //注册
@@ -69,7 +74,7 @@ public class UserController {
                          @Pattern(regexp = "^\\S{5,16}$") String password
                                  ){
 
-        System.out.println("username+"+username+"password+"+password);
+//        System.out.println("username+"+username+"password+"+password);
         //查询用户
         User u = userService.findByUserName(username);
         //判断用户是否存在
@@ -80,11 +85,34 @@ public class UserController {
             Map<String , Object> claims=new HashMap<>();
             claims.put("id",u.getId());
             claims.put("username",u.getUsername());
+            // 获取当前日期时间
+            LocalDateTime now = LocalDateTime.now();
+            // 创建一个格式器来定义输出格式，包括毫秒 "yyyy-MM-dd HH:mm:ss.SSS"
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
+            // 格式化当前日期时间并打印，包括毫秒
+            String formattedDateTime = now.format(formatter);
+            claims.put("time",formattedDateTime);
             String token = JwtUtil.genToken(claims);
+            System.out.println("token"+token);
             //将token存入redis
-            ValueOperations<String,String> operations = stringRedisTemplate.opsForValue();
-            operations.set(token,token, 1,TimeUnit.HOURS);
-            return Result.success(token);
+//            ValueOperations<String,String> operations = stringRedisTemplate.opsForValue();
+//            operations.set(token,token, 1,TimeUnit.HOURS);\
+//            DateTime now = new DateTimeLiteralExpression.DateTime();
+            //将token存入mysql
+            // 获取当前时间（基于系统默认时区）
+
+            // 在当前时间基础上加上3个月，也就是一个月后过期
+            //加上当前时间加上十秒
+
+
+            LocalDateTime futureMonth = now.plusMonths(3);
+            if (tokenService.selectTokenByUser(username)==null){
+                tokenService.addToken(new Token(token,token,futureMonth,username));
+                return Result.success(token);
+            }else{
+                tokenService.updateTokenById(new Token(token,token,futureMonth,username));
+                return Result.success(token);
+            }
 
         }else{
             return Result.error("密码错误");
