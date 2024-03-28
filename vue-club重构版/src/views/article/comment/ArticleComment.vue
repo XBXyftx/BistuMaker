@@ -24,6 +24,15 @@
           <li/>
           <li/>
           <li/>
+          <li/>
+          <li/>
+          <li/>
+          <li/>
+          <li/>
+          <li/>
+          <li/>
+          <li/>
+          <li/>
         </ul>
       </div>
       <!-- 评论渲染 -->
@@ -40,6 +49,7 @@
             <div class="userComment">
               <p class="userName">{{item.nickName}}</p>
               <p class="content">{{item.content}}</p>
+
               <p class="operationBar">
                 <span class="commentDate">{{item.createTime}}</span>
               </p>
@@ -63,18 +73,40 @@ const props = defineProps({
 
 // // 申明 响应式数据 ====================
 let originCommentListData = reactive({
-
+  data:[
+    { id: 1, nick_name: "冬天的雨", content: "非常好的文章！", parent_id: 0, time: 1625454585},
+    { id: 2, nick_name: "半栈java", content: "底层实现有点看蒙圈了。java和c代码都有。c是class还差不多！", parent_id: 0, time: 1625368185, boolChild: false },
+  ]
 })
 let loading = ref(false)
 import {commentInfoService} from "@/api/comment.js"
 const getCommentList = async (id)=>{
   let result= await commentInfoService(id)
   renderData.value=result.data
+  console.log(renderData.value)
+  for (let i = 0; i < renderData.value.length; i++) {
+    renderData.value[i].createTime= formatISOStringToLocalDateString(renderData.value[i].createTime)
+  }
   loading.value=true
 }
 getCommentList(props.articleId)
 
+// 定义格式化日期字符串的函数
+function formatISOStringToLocalDateString(dateString) {
+  // 解析ISO 8601格式的日期字符串
+  const date = new Date(dateString);
 
+  // 获取年、月、日、小时、分钟
+  const year = date.getFullYear();
+  const month = ("0" + (date.getMonth() + 1)).slice(-2); // 注意月份是从0开始计数的，所以需要+1
+  const day = date.getDate();
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+
+  // 格式化并返回结果字符串
+  const monthName = ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"][month - 1];
+  return `${year}年${monthName}${day}日 ${hours}:${minutes}`;
+}
 
 
 
@@ -182,14 +214,13 @@ function  handlerlevelOneComment()
       levelOneCommentContent.value = ''
       nike.value=''
       email.value=''
-
-
-
       ElMessage({
         message:'评论成功！',
         type:'success',
         showClose:true
       })
+      getCommentList(props.articleId)
+
     }else{
       ElMessage({
         message:'请勿输入空值！',
@@ -212,16 +243,6 @@ function  handlerlevelOneComment()
 
 
 
-// 时间戳 转换 处理
-function timeToggle(_time){
-  let commentDate = new Date(_time)
-  let year = commentDate.getFullYear()
-  let month = commentDate.getMonth() + 1
-  let date = commentDate.getDate()
-  let commentClock = commentDate.toString().split(' ')[4]
-
-  return `${year}/${month}/${date} ${commentClock}`
-}
 </script>
 
 

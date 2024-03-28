@@ -15,6 +15,8 @@ public class HttpConverterConfig implements WebMvcConfigurer {
 //        System.out.println(System.getProperty("user.dir"));
         path=path+'/';
         //其中image表示访问的前缀。"file:F:/img/"是文件真实的存储路径
+        registry.addResourceHandler("/images/**").addResourceLocations("file:"+path);
+
         registry.addResourceHandler("/image/**").addResourceLocations("file:"+path);
     }
 

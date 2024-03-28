@@ -72,6 +72,7 @@
                     v-if="loading===true"
         ></v-md-preview>
         <el-icon><Comment /></el-icon>
+
         <ArticleComment :articleId="id"  ></ArticleComment>
       </div>
     </div>
@@ -226,11 +227,37 @@ li:last-child {
   position: fixed;
 }
 
+/* 提供更丰富的视觉层次 */
 .preview {
   padding: 20px;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff; /* 白色背景 */
+  border-radius: 10px; /* 圆角边框 */
+
+  /* 添加内阴影以增加深度感 */
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05),
+  0 0 10px rgba(0, 0, 0, 0.1); /* 外阴影 */
+
+  /* 添加微弱的文字阴影，提升可读性 */
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.05);
+
+  /* 设置过渡动画，使元素在交互时更具流畅性 */
+  transition: all 0.3s ease;
+
+  /* 设置内容区域的最小高度，确保内容展示有足够的空间 */
+  min-height: 200px;
+
+  /* 添加渐变背景以增强视觉效果 */
+  background-image: linear-gradient(to bottom right, #f9f9f9, white);
+
+  /* 为内容添加一些内边距使其布局更加清晰 */
+  overflow: hidden;
+}
+
+/* 当鼠标悬停时增加交互反馈 */
+.preview:hover {
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05),
+  0 0 20px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px); /* 提升元素以模拟悬浮效果 */
 }
 
 

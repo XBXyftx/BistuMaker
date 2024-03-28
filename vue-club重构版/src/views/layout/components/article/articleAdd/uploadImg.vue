@@ -1,19 +1,25 @@
 <script setup>
 
 import { ref } from 'vue'
-import { uploadImg } from '@/api/uploadImg.js'
 const imageUrl = ref('')
 
 
-const handleRequest = async (params) => {
-  var { file } = params;
-  var formData = new FormData();
-  // formData.append("token", data.params.token);
-  formData.append("file", file);
-  const res =await uploadImg(formData)
-  imageUrl.value = (res.data)
-}
+// const handleRequest = async (params) => {
+//   var { file } = params;
+//   var formData = new FormData();
+//   // formData.append("token", data.params.token);
+//   formData.append("file", file);
+//   const res =await uploadImg(formData)
+//
+//   imageUrl.value = (res.data)
+// }
 
+
+//将图片预览为本地流形式
+const handleRequest = async (params) => {
+  imageUrl.value = window.URL.createObjectURL(params.file)
+  console.log(imageUrl.value)
+}
 
 </script>
 
@@ -24,7 +30,7 @@ const handleRequest = async (params) => {
     <img v-if="imageUrl"
          :src="imageUrl"
          class="avatar" />
-    <div v-else>
+    <div>
       <i class="el-icon-plus avatar-uploader-icon"></i>
       <div class="el-upload__text">点击上传封面</div>
 

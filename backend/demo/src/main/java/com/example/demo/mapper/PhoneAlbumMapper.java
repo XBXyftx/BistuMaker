@@ -1,6 +1,8 @@
 package com.example.demo.mapper;
 
 import com.example.demo.pojo.PhoneAlbum;
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -16,11 +18,11 @@ public interface PhoneAlbumMapper {
     PhoneAlbum selectPhoneAlbumById(Integer id);
 
     //增加
-    @Select("insert into phonealbum (phone_album_name,create_time) values (#{phoneAlbumName},now())")
+    @Insert("insert into phonealbum (phone_album_name,create_time) values (#{phoneAlbumName},now())")
     void insertPhoneAlbum(String phoneAlbum);
 
     //删
-    @Select("delete from phonealbum where id = #{id}")
+    @Delete("delete from phonealbum where id = #{id}")
     void deletePhoneAlbum(Integer id);
 
 

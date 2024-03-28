@@ -1,10 +1,12 @@
 <template>
   <div class="header">
     <div class="extra">
-      <el-button type="success" @click="dialogVisible1 = true"> 添加相册</el-button>
+      <el-button type="success" @click="dialogVisible1 = true"> 添加相册</el-button>    <br>
+      <br>
+      <br>
     </div>
   </div>
-  <el-table :data="imageAlbumAllList" :border="parentBorder" style="width: 100%" :default-expand-all="true" >
+  <el-table :data="imageAlbumPageList" :border="parentBorder" style="width: 100%" :default-expand-all="true" >
 
 
     <el-table-column type="expand">
@@ -12,7 +14,7 @@
           <div class="header">
             <div class="extra">
               <el-button type="primary" @click="changeState(props.row)"> 添加相册图片</el-button>
-              <el-button type="primary" @click="changeState(props.row)"> 删除相册(需要把所有照片先删除)</el-button>
+              <el-button  style="margin-left: 65vw" type="danger" @click="changeStateDeleteAlbum(props.row)"> 删除相册(需要把所有照片先删除)</el-button>
             </div>
           </div>
 
@@ -43,6 +45,24 @@
 <!--    <el-table-column label="时间" prop="date" />-->
     <el-table-column label="相册名" prop="phoneAlbumName" />
   </el-table>
+
+
+  <el-pagination layout="prev, pager, next"
+                 :total="pageSize"
+                 :default-page-size="2"
+                 :current-page="currentPage"
+                 @current-change="handleCurrentChange"
+  />
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -97,6 +117,16 @@
   </el-dialog>
 
 
+  <!-- 添加分类弹窗 -->
+  <el-dialog v-model="dialogVisible2" title="删除相册" width="66%">
+    一定要先把相册的相片删除再删除相册!!!
+      <span class="dialog-footer">
+            <el-button @click="dialogVisible2 = false">取消</el-button>
+                      <el-button type="primary" @click="deletePhoneAlbum"> 确认 </el-button>
+        </span>
+
+  </el-dialog>
+
    <div class="image-container" v-if="onImage" @click="onImage=false">
       <el-image
           v-if="onImage"
@@ -121,19 +151,29 @@
   align-items: center;
 }
 </style>
+<style>
+/* 更改表头背景颜色 */
+.el-table__header {
+  background-color: #f0f0f0;
+}
+
+/* 更改表格行鼠标悬停时的背景颜色 */
+.el-table__row:hover {
+  background-color: #e0e0e0;
+}
+</style>
 
 <script  setup>
-import { ClickOutside as vClickOutside } from 'element-plus'
 import {getCurrentInstance, ref, toRaw,onMounted } from 'vue'
-import {onBeforeMount,onBeforeUpdate,onUpdated,onBeforeUnmount,onUnmounted} from  'vue'
-import {phoneAlbumAddService, phoneAlbumAllInfoService} from "@/api/phoneAlbum.js"
+import {phoneAlbumAddService, phoneAlbumAllInfoService, phoneAlbumDeleteService} from "@/api/phoneAlbum.js"
 import {Delete} from "@element-plus/icons-vue";
 import {ElMessage, ElMessageBox} from "element-plus";
 import {deleteImages, selectImagesByImagesType} from '@/api/Images.js'
 import {uploadImg} from "@/api/uploadImg.js";
 //控制添加用户弹窗
-let dialogVisible = ref(false)
-let dialogVisible1 = ref(false)
+let dialogVisible = ref(false)//添加图片
+let dialogVisible1 = ref(false)//
+let dialogVisible2 = ref(false)//删除相册弹窗
 const parentBorder = ref(false)
 const childBorder = ref(false)
 
@@ -150,7 +190,7 @@ const onImageUrl = ref('')
 const onImageClick = (url)=>{
   onImageUrl.value=url
   onImage.value=true
-  console.log(url)
+  // console.log(url)
 }
 const closeViewer = ()=>{
   onImage.value=false
@@ -213,6 +253,19 @@ const changeState = (row) => {
   phoneAlbumId.value=row.id
   dialogVisible.value= true
 }
+const changeStateDeleteAlbum = (row)=>{
+  console.log(row.id)
+  phoneAlbumId.value=row.id
+  dialogVisible2.value= true
+}
+const deletePhoneAlbum= async () => {
+  console.log(phoneAlbumName.value)
+  dialogVisible2.value=false
+  const res = await phoneAlbumDeleteService(phoneAlbumId.value)
+  imageAlbumAllList.value=[]
+  await getImageAlbumAllInfo()
+}
+
 const phoneAlbumId = ref()
 const addImages = async () =>{
   if (imagesInfo.value.imageName==='' && imagesInfo.value.image===''){
@@ -245,7 +298,7 @@ const imagesInfo = ref({
 })
 const imageUrl = ref()
 
-
+//将图片预览为本地流形式
 const handleRequest = async (params) => {
   imageUrl.value = window.URL.createObjectURL(params.file)
   imagesInfo.value.image=params
@@ -278,7 +331,8 @@ const getImageAlbumAllInfo = async () => {
   }
   // PhoneAlbumNameList.value=res.data
   // console.log(toRaw(imageAlbumAllList.value))
-
+  pageSize.value=imageAlbumAllList.value.length
+  handleCurrentChange(currentPage.value)
 }
 getImageAlbumAllInfo()
 const getImageAlbumList = async (type) => {
@@ -299,8 +353,20 @@ const updatePhoneAlbumImage = async () => {
   imageAlbumAllList.value=[]
   await getImageAlbumAllInfo()
 
+
 }
-
-
-
+let queryInfo = ref({
+  query: '', // 查询参数
+  pageNum: 1, // 当前页码
+  pageSize: 10 // 每页显示条数
+});
+const imageAlbumPageList = ref([])
+const pageSize=ref()
+const currentPage=ref(1)
+const  handleCurrentChange = (i)=>{
+  // imageAlbumAllList.value=null
+  currentPage.value=i
+  imageAlbumPageList.value=imageAlbumAllList.value.slice((i-1)*2,i*2)
+}
+handleCurrentChange(currentPage.value)
 </script>

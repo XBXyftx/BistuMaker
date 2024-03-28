@@ -92,6 +92,7 @@ public class UserController {
             // 格式化当前日期时间并打印，包括毫秒
             String formattedDateTime = now.format(formatter);
             claims.put("time",formattedDateTime);
+
             String token = JwtUtil.genToken(claims);
             System.out.println("token"+token);
             //将token存入redis

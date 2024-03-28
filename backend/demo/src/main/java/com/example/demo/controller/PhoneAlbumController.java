@@ -6,6 +6,7 @@ import com.example.demo.pojo.Result;
 import com.example.demo.service.ImagesService;
 import com.example.demo.service.PhoneAlbumService;
 import lombok.RequiredArgsConstructor;
+import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -50,7 +51,12 @@ public class PhoneAlbumController {
             }
         }
         return Result.success(images);
+    }
 
+    @DeleteMapping("/delete")
+    public Result deletePhoneAlbum(Integer id) {
+        phoneAlbumService.deletePhoneAlbum(id);
+        return Result.success("删除成功");
     }
 
 

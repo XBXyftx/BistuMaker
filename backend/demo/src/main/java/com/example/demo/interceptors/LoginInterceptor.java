@@ -50,6 +50,7 @@ public class LoginInterceptor implements HandlerInterceptor {
                 throw new RuntimeException();
             }
             Map<String, Object> claims = JwtUtil.parseToken(token);
+            System.out.println(claims);
             //把业务数据存储到ThreadLocal中
             ThreadLocalUtil.set(claims);
             //放行
@@ -60,7 +61,7 @@ public class LoginInterceptor implements HandlerInterceptor {
             //http响应状态码为401
             response.setStatus(401);
             //不放行
-            return true;
+            return false;
         }
     }
 

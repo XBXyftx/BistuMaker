@@ -17,3 +17,4 @@ export const phoneAlbumInfoService = (params)=> {
   return request.get("/phoneAlbum/imageType", { params: { id: params } });
 }
 
+
