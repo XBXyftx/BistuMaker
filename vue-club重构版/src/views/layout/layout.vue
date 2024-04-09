@@ -1,99 +1,3 @@
-<script setup>
-import {
-  Management,
-  Promotion,
-  UserFilled,
-  User,
-  Crop,
-  EditPen,
-  SwitchButton,
-  CaretBottom, Bell, Memo, Message, Picture, Edit, HomeFilled
-} from '@element-plus/icons-vue'
-// import avatar from '@/assets/default.png'
-
-import {userInfoService} from '@/api/user.js'
-import useUserInfoStore from '@/stores/userInfo.js'
-import {useTokenStore} from '@/stores/token.js'
-import {nextTick, reactive, ref, getCurrentInstance,watch} from "vue";
-const tokenStore = useTokenStore();
-const userInfoStore = useUserInfoStore();
-
-// 调用函数,获取用户详细信息
-const getUserInfo = async () => {
-  //调用接口
-  let result = await userInfoService();
-  // console.log('用户信息' + result.data)
-
-  //数据存储到pinia中
-  userInfoStore.setInfo(result.data);
-}
-
-getUserInfo();
-//条目被点击后,调用的函数
-import {useRouter} from 'vue-router'
-
-const router = useRouter();
-import {ElMessage, ElMessageBox} from 'element-plus'
-
-const handleCommand = (command) => {
-  if (command === 'logout') {
-    ElMessageBox.confirm(
-        '您确认要退出吗?',
-        '温馨提示',
-        {
-          confirmButtonText: '确认',
-          cancelButtonText: '取消',
-          type: 'warning',
-        }
-    )
-        .then(async () => {
-          //退出登录
-          //1.清空pinia中存储的token以及个人信息
-          tokenStore.removeToken()
-          userInfoStore.removeInfo()
-
-          //2.跳转到登录页面
-          await router.push('/login')
-          ElMessage({
-            type: 'success',
-            message: '退出登录成功',
-          })
-
-        })
-        .catch(() => {
-          ElMessage({
-            type: 'info',
-            message: '用户取消了退出登录',
-          })
-        })
-  } else {
-    //路由
-    router.push('/user/' + command)
-  }
-}
-//获取当前目录的路径
-let routePath = ref(router.currentRoute.value.path);
-
-console.log(routePath.value)
-router.afterEach((to) => {
-  routePath.value = to.path;
-});
-
-//给我写个watch 检测routePath的变化
-function onRouteName() {
-  routePath = ref(router.currentRoute.value.path)
-  // console.log(routePath.value==='/admin')
-  // watch(routePath, (newValue, oldValue) => {
-  //   console.log(newValue)
-  //   console.log(oldValue)
-  //   console.log(routePath.value==='/admin')
-  // })
-}
-if (routePath.value==='/admin')
-router.push('/admin/home')
-
-</script>
-
 <template>
   <!-- element-plus中的容器 -->
   <el-container class="layout-container" >
@@ -177,11 +81,12 @@ router.push('/admin/home')
 
 
 
-        <!--        相册管理-->
+        <!--        其他管理-->
         <el-sub-menu index="6">
           <template #title>
-            <el-icon><svg t="1711462853910" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4268" width="200" height="200"><path d="M213.333333 149.333333h213.333334a64 64 0 0 1 64 64v213.333334a64 64 0 0 1-64 64H213.333333a64 64 0 0 1-64-64V213.333333a64 64 0 0 1 64-64z m0 64v213.333334h213.333334V213.333333H213.333333z m0 320h213.333334a64 64 0 0 1 64 64v213.333334a64 64 0 0 1-64 64H213.333333a64 64 0 0 1-64-64V597.333333a64 64 0 0 1 64-64z m0 64v213.333334h213.333334V597.333333H213.333333zM704 149.333333a170.666667 170.666667 0 1 1 0 341.333334 170.666667 170.666667 0 0 1 0-341.333334z m0 64a106.666667 106.666667 0 1 0 0 213.333334 106.666667 106.666667 0 0 0 0-213.333334z m-106.666667 320h213.333334a64 64 0 0 1 64 64v213.333334a64 64 0 0 1-64 64H597.333333a64 64 0 0 1-64-64V597.333333a64 64 0 0 1 64-64z m0 64v213.333334h213.333334V597.333333H597.333333z" fill="#666666" p-id="4269"></path></svg></el-icon>
-            <span>相册管理</span>
+            <el-icon><MagicStick /></el-icon>
+
+            <span>其他管理</span>
           </template>
           <el-menu-item index="/admin/other">
             <el-icon><Edit /></el-icon>
@@ -206,9 +111,9 @@ router.push('/admin/home')
                     </span>
           <template #dropdown>
             <el-dropdown-menu>
-              <el-dropdown-item command="info" :icon="User">基本资料</el-dropdown-item>
-              <el-dropdown-item command="avatar" :icon="Crop">更换头像</el-dropdown-item>
-              <el-dropdown-item command="resetPassword" :icon="EditPen">重置密码</el-dropdown-item>
+<!--              <el-dropdown-item command="info" :icon="User">基本资料</el-dropdown-item>-->
+<!--              <el-dropdown-item command="avatar" :icon="Crop">更换头像</el-dropdown-item>-->
+<!--              <el-dropdown-item command="resetPassword" :icon="EditPen">重置密码</el-dropdown-item>-->
               <el-dropdown-item command="logout" :icon="SwitchButton">退出登录</el-dropdown-item>
             </el-dropdown-menu>
           </template>
@@ -216,7 +121,7 @@ router.push('/admin/home')
       </el-header>
       <!-- 中间区域 -->
       <el-main>
-        <div style="width: 99%; height: 80%;border: 1px solid red;">
+        <div style="width: 99%; height: 80%;border: 1px solid ;">
           <div>
             <router-view></router-view>
           </div>
@@ -231,6 +136,95 @@ router.push('/admin/home')
     </el-container>
   </el-container>
 </template>
+
+<script setup>
+import {
+  Management,
+  Promotion,
+  UserFilled,
+  User,
+  Crop,
+  EditPen,
+  SwitchButton,
+  CaretBottom, Bell, Memo, Message, Picture, Edit, HomeFilled, MagicStick
+} from '@element-plus/icons-vue'
+// import avatar from '@/assets/default.png'
+
+import {userInfoService} from '@/api/user.js'
+import useUserInfoStore from '@/stores/userInfo.js'
+import {useTokenStore} from '@/stores/token.js'
+import {nextTick, reactive, ref, getCurrentInstance,watch} from "vue";
+const tokenStore = useTokenStore();
+const userInfoStore = useUserInfoStore();
+
+// 调用函数,获取用户详细信息
+const getUserInfo = async () => {
+  //调用接口
+  let result = await userInfoService();
+  //数据存储到pinia中
+  userInfoStore.setInfo(result.data);
+}
+
+getUserInfo();
+//条目被点击后,调用的函数
+import {useRouter} from 'vue-router'
+
+const router = useRouter();
+import {ElMessage, ElMessageBox} from 'element-plus'
+
+const handleCommand = (command) => {
+  if (command === 'logout') {
+    ElMessageBox.confirm(
+        '您确认要退出吗?',
+        '温馨提示',
+        {
+          confirmButtonText: '确认',
+          cancelButtonText: '取消',
+          type: 'warning',
+        }
+    )
+        .then(async () => {
+          //退出登录
+          //1.清空pinia中存储的token以及个人信息
+          tokenStore.removeToken()
+          userInfoStore.removeInfo()
+
+          //2.跳转到登录页面
+          await router.push('/login')
+          ElMessage({
+            type: 'success',
+            message: '退出登录成功',
+          })
+
+        })
+        .catch(() => {
+          ElMessage({
+            type: 'info',
+            message: '用户取消了退出登录',
+          })
+        })
+  } else {
+    //路由
+    router.push('/user/' + command)
+  }
+}
+//获取当前目录的路径
+let routePath = ref(router.currentRoute.value.path);
+
+console.log(routePath.value)
+router.afterEach((to) => {
+  routePath.value = to.path;
+});
+
+function onRouteName() {
+  routePath = ref(router.currentRoute.value.path)
+}
+if (routePath.value==='/admin')
+  router.push('/admin/home')
+
+</script>
+
+
 
 <style scoped>
 .layout-container {

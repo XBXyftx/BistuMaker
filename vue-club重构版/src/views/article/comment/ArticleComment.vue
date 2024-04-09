@@ -17,22 +17,10 @@
         </div>
       </div>
 
-
       <!--      骨架屏-->
       <div class='screen-root' v-if="loading===false">
         <ul>
-          <li/>
-          <li/>
-          <li/>
-          <li/>
-          <li/>
-          <li/>
-          <li/>
-          <li/>
-          <li/>
-          <li/>
-          <li/>
-          <li/>
+          <li v-for="i in 10"/>
         </ul>
       </div>
       <!-- 评论渲染 -->
@@ -252,6 +240,7 @@ function  handlerlevelOneComment()
 .commentListCpn {
   padding: 5px;
   flex-direction: column;
+  margin-bottom: 50px;
 }
 
 /* 标题 */

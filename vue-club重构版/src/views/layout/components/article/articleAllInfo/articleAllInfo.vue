@@ -1,3 +1,81 @@
+<template>
+  <el-card class="page-container">
+    <template #header>
+      <div class="header">
+        <span>文章管理</span>
+      </div>
+    </template>
+    <el-table :data="articleList" style="width: 100%">
+      <el-table-column label="序号" width="100" type="index"> </el-table-column>
+      <el-table-column label="标题" prop="title"></el-table-column>
+      <el-table-column label="创建" prop="createTime"></el-table-column>
+      <el-table-column label="修改时间" prop="modifyTime"></el-table-column>
+      <el-table-column label="作者" prop="author"></el-table-column>
+
+      <el-table-column label="标签" prop="label"></el-table-column>
+      <el-table-column label="访问量" prop="visits"></el-table-column>
+      <el-table-column label="内容" prop="content"></el-table-column>
+
+      <el-table-column prop="top" label="状态" width="100">
+        <template v-slot="scope">
+          <el-switch
+              v-model="scope.row.top"
+              :active-value="1"
+              :inactive-value="0"
+              active-color="#13ce66"
+              inactive-color="#ff4949"
+              @change="changeStatus(scope.row.id)"
+          />
+        </template>
+      </el-table-column>
+
+      <el-table-column label="操作" width="100" prop="id">
+        <template #default="{ row }">
+          <el-button :icon="Edit" circle plain type="primary" @click="showDialog(row)"></el-button>
+          <el-button :icon="Delete" circle plain type="danger" @click="deleteCategory(row)"></el-button>
+        </template>
+      </el-table-column>
+      <template #empty>
+        <el-empty description="没有数据" />
+      </template>
+    </el-table>
+
+
+    <!-- 添加分类弹窗 -->
+    <el-dialog v-model="dialogVisible" title="添加用户" width="80%">
+      <el-form   label-width="100px" style="padding-right: 30px">
+        <h1>输入标题</h1>
+        <el-input placeholder="输入标题" v-model="ArticleModel.title"></el-input>
+
+        <h1>输入作者</h1>
+        <el-input placeholder="输入作者" v-model="ArticleModel.author"></el-input>
+
+        <h1>文章内容</h1>
+        <v-md-editor
+            v-model="ArticleModel.content"
+            :disabled-menus="[]"
+            @upload-image="handleUploadImage"
+            height="500px"
+        />
+
+
+
+      </el-form>
+      <template #footer>
+        <span class="dialog-footer">
+            <el-button @click="dialogVisible = false">取消</el-button>
+            <el-button type="primary" @click="updateArticle()"> 确认 </el-button>
+        </span>
+      </template>
+    </el-dialog>
+
+
+
+
+
+  </el-card>
+</template>
+
 <script setup>
 import {getCurrentInstance} from 'vue'
 const articleAllInfo = async ()=> {
@@ -20,7 +98,13 @@ import { ref } from 'vue'
 //第一个是显示的数据第二个是编辑用到的数据
 const articleList=ref([])
 const articleList1=ref([])
-import {articleAllInfoService, articleDeleteService, articleInfoService, articleUpdateService} from "@/api/article.js";
+import {
+  articleAllInfoService,
+  articleDeleteService,
+  articleInfoService,
+  articleTopService,
+  articleUpdateService
+} from "@/api/article.js";
 let ArticleModel = ref({
   id:'',
   title: '',
@@ -87,6 +171,7 @@ const updateArticle = async () => {
 
 }
 import { uploadImg } from "@/api/uploadImg.js"
+import {notificationsUpdateIsReadService} from "@/api/notifications.js";
 const {proxy} = getCurrentInstance()
 const handleUploadImage=async (event,insertImage,files)=>{
   let url;
@@ -101,68 +186,15 @@ const handleUploadImage=async (event,insertImage,files)=>{
     desc: '',
   });
 }
+
+
+const changeStatus = async (id) =>{
+  console.log("提交之前的id"+id)
+  const result = await  articleTopService(id)
+  ElMessage.success(result.msg? result.msg : '修改成功')
+}
 </script>
 
-<template>
-  <el-card class="page-container">
-    <template #header>
-      <div class="header">
-        <span>文章管理</span>
-      </div>
-    </template>
-    <el-table :data="articleList" style="width: 100%">
-      <el-table-column label="序号" width="100" type="index"> </el-table-column>
-      <el-table-column label="标题" prop="title"></el-table-column>
-
-      <el-table-column label="作者" prop="author"></el-table-column>
-      <el-table-column label="内容" prop="content"></el-table-column>
-      <el-table-column label="操作" width="100" prop="id">
-        <template #default="{ row }">
-          <el-button :icon="Edit" circle plain type="primary" @click="showDialog(row)"></el-button>
-          <el-button :icon="Delete" circle plain type="danger" @click="deleteCategory(row)"></el-button>
-        </template>
-      </el-table-column>
-      <template #empty>
-        <el-empty description="没有数据" />
-      </template>
-    </el-table>
-
-
-    <!-- 添加分类弹窗 -->
-    <el-dialog v-model="dialogVisible" title="添加用户" width="80%">
-      <el-form   label-width="100px" style="padding-right: 30px">
-        <h1>输入标题</h1>
-        <el-input placeholder="输入标题" v-model="ArticleModel.title"></el-input>
-
-        <h1>输入作者</h1>
-        <el-input placeholder="输入作者" v-model="ArticleModel.author"></el-input>
-
-        <h1>文章内容</h1>
-        <v-md-editor
-            v-model="ArticleModel.content"
-            :disabled-menus="[]"
-            @upload-image="handleUploadImage"
-            height="500px"
-        />
-
-
-
-      </el-form>
-      <template #footer>
-        <span class="dialog-footer">
-            <el-button @click="dialogVisible = false">取消</el-button>
-            <el-button type="primary" @click="updateArticle()"> 确认 </el-button>
-        </span>
-      </template>
-    </el-dialog>
-
-
-
-
-
-  </el-card>
-</template>
 
 <style scoped>
-
 </style>

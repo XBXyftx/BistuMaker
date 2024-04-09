@@ -2,7 +2,7 @@
 
 import TopNavBar from "@/components/TopNavBar/TopNavBar.vue";
 
-import footer1 from "@/components/Footer/footer.vue";
+import Footer from "@/components/Footer/Footer.vue";
 import Content from "@/components/Content/content.vue";
 import CarouselMain from "@/views/home/carouselMain/carouselMain.vue";
 import Sheli from "@/views/home/sheli/sheli.vue";
@@ -18,15 +18,14 @@ import Sheli from "@/views/home/sheli/sheli.vue";
     <TopNavBar>
     </TopNavBar>
 
-
-<sheli></sheli>
-
+  <sheli>
+  </sheli>
 
     <Content>
     </Content>
 
-    <footer1>
-    </footer1>
+    <Footer>
+    </Footer>
 
 </template>
 <style>

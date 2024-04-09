@@ -1,16 +1,3 @@
-<script setup>
-import {ref} from 'vue'
-import animate from 'animate.css'
-//判断是否是移动端
-const isMobile = ref(window.innerWidth < 768);
-//监听窗口大小变化
-window.addEventListener('resize', () => {
-  isMobile.value = window.innerWidth < 768;
-});
-
-const hezhao=new URL('@/assets/合照.jpg',import.meta.url )
-</script>
-
 <template>
   <div class="content-container" :style="{display: isMobile ? 'inline' : 'flex'}">
 
@@ -39,6 +26,20 @@ const hezhao=new URL('@/assets/合照.jpg',import.meta.url )
 
 
 </template>
+
+<script setup>
+import {ref} from 'vue'
+import animate from 'animate.css'
+//判断是否是移动端
+const isMobile = ref(window.innerWidth < 768);
+//监听窗口大小变化
+window.addEventListener('resize', () => {
+  isMobile.value = window.innerWidth < 768;
+});
+
+const hezhao=new URL('@/assets/合照.jpg',import.meta.url )
+</script>
+
 
 <style scoped>
 

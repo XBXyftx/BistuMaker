@@ -1,12 +1,3 @@
-<script setup>
-
-
-
-
-import ArticleAdd from "@/views/layout/components/article/articleAdd/articleAdd.vue";
-import ArticleAllInfo from "@/views/layout/components/article/articleAllInfo/articleAllInfo.vue";
-</script>
-
 <template>
 
   <el-tabs type="border-card" >
@@ -21,6 +12,11 @@ import ArticleAllInfo from "@/views/layout/components/article/articleAllInfo/art
 
   </el-tabs>
 </template>
+
+<script setup>
+import ArticleAdd from "@/views/layout/components/article/articleAdd/articleAdd.vue";
+import ArticleAllInfo from "@/views/layout/components/article/articleAllInfo/articleAllInfo.vue";
+</script>
 
 <style scoped>
 

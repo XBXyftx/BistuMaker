@@ -1,12 +1,13 @@
-<script setup>
- 
-
- 
-</script>
-
 <template>
     asd
 </template>
+
+<script setup>
+
+
+
+</script>
+
 
 <style scoped>
  

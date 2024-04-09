@@ -1,15 +1,3 @@
-<script setup>
-import {ref} from 'vue'
-import TopNavBar from "@/components/TopNavBar/TopNavBar.vue";
-import footer1 from "@/components/Footer/footer.vue";
-
-
-import 'vue-waterfall-plugin-next/dist/style.css'
-
-import Content from "@/views/phoneAlbum/content/content.vue";
-
-</script>
-
 <template>
   <TopNavBar>
   </TopNavBar>
@@ -17,9 +5,22 @@ import Content from "@/views/phoneAlbum/content/content.vue";
   <content></content>
 
 
-  <footer1>
-  </footer1>
+  <Footer>
+  </Footer>
 </template>
+
+
+<script setup>
+import {ref} from 'vue'
+import TopNavBar from "@/components/TopNavBar/TopNavBar.vue";
+import Footer from "@/components/Footer/Footer.vue";
+
+
+import 'vue-waterfall-plugin-next/dist/style.css'
+
+import Content from "@/views/phoneAlbum/content/content.vue";
+
+</script>
 
 <style scoped>
 

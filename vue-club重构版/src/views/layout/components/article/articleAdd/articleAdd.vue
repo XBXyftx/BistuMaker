@@ -1,5 +1,4 @@
 <template>
-<!--  {{baseUrl}}-->
   <h1>输入标题</h1>
   <el-input placeholder="输入标题" v-model="ArticleModel.title"></el-input>
 
@@ -35,6 +34,7 @@
       <div v-if="!imageUrl"
            class="el-upload__tip">只能上传 jpg/png 文件，且不超过 500kb</div>
     </template>
+
   </el-upload>
 
 
@@ -48,6 +48,17 @@
       height="500px"
   />
 
+  <h1>标签</h1>
+  <p>每个标签需要有一个空格来分割,如果是活动类型不用加标签,文章类型加</p>
+  <p>比如"后端 游戏 北信科 毕业"</p>
+  <el-input placeholder="原神 启动 北信科" v-model="ArticleModel.label"></el-input>
+
+
+  <h1>置顶</h1>
+  <el-form-item label="状态" prop="ArticleModel.top">
+    <!--          <el-input v-model="notificationsData.isRead" ></el-input>-->
+    <el-switch v-model="ArticleModel.top" />
+  </el-form-item>
 
   <el-button @click="publish()">发布</el-button>
 <!--  <el-button>保存草稿</el-button>-->
@@ -74,6 +85,8 @@ let ArticleModel = ref({
   type:'文章',//默认文章显示
   synopsis: '',
   coverImage: '',
+  label:'',
+  top:'0'
 })
 
 
@@ -103,6 +116,7 @@ watch(ArticleModel, () => {
 })
 
 const publish = async()=>{
+  console.log(ArticleModel.value)
   // const userStore = useArticleInfoStore();
   // ArticleModel.value.author=userStore.info.username
   // console.log("上传前的数据"+ArticleModel)
@@ -116,7 +130,10 @@ const publish = async()=>{
     author:ArticleModel.value.author,
     type:ArticleModel.value.type,
     synopsis:ArticleModel.value.synopsis,
-    coverImage:imageUrl.value
+    coverImage:imageUrl.value,
+    label:ArticleModel.value.label,
+    top: ArticleModel.value.top===false?0:1,
+    visits:0
   }
   console.log(Data)
   let result = await articleAddService(Data)

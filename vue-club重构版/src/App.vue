@@ -3,10 +3,7 @@
 </script>
 
 <template>
-<!--  <carousel></carousel>-->
   <router-view></router-view>
-
-
 </template>
 
 <style>

@@ -1,23 +1,37 @@
+<template>
+  <div class="login">
+    <el-form ref="form" size="large" autocomplete="off"   :model="registerData" :rules="rules">
+      <el-form-item>
+        <h1>登录</h1>
+      </el-form-item>
+
+      <el-form-item prop="username">
+        <el-input :prefix-icon="User" placeholder="请输入用户名" v-model="registerData.username"></el-input>
+      </el-form-item>
+
+      <el-form-item prop="password">
+        <el-input name="password" :prefix-icon="Lock" type="password" placeholder="请输入密码" v-model="registerData.password"></el-input>
+      </el-form-item>
+
+      <!-- 登录按钮 -->
+      <el-form-item>
+        <el-button class="button" type="primary" auto-insert-space @click="login">登录</el-button>
+      </el-form-item>
+
+    </el-form>
+
+  </div>
+
+</template>
+
 <script setup>
 import { ref, reactive, watch } from 'vue'
 import { ElMessage } from 'element-plus'
 // 注册表单
- const registerData = ref({
-   username: '',
-   password: ''
- })
-
-// 校验规则
-// const checkRePassword = (rule, value, callback) => {
-//   if (value === '') {
-//     callback(new Error('请再次输入密码'))
-//   } else if (value!== registerData.password) {
-//     callback(new Error('两次输入的密码不一致'))
-//   } else {
-//     callback()
-//   }
-// }
-
+const registerData = ref({
+  username: '',
+  password: ''
+})
 //定义表单规则
 const rules ={
   username:[
@@ -52,54 +66,6 @@ const login =async ()=>{
 
 </script>
 
-<template>
-  <div class="login">
-    <el-form ref="form" size="large" autocomplete="off"   :model="registerData" :rules="rules">
-      <el-form-item>
-        <h1>登录</h1>
-      </el-form-item>
-
-      <el-form-item prop="username">
-        <el-input :prefix-icon="User" placeholder="请输入用户名" v-model="registerData.username"></el-input>
-      </el-form-item>
-
-      <el-form-item prop="password">
-        <el-input name="password" :prefix-icon="Lock" type="password" placeholder="请输入密码" v-model="registerData.password"></el-input>
-      </el-form-item>
-
-      <!-- 登录按钮 -->
-      <el-form-item>
-        <el-button class="button" type="primary" auto-insert-space @click="login">登录</el-button>
-      </el-form-item>
-
-    </el-form>
-
-
-      <!--    <el-form class="login-form" ref="form" :model="registerData"  :rules="rules"-->
-<!--             label-width="80px" style="width:80%">-->
-<!--      <el-form-item>-->
-<!--        <h1>登录</h1>-->
-<!--      </el-form-item>-->
-
-
-<!--      <el-form-item prop="username">-->
-<!--        <el-input :prefix-icon="User" placeholder="请输入用户名" v-model="registerData.username"></el-input>-->
-<!--      </el-form-item>-->
-
-<!--      <el-form-item prop="password">-->
-<!--        <el-input name="password" :prefix-icon="Lock" type="password" placeholder="请输入密码" v-model="registerData.password"></el-input>-->
-<!--      </el-form-item>-->
-
-<!--      <el-form-item>-->
-<!--        <el-button class="button" type="primary" @click="login()" auto-insert-space>登录</el-button>-->
-<!--      </el-form-item>-->
-
-<!--    </el-form>-->
-
-
-  </div>
-
-</template>
 
 <style scoped>
 .login {

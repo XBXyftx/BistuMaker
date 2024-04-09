@@ -1,14 +1,3 @@
-<script setup>
-
-import TopNavBar from "@/components/TopNavBar/TopNavBar.vue";
-
-import footer1 from "@/components/Footer/footer.vue";
-import Content from "@/components/Content/content.vue";
-import ContentActivity from "@/views/activity/ContentActivity.vue";
-import ContentContainer from "@/views/activity/contentContainer.vue";
-
-
-</script>
 <template>
   <TopNavBar>
   </TopNavBar>
@@ -17,10 +6,17 @@ import ContentContainer from "@/views/activity/contentContainer.vue";
 
 
 
-  <footer1>
-  </footer1>
+  <Footer>
+  </Footer>
 
 </template>
+
+<script setup>
+import TopNavBar from "@/components/TopNavBar/TopNavBar.vue";
+import Footer from "@/components/Footer/Footer.vue";
+import ContentActivity from "@/views/activity/ContentActivity.vue";
+</script>
+
 <style scoped>
 .content-container {
   margin-top: 50px;

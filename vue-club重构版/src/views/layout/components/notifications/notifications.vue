@@ -127,7 +127,7 @@ const changeStatus = async (id) =>{
     </el-table>
 
 
-    <!-- 添加分类弹窗 -->
+    <!-- 添加通知弹窗 -->
     <el-dialog v-model="dialogVisible" title="添加通知" width="30%">
       <el-form :model="notificationsData"  label-width="100px" style="padding-right: 30px">
         <el-form-item label="标题" prop="title">

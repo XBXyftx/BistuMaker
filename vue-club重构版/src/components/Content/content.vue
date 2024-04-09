@@ -1,10 +1,6 @@
 <template>
   <div class="main">
     <div class="content-main" :style="{ width: isMobile ? '100%' : '85%'}">
-
-
-
-
       <notice>
       </notice>
 
@@ -13,7 +9,6 @@
 
       <department>
       </department>
-
 
       <carousel>
       </carousel>
@@ -26,31 +21,10 @@
 <!--      <answer>-->
 <!--      </answer>-->
 
-
     </div>
 
   </div>
-
-  <!--  <v-md-editor v-model="text" height="400px"></v-md-editor>-->
 </template>
-
-<style scoped>
-.main{
-  background-color: rgba(177,196,210);
-}
-.content-main {
-  //display: flex;
-  align-items: center;
-  width: 85%;
-  justify-content: center;
-  height: 100%;
-  background-color: #ffffff;
-  margin: 0 auto;
-}
-
-
-</style>
-
 
 <script setup>
 
@@ -69,7 +43,20 @@ window.addEventListener('resize', () => {
 });
 
 
-const text = ref('')
-console.log(text.value)
-
 </script>
+
+
+<style scoped>
+.main{
+  background-color: rgba(177,196,210);
+}
+.content-main {
+//display: flex;
+  align-items: center;
+  width: 85%;
+  justify-content: center;
+  height: 100%;
+  background-color: #ffffff;
+  margin: 0 auto;
+}
+</style>

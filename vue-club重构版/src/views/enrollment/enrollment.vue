@@ -182,25 +182,26 @@
   </div>
 
 
-  <footer1></footer1>
+  <Footer></Footer>
 </template>
 
 <script>
 import {enrollmentAddService} from "@/api/enrollment.js";
 import {ElForm, ElFormItem, ElInput, ElSelect, ElOption, ElMessage} from 'element-plus';
 import TopNavBar from "@/components/TopNavBar/TopNavBar.vue";
-import footer1 from "@/components/Footer/footer.vue";
+import footer1 from "@/components/Footer/Footer.vue";
 import {userLoginService} from "@/api/user.js";
 import {useTokenStore} from '@/stores/token.js'
 import {useRouter} from "vue-router";
 import {User} from "@element-plus/icons-vue";
+import Footer from "@/components/Footer/Footer.vue";
 
 export default {
   setup() {
     const router = useRouter()
 
   },
-  components: {TopNavBar,footer1},
+  components: {TopNavBar,Footer},
   data() {
 
     return {

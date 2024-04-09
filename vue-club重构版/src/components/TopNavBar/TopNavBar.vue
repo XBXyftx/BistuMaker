@@ -1,7 +1,6 @@
 <template>
   <nav class="nav-container ">
     <div class="logo-container">
-<!--      <img src="@/assets/man.png" alt="logo" />-->
       <a href="/" class="logo-name" >创客空间</a>
     </div>
     <div>
@@ -13,6 +12,7 @@
         <li><a href="/learn">社团资源</a></li>
         <li><a href="/activity">社团活动</a></li>
         <li><a href="/phoneAlbum">社团相册</a></li>
+        <li><a href="/blog">博文</a></li>
         <li><a href="#">关于</a></li>
         <div class="nav-box"></div>
 <!--        <li><a href="#">教学资源</a></li>-->
@@ -64,9 +64,11 @@
       <ul class="mobile-menu" v-if="isMobile && menuOpen">
         <li><a   @click="toggleMenu">关闭</a></li>
         <li><a href="/" @click="toggleMenu">首页</a></li>
-        <li><a href="#" @click="toggleMenu">关于</a></li>
+
         <li><a href="/activity" @click="toggleMenu">社团活动</a></li>
         <li><a href="/phoneAlbum" @click="toggleMenu">社团相册</a></li>
+        <li><a href="/blog">博文</a></li>
+        <li><a href="#" @click="toggleMenu">关于</a></li>
       </ul>
 
     </div>
@@ -82,7 +84,6 @@ import router from "@/router/index.js";
 const menuOpen = ref(false);
 //判断是否是移动端
 const isMobile = ref(window.innerWidth < 768);
-console.log(isMobile);
 //监听窗口大小变化
 window.addEventListener('resize', () => {
   isMobile.value = window.innerWidth < 768;
@@ -91,15 +92,11 @@ window.addEventListener('resize', () => {
 const toggleMenu = () => {
   menuOpen.value = !menuOpen.value;
 };
-// const toggleMenu = ()=>{
-//   // router.push({path: '/enrollment'})
-//   router.push('/denglu')
-// }
+
 
 </script>
 
 <style scoped>
-
 .logo-name{
   padding-left: 30px;
   font-size: 1.5rem;

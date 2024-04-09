@@ -1,7 +1,5 @@
 <template>
-
   <div class="content-container" :style="{display: isMobile ? 'inline' : 'flex'}">
-
     <div class="text-content" :style="{width: isMobile ? '95%' : '60%' }">
       <p style="font-size: 2.9rem;margin-top: 0px;margin-bottom: 0px;font-family: AlimamaDaoLiTi,serif;">
         关于<br>创客空间<br>社团活动<br>
@@ -92,10 +90,11 @@ window.addEventListener('resize', () => {
 });
 const getArticles = async () => {
   let res = await articleTypeQueryService("活动");
+  //格式化时间成2024年03月28日样
   for (let i = 0; i < res.data.length; i++) {
     res.data[i].coverImage = proxy.$baseURL + res.data[i].coverImage
     let ary = res.data[i].createTime.split(/(?: |-|:)/g);
-    res.data[i].createTime = ary[0] + '年' + ary[1] + '月' + ary[2] + '日';
+    res.data[i].createTime = ary[0] + '年' + ary[1] + '月' + ary[2] + '';
     res.data[i].createTime = res.data[i].createTime.replace(/T\S*/g, '');
     res.data[i].createTime = res.data[i].createTime + '日';
   }

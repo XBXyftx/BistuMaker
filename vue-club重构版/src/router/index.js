@@ -145,6 +145,14 @@ const routes = [
         meta: {
             title: '404'
         }
+    },
+    {
+        path:'/blog',
+        name:'博问',
+        component:()=>import('@/views/blog/blog.vue'),
+        meta: {
+            title: '博文'
+        }
     }
 
 

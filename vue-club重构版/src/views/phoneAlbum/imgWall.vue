@@ -1,39 +1,3 @@
-<script setup>
-import { LazyImg, Waterfall } from 'vue-waterfall-plugin-next'
-import 'vue-waterfall-plugin-next/dist/style.css'
-import {getCurrentInstance, ref, toRaw} from 'vue'
-import {phoneAlbumAllInfoService} from "@/api/phoneAlbum.js";
-import {selectImagesByImagesType} from "@/api/Images.js";
-let imageAlbumAllList = ref([])
-let loading = ref(false)
-
-const getImageAlbumAllInfo = async () => {
-  const res = await phoneAlbumAllInfoService()
-  console.log(res)
-  imageAlbumAllList.value=res.data
-  // console.log(imageAlbumAllList.value)
-  for (let i = 0; i < imageAlbumAllList.value.length; i++) {
-    // console.log(imageAlbumAllList.value[i].id)
-    imageAlbumAllList.value[i].List=await getImageAlbumList(imageAlbumAllList.value[i].id)
-  }
-  // PhoneAlbumNameList.value=res.data
-  // console.log(toRaw(imageAlbumAllList.value))
-  loading.value=true
-
-}
-getImageAlbumAllInfo()
-const getImageAlbumList = async (type) => {
-  const res = await selectImagesByImagesType(type)
-  // console.log(res)
-  return res.data
-}
-getImageAlbumList()
-
-// console.log(imageAlbumAllList.value)
-const {proxy} = getCurrentInstance()
-const baseURL = proxy.$baseURL
-</script>
-
 <template>
   <!--      骨架屏-->
   <div class='screen-root'  v-if="loading===false">
@@ -50,13 +14,46 @@ const baseURL = proxy.$baseURL
       <template #item="{ item, url, index }">
         <div class="card" >
           <LazyImg :url="`${baseURL+item.imagesUrl}`" :title="item.imageName"/>
-
         </div>
       </template>
     </Waterfall>
   </div>
 
 </template>
+
+<script setup>
+import { LazyImg, Waterfall } from 'vue-waterfall-plugin-next'
+import 'vue-waterfall-plugin-next/dist/style.css'
+import {getCurrentInstance, ref, toRaw} from 'vue'
+import {phoneAlbumAllInfoService} from "@/api/phoneAlbum.js";
+import {selectImagesByImagesType} from "@/api/Images.js";
+let imageAlbumAllList = ref([])
+
+let loading = ref(false)
+
+
+const getImageAlbumAllInfo = async () => {
+  const res = await phoneAlbumAllInfoService()
+  imageAlbumAllList.value=res.data
+  // console.log(imageAlbumAllList.value)
+  for (let i = 0; i < imageAlbumAllList.value.length; i++) {
+    // console.log(imageAlbumAllList.value[i].id)
+    imageAlbumAllList.value[i].List=await getImageAlbumList(imageAlbumAllList.value[i].id)
+  }
+  loading.value=true
+}
+getImageAlbumAllInfo()
+const getImageAlbumList = async (type) => {
+  const res = await selectImagesByImagesType(type)
+
+  return res.data
+}
+getImageAlbumList()
+
+const {proxy} = getCurrentInstance()
+const baseURL = proxy.$baseURL
+</script>
+
 
 <style scoped>
 h1 {
@@ -90,15 +87,7 @@ h1 {
 }
 
 
-
-
-
 .screen-root {
-  //width: 100%;
-  //height: 100%;
-  //display: flex;
-  //justify-content: center;
-  //margin-top: 20vh;
 }
 
 ul {
@@ -131,12 +120,8 @@ li:last-child {
   0% {
     background-position: 100% 50%;
   }
-
   100% {
     background-position: 0 50%;
   }
 }
-
-
-
 </style>

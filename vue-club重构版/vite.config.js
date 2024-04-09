@@ -27,9 +27,9 @@ export default defineConfig({
   server:{
     proxy:{
       '/api':{
-        target:'http://localhost:8080',
-        // target:'http://kaguranosoul.xyz/api',
-        // target: 'http://124.70.107.226:8080',
+        // target:'http://localhost:8080',
+        target:'http://kaguranosoul.xyz/api',
+        // target: 'http://43.128.1.212:8080',
         changeOrigin:true,
         rewrite:(path)=>path.replace(/^\/api/,'')///api替换为''
       }

@@ -1,0 +1,27 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://43.128.1.212:3306/club?erverTimezone=CST
+    username: root1
+    password: Song111711
+  data:
+    resources:
+      static-locations: classpath:static/
+  servlet:
+    multipart:
+      max-file-size: 5MB
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true #开启驼峰命名和下划线命名的自动转换
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+server:
+  port: 8080
+
+upload:
+  location:
+    os: /www/wwwroot/springboot/images
+    os1: /www/wwwroot/springboot
+
+
+

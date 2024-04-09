@@ -1,7 +1,6 @@
 import request from "@/utils/request.js";
 
 export const commentAddService = (commentData)=> {
-  console.log(commentData)
   return request.post("/comment/add", commentData);
 }
 
