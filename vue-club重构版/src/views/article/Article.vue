@@ -14,11 +14,8 @@
 </template>
 
 <script setup>
-
 import TopNavBar from "@/components/TopNavBar/TopNavBar.vue";
-
 import Footer from "@/components/Footer/Footer.vue";
-import Content from "@/components/Content/content.vue";
 import {ref} from 'vue'
 import ArticleContent from "@/views/Article/ArticleContent.vue";
 import {useRoute} from "vue-router";

@@ -1,5 +1,5 @@
 <template>
-  <!--      骨架屏-->
+  <!-- 骨架屏，用于显示内容加载中的占位图形 -->
   <div class='screen-root'  v-if="loading===false">
     <ul>
       <li/>
@@ -8,9 +8,11 @@
     </ul>
   </div>
 
+  <!-- 加载完成后的实际内容展示 -->
   <div v-for="item1 in imageAlbumAllList"  v-if="loading!==false">
     <h1 class="">{{item1.phoneAlbumName}}</h1>
     <Waterfall :list="item1.List" :gutter="40"  :width="550" :crossOrigin="false">
+      <!-- 图片卡片的模板定义 -->
       <template #item="{ item, url, index }">
         <div class="card" >
           <LazyImg :url="`${baseURL+item.imagesUrl}`" :title="item.imageName"/>
@@ -27,22 +29,33 @@ import 'vue-waterfall-plugin-next/dist/style.css'
 import {getCurrentInstance, ref, toRaw} from 'vue'
 import {phoneAlbumAllInfoService} from "@/api/phoneAlbum.js";
 import {selectImagesByImagesType} from "@/api/Images.js";
+
+// 所有相册列表的引用
 let imageAlbumAllList = ref([])
 
+// 加载状态控制
 let loading = ref(false)
 
-
+/**
+ * 获取全部相册信息。
+ * 该函数会首先请求所有相册的信息，然后为每个相册请求其图片列表，
+ * 最后更新加载状态。
+ */
 const getImageAlbumAllInfo = async () => {
   const res = await phoneAlbumAllInfoService()
   imageAlbumAllList.value=res.data
-  // console.log(imageAlbumAllList.value)
   for (let i = 0; i < imageAlbumAllList.value.length; i++) {
-    // console.log(imageAlbumAllList.value[i].id)
     imageAlbumAllList.value[i].List=await getImageAlbumList(imageAlbumAllList.value[i].id)
   }
   loading.value=true
 }
 getImageAlbumAllInfo()
+
+/**
+ * 根据相册ID获取图片列表。
+ * @param {String} type - 相册ID
+ * @returns {Promise<Array>} 返回图片信息数组的Promise。
+ */
 const getImageAlbumList = async (type) => {
   const res = await selectImagesByImagesType(type)
 
@@ -50,35 +63,29 @@ const getImageAlbumList = async (type) => {
 }
 getImageAlbumList()
 
+// 实例化基本信息，用于获取基础URL
 const {proxy} = getCurrentInstance()
 const baseURL = proxy.$baseURL
 </script>
 
-
 <style scoped>
+/* 标题样式定义 */
 h1 {
   text-align: center;
-  margin: 0; /* 或者可以设置一个舒适的顶部和底部间距，例如：margin: 20px 0; */
+  margin: 0;
   font-weight: 600;
-  font-size: 36px; /* 根据设计需求调整字体大小 */
-  line-height: 1.2; /* 确保行高舒适 */
-  color: #000000; /* 改变字体颜色以提供对比，假设背景为深色 */
-  //text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 增加文本阴影的深度和模糊度 */
+  font-size: 36px;
+  line-height: 1.2;
+  color: #000000;
   text-transform: uppercase;
   letter-spacing: 1px;
 
-  /* 可选，添加内边距以增加视觉空间 */
   padding: 20px 0;
 
-  /* 可选，添加背景或者边框以增强视觉效果 */
-  //background-color: #333; /* 或者使用渐变、图片等 */
-  //border-bottom: 2px solid #ff4500; /* 或者使用其他颜色来强调标题 */
-
-  /* 可选，使用动画或过渡效果 */
-  transition: all 0.3s ease-in-out;
+  /* 根据需要添加的样式 */
 }
 
-/* 如果需要响应式设计，可以根据屏幕尺寸调整样式 */
+/* 响应式设计，调整屏幕宽度小于768px时的标题样式 */
 @media (max-width: 768px) {
   h1 {
     font-size: 28px;
@@ -86,7 +93,7 @@ h1 {
   }
 }
 
-
+/* 骨架屏样式 */
 .screen-root {
 }
 
@@ -116,6 +123,7 @@ li:last-child {
   width: 61%;
 }
 
+/* 动画定义 */
 @keyframes skeleton-loading {
   0% {
     background-position: 100% 50%;

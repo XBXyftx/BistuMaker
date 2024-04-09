@@ -46,6 +46,6 @@ window.addEventListener('resize', () => {
 
 
 const text = ref('')
-console.log(text.value)
+
 
 </script>

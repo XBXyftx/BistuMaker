@@ -27,12 +27,21 @@
 <script setup>
 import { ref, reactive, watch } from 'vue'
 import { ElMessage } from 'element-plus'
-// 注册表单
+// 引入用户登录服务
+import {userLoginService} from "@/api/user.js";
+// 引入token存储和路由钩子
+import {useTokenStore} from '@/stores/token.js'
+import {useRouter} from "vue-router";
+// 引入Element Plus的用户和锁图标
+import {User} from "@element-plus/icons-vue";
+const router = useRouter()
+const tokenStore = useTokenStore();
+
+// 定义登录表单数据和规则
 const registerData = ref({
   username: '',
   password: ''
 })
-//定义表单规则
 const rules ={
   username:[
     {required: true, message: '请输入用户名', trigger: 'blur'},
@@ -45,22 +54,15 @@ const rules ={
 
 }
 
-import {userLoginService} from "@/api/user.js";
-import {useTokenStore} from '@/stores/token.js'
-import {useRouter} from "vue-router";
-import {User} from "@element-plus/icons-vue";
-const router = useRouter()
-const tokenStore = useTokenStore();
+// 定义登录方法
 const login =async ()=>{
-  //调用接口,完成登录
-  // console.log('用户数据 ' + registerData.value.username)
+  // 调用登录服务
   let result =  await userLoginService(registerData.value);
-  // console.log(result)
+  // 展示登录结果消息
   ElMessage.success(result.msg ? result.msg : '登录成功')
-  //把得到的token存储到pinia中
-  console.log(result.data)
+  // 存储获取到的token
   tokenStore.setToken(result.data)
-  //跳转到首页 路由完成跳转
+  // 跳转到管理员首页
   router.push('/admin')
 }
 
