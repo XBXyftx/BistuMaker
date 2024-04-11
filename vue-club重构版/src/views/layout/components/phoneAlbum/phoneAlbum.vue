@@ -77,7 +77,9 @@
 
       <el-upload action=""
                  :http-request="handleRequest"
-                 :show-file-list="false">
+                 :show-file-list="false"
+                 accept=".jpg,.jpeg,.png,.gif,.bmp,.pdf,.JPG,.JPEG,.PBG,.GIF,.BMP"
+      >
         <img
             style="width: 99%;height: auto"
              :src= "`${imageUrl}`"
@@ -91,7 +93,7 @@
         </div>
         <template #tip>
           <div
-               class="el-upload__tip">只能上传 jpg/png 文件，且不超过 500kb</div>
+               class="el-upload__tip">只能上传 jpg/png 文件，且不超过 5000kb</div>
         </template>
       </el-upload>
         <span class="dialog-footer">
@@ -204,8 +206,7 @@ const PhoneAlbumNameList=ref([
 const deleteCategory = (row,id) => {
   //提示用户  确认框
   phoneAlbumId.value=id.id-1
-  console.log(id.id)
-  console.log("id为"+row.id)
+
   ElMessageBox.confirm(
       '你确认要删除该分类信息吗?',
       '温馨提示',
@@ -287,6 +288,8 @@ const addImages = async () =>{
   imagesInfo.value.imageType=''
   imageAlbumAllList.value=[]
   await getImageAlbumAllInfo()
+  imageUrl.value=null
+  imagesInfo.value.imageName=null
 }
 
 const {proxy} = getCurrentInstance()
@@ -343,17 +346,8 @@ const getImageAlbumList = async (type) => {
 getImageAlbumList()
 
 const updatePhoneAlbumImage = async () => {
-  // console.log("更新前"+toRaw(imageAlbumAllList.value[phoneAlbumId.value].List))
-  // // console.log(phoneAlbumId.value)
-  // imageAlbumAllList.value[phoneAlbumId.value].List.length=0
-  // console.log("更新清零"+imageAlbumAllList.value[phoneAlbumId.value].List)
-  // imageAlbumAllList.value[phoneAlbumId.value].List = await getImageAlbumList(phoneAlbumId.value)
-  // console.log("更新后"+toRaw(imageAlbumAllList.value[phoneAlbumId.value].List))
-
   imageAlbumAllList.value=[]
   await getImageAlbumAllInfo()
-
-
 }
 let queryInfo = ref({
   query: '', // 查询参数

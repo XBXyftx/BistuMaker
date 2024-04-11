@@ -6,6 +6,7 @@ import com.bistu.ckkj.pojo.Result;
 import com.bistu.ckkj.service.ImagesService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import net.coobird.thumbnailator.Thumbnails;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,7 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
@@ -41,89 +44,52 @@ public class uploadController {
 
     @MyLog(value = "添加照片")
     @PostMapping("/img")
-    public Result upload(@RequestParam("file") MultipartFile file, String imageType, String imageName , HttpServletRequest request) throws IOException {
-        System.out.println(imageType);
-        System.out.println(imageName);
-//        String directory = simpleDateFormat.format(new Date());
-//        System.out.println(directory);
-//
-//        if (file == null) {
-//            return Result.error("上传失败");
-//        }
-//
-//        //文件名字
-//        String fileName = file.getOriginalFilename();
-////        String filePath = "G:\\项目\\社团官网\\源代码\\backend\\demo\\target\\classes\\static\\images\\";
-//        String filePath = ResourceUtils.getURL("").getPath() + "static/images/";
-//        filePath = java.net.URLDecoder.decode(filePath, "utf-8");
-//        System.out.println("filepath目录为"+filePath);
-//        System.out.println(filePath + directory + fileName);
-//        File uploadFile = new File(filePath+directory);
-//        uploadFile.mkdir();
-//        if (!uploadFile.exists()) {
-//            System.out.println("文件不存在");
-//            uploadFile.getParentFile().mkdirs();
-//            uploadFile.mkdirs();
-//        }
-//
-//        try{
-//            file.transferTo(new File(filePath +directory+fileName ));
-//        }catch (Exception e ){
-//            return Result.error("上传失败");
-//        }
-//        String basePath = request.getScheme()+"://" +
-//                request.getServerName() + ":" + request.getServerPort() +
-//                request.getContextPath() + "/";
-//        String ImagesUrl =("/images/"+directory+fileName);
-//        System.out.println("图片路径：" + ImagesUrl);
-//
-//
-////        imagesService.upload(fileName,ImagesUrl,"封面");
-//        return Result.success(ImagesUrl);
-
-
-        System.out.println("os为"+os);
-        String directory = simpleDateFormat.format(new Date());
-//        System.out.println(directory);
+    public Result upload(@RequestParam("file") MultipartFile file, String imageType, String imageName, HttpServletRequest request) throws IOException {
+        // Step 1: 检查文件是否为空 以及文件大小
         if (file == null) {
             return Result.error("上传失败");
         }
-//文件名字
-        String fileName = file.getOriginalFilename();//xxx.jpg
+
+        if (file.isEmpty() || file.getSize() > 20 * 1024 * 1024) {
+            return Result.error("文件太大了");
+        }
+        float scale = 1.0F;
+        float quality = 0.75F;
+
+        if (file.getSize() < 10 * 1024 * 1024 && file.getSize() > 5 *1024 * 1024) {
+            scale = 0.8F;
+            quality = 0.6F;
+        }
+
+        // Step 2: 图片压缩（使用thumbnailator）
+        String directory = simpleDateFormat.format(new Date());
+        String fileName = file.getOriginalFilename();
         UUID uuid = UUID.randomUUID();
-//        System.out.println(uuid.toString());
-        String extension = fileName.substring(fileName.lastIndexOf(".")); // 获取 ".jpg"
+        String extension = fileName.substring(fileName.lastIndexOf("."));
         fileName = uuid.toString() + extension;
-        path=path+'/';
-        System.out.println("path+"+path);
-        System.out.println(path+directory+fileName);
-        File uploadFile = new File(path+directory+fileName);
-        uploadFile.mkdir();
-        if (!uploadFile.exists()) {
-            System.out.println("文件不存在");
-            uploadFile.getParentFile().mkdirs();
-            uploadFile.mkdirs();
+
+        // 压缩后的图片文件路径
+        String compressedFilePath = path + "/" + directory + fileName;
+        File compressedFile = new File(compressedFilePath);
+
+        // 创建父目录（如果不存在）
+        compressedFile.getParentFile().mkdirs();
+
+        try (InputStream inputStream = file.getInputStream(); FileOutputStream outputStream = new FileOutputStream(compressedFile)) {
+            Thumbnails.of(inputStream)
+                    .scale(scale) // 默认情况下，不缩放图片
+                    .outputQuality(quality) // 设置压缩质量（例如，0.7表示70%质量，可按需调整）
+                    .toOutputStream(outputStream);
         }
 
-        try{
-            file.transferTo(uploadFile);
-        }catch (Exception e ){
-            return Result.error("上传失败");
+        // Step 3: 服务端上传逻辑
+        if (imageName != null && imageType != null) {
+            imagesService.upload(imageName, "/images/" + directory + fileName, imageType);
+            return Result.success("/images/" + directory + fileName);
+        } else {
+            imagesService.upload(fileName, "/images/" + directory + fileName, "封面");
+            return Result.success("/images/" + directory + fileName);
         }
-
-        System.out.println(directory+fileName);
-
-
-        if(imageName!=null){
-            if(imageType!=null){
-                imagesService.upload(imageName,"/images/"+directory+fileName,imageType);
-                return Result.success("/images/"+directory+fileName);
-            }
-        }
-        imagesService.upload(fileName,"/images/"+directory+fileName,"封面");
-        return Result.success("/images/"+directory+fileName);
-
     }
-
 
 }

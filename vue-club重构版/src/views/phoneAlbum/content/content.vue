@@ -35,7 +35,7 @@ import Carousel from "@/components/Content/notice/carousel.vue";
 import Answer from "@/views/home/answer/answer.vue";
 import Introduce from "@/views/home/introduce/introduce.vue";
 import Department from "@/views/home/department/department.vue";
-import ImgWall from "@/views/phoneAlbum/imgWall.vue";
+import ImgWall from "@/views/phoneAlbum/content/imgWall.vue";
 //判断是否是移动端
 const isMobile = ref(window.innerWidth < 768);
 
