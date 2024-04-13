@@ -30,8 +30,7 @@ public class TokenServiceImpl implements TokenService {
 
     @Override
     public Token selectTokenById(String token) {
-        Token token1 = tokenMapper.selectTokenById(token);
-        return token1;
+        return tokenMapper.selectTokenById(token);
     }
 
     @Override

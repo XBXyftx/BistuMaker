@@ -32,8 +32,8 @@ public class NotificationsController {
     @GetMapping("/allInfo")
     public Result selectAllNotifications(){
         List<Notifications> notifications = notificationsController.selectAllNotifications();
-        for (int i=0;i<notifications.size();i++){
-            System.out.println("数据为"+notifications.get(i).toString());
+        for (Notifications notification : notifications) {
+            System.out.println("数据为" + notification.toString());
         }
         return Result.success(notificationsController.selectAllNotifications());
     }
@@ -56,8 +56,8 @@ public class NotificationsController {
     @GetMapping("/isRead")
     public Result selectIsRead(){
         List<Notifications> notifications = notificationsController.selectIsRead();
-        for (int i=0;i<notifications.size();i++){
-            System.out.println("数据为"+notifications.get(i).toString());
+        for (Notifications notification : notifications) {
+            System.out.println("数据为" + notification.toString());
         }
         return Result.success(notificationsController.selectIsRead());
     }

@@ -1,7 +1,7 @@
 <template>
   <div class="content-container" :style="{display: isMobile ? 'inline' : 'flex'}">
     <div class="text-content" :style="{width: isMobile ? '95%' : '60%' }">
-      <p style="font-size: 2.9rem;margin-top: 0px;margin-bottom: 0px;font-family: AlimamaDaoLiTi,serif;">
+      <p style="font-size: 2.9rem;margin-top: 0;margin-bottom: 0;font-family: AlimamaDaoLiTi,serif;">
         关于<br>创客空间<br>社团活动<br>
       </p>
       <p style="font-weight: 500;font-size: 1rem ">
@@ -290,7 +290,6 @@ const getArticle=(id)=>{
 
 .item:before {
   content: attr(data-text);
-  letter-spacing: 3px;
   width: 100%;
   position: absolute;
   color: rgba(255, 255, 255, 0.5);
@@ -301,7 +300,7 @@ const getArticle=(id)=>{
   padding-left: 15px;
   opacity: 0;
   right: calc(-100% - 56px);
-  font: 900 20px '';
+ 
   letter-spacing: 5px;
 }
 
@@ -401,14 +400,14 @@ const getArticle=(id)=>{
 }
 .el-pagination {
 }
-//这里可能有坑这个100px,如果不设置手机端就回超出空白部分,有些难绷
+/*这里可能有坑这个100px,如果不设置手机端就回超出空白部分,有些难绷*/
 /* 当屏幕宽度小于等于某个阈值时（例如768px，适合移动设备） */
 @media screen and (max-width: 768px) {
   .el-pagination {
     text-align: center;
     position: relative;
 
-    padding: 10px 1000px 0px 0px;
+    padding: 10px 1000px 0 0;
     background-color: red;
   }
 }
@@ -417,7 +416,7 @@ const getArticle=(id)=>{
 
     text-align: center;
     position: relative;
-    padding: 0px 10px 10px 85px;
+    padding: 0 10px 10px 85px;
   //padding-right: 10px;
   }
 }

@@ -46,9 +46,5 @@ public class CommentController {
     }
 
 
-//    @GetMapping("/commentById")
-//    public Result selectCommentById(Integer id){
-//        return Result.success(commentService.selectCommentByArticleId(id));
-//    }
 
 }

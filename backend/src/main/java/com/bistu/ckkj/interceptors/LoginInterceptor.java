@@ -29,10 +29,9 @@ public class LoginInterceptor implements HandlerInterceptor {
      * @param response HttpServletResponse对象，代表服务器的HTTP响应
      * @param handler  将要执行的处理器对象
      * @return boolean 返回true表示放行，返回false表示拦截
-     * @throws Exception 抛出异常，用于处理验证过程中的错误情况
      */
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         //令牌验证
         String token = request.getHeader("Authorization");
         //验证token
@@ -81,10 +80,9 @@ public class LoginInterceptor implements HandlerInterceptor {
      * @param response HttpServletResponse对象
      * @param handler  处理器对象
      * @param ex       异常对象，如果处理过程中抛出异常则非null
-     * @throws Exception 抛出异常，用于处理清理过程中的错误情况
      */
     @Override
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
         //清空ThreadLocal中的数据
         ThreadLocalUtil.remove();
     }

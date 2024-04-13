@@ -65,8 +65,11 @@ public class uploadController {
         String directory = simpleDateFormat.format(new Date());
         String fileName = file.getOriginalFilename();
         UUID uuid = UUID.randomUUID();
-        String extension = fileName.substring(fileName.lastIndexOf("."));
-        fileName = uuid.toString() + extension;
+        String extension = null;
+        if (fileName != null) {
+            extension = fileName.substring(fileName.lastIndexOf("."));
+        }
+        fileName = uuid + extension;
 
         // 压缩后的图片文件路径
         String compressedFilePath = path + "/" + directory + fileName;
@@ -85,11 +88,10 @@ public class uploadController {
         // Step 3: 服务端上传逻辑
         if (imageName != null && imageType != null) {
             imagesService.upload(imageName, "/images/" + directory + fileName, imageType);
-            return Result.success("/images/" + directory + fileName);
         } else {
             imagesService.upload(fileName, "/images/" + directory + fileName, "封面");
-            return Result.success("/images/" + directory + fileName);
         }
+        return Result.success("/images/" + directory + fileName);
     }
 
 }

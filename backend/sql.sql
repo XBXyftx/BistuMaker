@@ -14,10 +14,10 @@
  Date: 09/04/2024 16:01:26
 */
 -- 创建数据库
-# create database club;
+create database club;
 #
 # -- 使用数据库
-# use club;
+use club;
 
 
 SET NAMES utf8mb4;

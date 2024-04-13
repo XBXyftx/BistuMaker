@@ -8,8 +8,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -70,16 +68,19 @@ public class ArticleController {
     @MyLog(value = "查询博文")
     @GetMapping("/blogAll")
     public Result selectArticleAll(){
-        List<Article> top = new ArrayList<>();
-        List<Article> typeBy = articleService.selectArticleByType("文章");
-        for(Article article : typeBy){
-            if(article.getTop()==1){
-                 top.add(article);
-                 typeBy.remove(article);
+        List<Article> topArticles = new ArrayList<>();
+        List<Article> articlesByType = articleService.selectArticleByType("文章");
+
+        // 一次性遍历优化性能，并提高代码可读性和可维护性
+        for (Article article : articlesByType) {
+            if (article.getTop() == 1) {
+                topArticles.add(0, article); // 将置顶文章添加到列表开头，确保其排在前面
+            } else {
+                topArticles.add(article); // 将非置顶文章添加到列表末尾
             }
         }
-        top.addAll(typeBy);
-        return Result.success( top  );
+
+        return Result.success(topArticles);
     }
 
 

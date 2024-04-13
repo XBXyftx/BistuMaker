@@ -160,7 +160,7 @@ const deleteCategory = (row) => {
 
 const updateArticle = async () => {
   let result = await articleUpdateService(ArticleModel.value)
-  if (result.code == 0) {
+  if (result.code === 0) {
     ElMessage({
       type: 'success',
       message: '修改成功',

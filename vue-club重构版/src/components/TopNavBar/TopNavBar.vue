@@ -183,7 +183,7 @@ const toggleMenu = () => {
   margin: 0;
   padding: 0;
   position: fixed;
-  top: 0px;
+  top: 0;
   left: -15px;
   background-color: #ffffff;
   width: 100%;

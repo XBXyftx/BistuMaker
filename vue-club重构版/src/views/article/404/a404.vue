@@ -32,12 +32,11 @@ body {
   text-align: center; /* 确保文本元素居中 */
   max-width: 500px; /* 可自定义最大宽度，以便在不同屏幕尺寸下有更好的展示效果 */
   margin: 0 auto; /* 去掉无用的重复值 */
-  padding: 40px; /* 添加内边距以增加视觉美感 */
-  padding-top: 200px;
-  padding-bottom: 300px;
+  /* 添加内边距以增加视觉美感 */
+  padding: 200px 40px 300px;
   background-color: #f8f9fa; /* 添加背景颜色以区别于背景 */
   border-radius: 8px; /* 添加圆角以美化样式 */
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
 }
 
 .err404 h4 {

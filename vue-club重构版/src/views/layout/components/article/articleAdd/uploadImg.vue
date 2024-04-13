@@ -4,7 +4,8 @@
              :show-file-list="false">
     <img v-if="imageUrl"
          :src="imageUrl"
-         class="avatar" />
+         class="avatar"
+    alt=""/>
     <div>
       <i class="el-icon-plus avatar-uploader-icon"></i>
       <div class="el-upload__text">点击上传封面</div>

@@ -10,11 +10,11 @@ import java.util.List;
 public interface ImagesMapper {
 
     @Select("select * from Images")
-    public List<Images> selectAll();
+    List<Images> selectAll();
 
 
     @Select("insert into images(image_name,image_url, image_type, create_time) values(#{imageName},#{imagesUrl},#{imagesType},now())")
-    public void insert(Images images);
+    void insert(Images images);
 
     @Delete("delete from images where id = #{id}")
     public void deleteById(Integer id);

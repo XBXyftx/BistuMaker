@@ -22,7 +22,7 @@ public class IpUtils {
             if (StringUtils.isEmpty(ip) || unknown.equalsIgnoreCase(ip)) {
                 ip = request.getHeader("Proxy-Client-IP");
             }
-            if (StringUtils.isEmpty(ip) || ip.length() == 0 || unknown.equalsIgnoreCase(ip)) {
+            if (StringUtils.isEmpty(ip) || ip.isEmpty() || unknown.equalsIgnoreCase(ip)) {
                 ip = request.getHeader("WL-Proxy-Client-IP");
             }
             if (StringUtils.isEmpty(ip) || unknown.equalsIgnoreCase(ip)) {
@@ -39,7 +39,7 @@ public class IpUtils {
         }
 
         // 使用代理，则获取第一个IP地址
-        if (StringUtils.isEmpty(ip) && ip.length() > maxLength) {
+        if (ip != null && StringUtils.isEmpty(ip) && ip.length() > maxLength) {
             int idx = ip.indexOf(seperator);
             if (idx > 0) {
                 ip = ip.substring(0, idx);
@@ -52,7 +52,6 @@ public class IpUtils {
     /**
      * 获取ip地址
      *
-     * @return
      */
     public static String getIpAddr() {
         HttpServletRequest request = HttpContextUtils.getHttpServletRequest();

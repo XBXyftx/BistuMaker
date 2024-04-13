@@ -99,7 +99,7 @@ public class SysLogAspect {
         }
         HttpServletRequest request = sra.getRequest();
         //访问的url
-        String url = request.getRequestURI().toString();
+        String url = request.getRequestURI();
         String message = "方法名:"+name+", url:"+url;
         //请求方式
         String methodName = request.getMethod();

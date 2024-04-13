@@ -24,8 +24,6 @@ public class Md5Util {
     /**
      * 生成字符串的md5校验值
      *
-     * @param s
-     * @return
      */
     public static String getMD5String(String s) {
         return getMD5String(s.getBytes());
@@ -36,7 +34,6 @@ public class Md5Util {
      *
      * @param password  要校验的字符串
      * @param md5PwdStr 已知的md5校验码
-     * @return
      */
     public static boolean checkPassword(String password, String md5PwdStr) {
         String s = getMD5String(password);

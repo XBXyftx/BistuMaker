@@ -2,8 +2,6 @@ package com.bistu.ckkj.pojo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
-
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @Data
