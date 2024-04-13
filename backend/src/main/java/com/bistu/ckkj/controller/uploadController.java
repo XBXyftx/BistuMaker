@@ -38,7 +38,7 @@ public class uploadController {
 
     @Value("${upload.location.os}")
     String path;
-    @Value("${spring.profiles.active}")
+    @Value("${upload.location.os1}")
     String os;
 
 
