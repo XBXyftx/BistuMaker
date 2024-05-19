@@ -16,7 +16,7 @@
 -- 创建数据库
 #create database club;
 #
-# -- 使用数据库1
+# -- 使用数据库11
 use club;
 
 
