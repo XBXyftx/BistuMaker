@@ -14,9 +14,9 @@
  Date: 09/04/2024 16:01:26
 */
 -- 创建数据库
-#create database club;
+# create database club;
 #
-# -- 使用数据库11
+# -- 使用数据库
 use club;
 
 
@@ -152,10 +152,10 @@ CREATE TABLE `reason`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `token`;
 CREATE TABLE `token`  (
-                          `token_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-                          `token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+                          `token_id` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+                          `token` tinytext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
                           `expiration_time` datetime NULL DEFAULT NULL,
-                          `user_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+                          `user_name` tinytext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
                           PRIMARY KEY (`token_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 

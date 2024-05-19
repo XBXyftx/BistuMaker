@@ -37,7 +37,9 @@ public class WebConfig implements WebMvcConfigurer {
                 "/phoneAlbum/allImage",
                 "/images/**",
                 "/image/imageType",
-                    "/article/blogAll"
+                "/article/blogAll",
+                "/article/addVisits"
+
                 );
 
     }
