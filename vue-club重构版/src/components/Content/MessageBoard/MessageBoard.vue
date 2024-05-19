@@ -27,56 +27,54 @@
   </div>
 </template>
 
-<script>
 
-import {ref} from "vue";
+<script setup>
+import { ref, onMounted, onUnmounted } from "vue";
 
+// 使用 ref 创建响应式数据
+const isMobile = ref(window.innerWidth < 768);
+const username = ref('');
+const message = ref('');
+const messages = ref([]);
 
-export default {
-  setup() {
-    const isMobile = ref(window.innerWidth < 768);
-    // 监听窗口大小变化
-    window.addEventListener("resize", () => {
-      isMobile.value = window.innerWidth < 768;
-    });
-
-    return { isMobile };
-  },
-  name: "MessageBoard",
-  data() {
-    return {
-      username: '',
-      message: '',
-      messages: []
-    };
-  },
-  methods: {
-    submitMessage() {
-      if (this.message === '') {
-        alert('请输入内容');
-        return;
-      }
-      const newMessage = {
-        username: this.username || '匿名',
-        content: this.message,
-        timestamp: this.getCurrentTime()
-      };
-      this.messages.unshift(newMessage);
-      this.username = '';
-      this.message = '';
-    },
-    getCurrentTime() {
-      const now = new Date();
-      const year = now.getFullYear();
-      const month = ('0' + (now.getMonth() + 1)).slice(-2);
-      const day = ('0' + now.getDate()).slice(-2);
-      const hours = ('0' + now.getHours()).slice(-2);
-      const minutes = ('0' + now.getMinutes()).slice(-2);
-      const seconds = ('0' + now.getSeconds()).slice(-2);
-      return `${year}/${month}/${day} ${hours}:${minutes}:${seconds}`;
-    }
+// 定义方法
+function submitMessage() {
+  if (message.value === '') {
+    alert('请输入内容');
+    return;
   }
+  const newMessage = {
+    username: username.value || '匿名',
+    content: message.value,
+    timestamp: getCurrentTime()
+  };
+  messages.value.unshift(newMessage);
+  username.value = '';
+  message.value = '';
 }
+
+function getCurrentTime() {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = ('0' + (now.getMonth() + 1)).slice(-2);
+  const day = ('0' + now.getDate()).slice(-2);
+  const hours = ('0' + now.getHours()).slice(-2);
+  const minutes = ('0' + now.getMinutes()).slice(-2);
+  const seconds = ('0' + now.getSeconds()).slice(-2);
+  return `${year}/${month}/${day} ${hours}:${minutes}:${seconds}`;
+}
+
+// 添加事件监听器
+onMounted(() => {
+  window.addEventListener("resize", () => {
+    isMobile.value = window.innerWidth < 768;
+  });
+});
+
+// 在组件卸载时移除事件监听器以避免内存泄漏
+onUnmounted(() => {
+  window.removeEventListener("resize", () => {});
+});
 </script>
 
 <style scoped>

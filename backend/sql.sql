@@ -175,3 +175,15 @@ CREATE TABLE `users`  (
 
 SET FOREIGN_KEY_CHECKS = 1;
 INSERT INTO `users` VALUES (1, 'admin', 'e10adc3949ba59abbe56e057f20f883e', '2023-12-18 19:23:44', '2023-12-18 19:23:44', 'admin');
+
+DROP table IF exists 'messages';
+create table 'messages'(
+    'id' int NOT null AUTO_INCREMENT,
+    `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+    `message` TEXT NOT NULL,
+    `ip` varchar(255) ,
+    `mac` varchar(255) ,
+    `os` varchar(255) ,
+    `browser` varchar(255) ,
+    `create_time` datetime NULL DEFAULT CURRENT_TIMESTAMP
+)ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;

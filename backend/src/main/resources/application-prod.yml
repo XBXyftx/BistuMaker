@@ -2,8 +2,8 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/club?erverTimezone=CST
-    username: root123
-    password: wrF7B5kCtB4p4GEH
+    username: root
+    password: root
   data:
     resources:
       static-locations: classpath:static/

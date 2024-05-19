@@ -25,6 +25,9 @@ public class TokenServiceImpl implements TokenService {
 
     @Override
     public List<Token> selectAllToken() {
+        if (tokenMapper.selectAllToken().size() == 0){
+            return null;
+        }
         return tokenMapper.selectAllToken();
     }
 

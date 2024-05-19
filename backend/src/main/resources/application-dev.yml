@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3456/club?erverTimezone=CST
+    url: jdbc:mysql://localhost:3306/club?erverTimezone=CST
     username: root
-    password: 123456
+    password: root
   data:
     resources:
       static-locations: classpath:static/
@@ -22,8 +22,8 @@ server:
 
 upload:
   location:
-    os: G:/项目/社团官网/源代码/backend/target/classes/static/images
-    os1: G:/项目/社团官网/源代码/backend/target/classes/static
+    os: D:/BistuMaker/backend/target/classes/static/images
+    os1: D:/BistuMaker/backend/target/classes/static
 
 
 
