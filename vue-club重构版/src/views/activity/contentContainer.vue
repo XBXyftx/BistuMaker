@@ -2,7 +2,7 @@
   <div class="content-container" :style="{display: isMobile ? 'inline' : 'flex'}">
 
     <div class="text-content" :style="{width: isMobile ? '95%' : '60%' }">
-      <p style="font-size: 2.9rem;margin-top: 0;margin-bottom: 0;font-family: AlimamaDaoLiTi,serif;">
+      <p style="font-size: 2.9rem;margin-top: 0px;margin-bottom: 0px;font-family: AlimamaDaoLiTi,serif;">
         关于<br>创客空间<br>社团活动<br>
       </p>
       <p style="font-weight: 500;font-size: 1rem ">

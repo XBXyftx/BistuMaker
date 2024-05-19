@@ -1,7 +1,11 @@
 <template>
   <nav class="nav-container ">
     <div class="logo-container">
-      <a href="/" class="logo-name" >创客空间</a>
+      <a href="/" class="logo-name">
+        <span style="color:#0E343D;">Bistu</span>
+        <span style="color:#8DB5BE;">Maker</span>
+      </a>
+
     </div>
     <div>
 
@@ -13,7 +17,7 @@
         <li><a href="/activity">社团活动</a></li>
         <li><a href="/phoneAlbum">社团相册</a></li>
         <li><a href="/blog">博文</a></li>
-        <li><a href="#">关于</a></li>
+        <li><a href="/about">留言板</a></li>
         <div class="nav-box"></div>
 <!--        <li><a href="#">教学资源</a></li>-->
         <li>
@@ -68,7 +72,7 @@
         <li><a href="/activity" @click="toggleMenu">社团活动</a></li>
         <li><a href="/phoneAlbum" @click="toggleMenu">社团相册</a></li>
         <li><a href="/blog">博文</a></li>
-        <li><a href="#" @click="toggleMenu">关于</a></li>
+        <li><a href="/about" @click="toggleMenu">关于</a></li>
       </ul>
 
     </div>
@@ -99,10 +103,10 @@ const toggleMenu = () => {
 <style scoped>
 .logo-name{
   padding-left: 30px;
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   font-weight: bold;
-  color: #1f1f1f;
   text-decoration: none;
+  letter-spacing: 2px;
 }
 
 .nav-container {
@@ -112,10 +116,14 @@ const toggleMenu = () => {
   width: 100%;
   display: flex;
   justify-content: space-between;
-
   align-items: center;
   //padding: 0.5rem 1rem;
-  background-color: #ffffff;
+  background: #EBEBEB;
+
+  z-index: 300;
+  position: fixed;
+  top: 0;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
 }
 
 .logo-container img {
@@ -125,6 +133,7 @@ const toggleMenu = () => {
 .menu-container {
   display: flex;
   align-items: center;
+
 }
 
 .menu-container ul {
@@ -161,16 +170,19 @@ const toggleMenu = () => {
 .burger-bars {
   width: 25px;
   height: 3px;
-  //background-color: #fff;
+  background: #EBEBEB;
   position: relative;
   margin-bottom: 15px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
 }
+
 .burger-close {
   position: relative;
   width: 25px;
   height: 3px;
   margin-bottom: 15px;
-
+  background: #EBEBEB;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
 }
 
 
@@ -183,9 +195,10 @@ const toggleMenu = () => {
   margin: 0;
   padding: 0;
   position: fixed;
-  top: 0;
+  top: 0px;
   left: -15px;
-  background-color: #ffffff;
+  background: #EBEBEB;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
   width: 100%;
 
   //height: calc(100vh - 100px);

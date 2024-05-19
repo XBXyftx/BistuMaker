@@ -2,7 +2,7 @@
 
   <TopNavBar></TopNavBar>
   <div  v-if="isMobile===false">
-    <div class="shell" >
+    <div class="demo" >
       <div class="container a-container" ref="aContainer"
 
       >
@@ -366,7 +366,7 @@ export default {
   user-select: none;
 }
 
-.shell {
+.demo {
   position: relative;
   width: 100%;
 

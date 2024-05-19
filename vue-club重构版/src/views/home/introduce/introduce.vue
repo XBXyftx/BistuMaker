@@ -2,19 +2,21 @@
 <template>
   <div class="introduction-container">
 
-    <h1 class="title" style="font-size: 50px" v-if="!isMobile">信息科大<span style="color:#4ab1f4">创客空间</span>  </h1>
-    <h1 class="title" style="font-size: 50px;padding: 0" v-else>
-      信息科大<br>
+    <h1 class="title" style="font-size: 50px" v-if="!isMobile">
+      BistuMaker
       <span style="color:#4ab1f4">创客空间</span>
+    </h1>
+    <h1 class="title" style="font-size: 50px;padding: 0;color:#4ab1f4" v-else>
+      创客空间<br>
+      <span style="color:#0a0a0a">BistuMaker</span>
     </h1>
 
 
     <div class="description">
       <!-- 这里填写具体的介绍内容 -->
-      创客空间是北京信息科技大学的科技社团，致力于促进创新与技术的交流与合作。
+      “创客空间”社团成立11-12年，管理正规、环境设备齐全，是本社成员锻炼自己、拓展见识的小天地。
       <br>
-      通过举办工作坊、比赛和分享会等活动，为学生提供了一个广阔的学术与创意平台，激发了创造力，培养了团队协作精神，推动了科技创新。
-
+      创客空间的建立目标是提高社员技术能力，让同学们增长见识，提升合作、表达、管理规划等能力，结交人脉、建立友谊，让每个成员的大学四年更加充实、全面进步。
     </div>
 
 <!--  显示图片 居中-->
@@ -27,9 +29,9 @@
         <div class="icon" >
           <el-icon><SwitchFilled/></el-icon>
         </div>
-        <p>编程与开发</p>
+        <p>软件学习</p>
         <a>
-          电脑报修是飞扬俱乐部提供的免费公益电脑维修服务
+          鸿蒙app、前端设计、客户端小游戏
         </a>
       </div>
       <div class="item">
@@ -37,9 +39,9 @@
         <div class="icon" >
           <el-icon><Platform /></el-icon>
         </div>
-        <p>嵌入式开发</p>
+        <p>硬件学习</p>
         <a>
-          电脑报修是飞扬俱乐部提供的免费公益电脑维修服务
+          嵌入式开发、单片机
         </a>
       </div>
       <div class="item">
@@ -47,9 +49,9 @@
           <el-icon><MessageBox /></el-icon>
         </div>
         <i class="fas fa-server"></i>
-        <p>学业规划</p>
+        <p>学业竞赛</p>
         <a>
-          电脑报修是飞扬俱乐部提供的免费公益电脑维修服务
+          大创、机器人大赛
         </a>
       </div>
 
@@ -68,7 +70,7 @@
   justify-content: space-evenly;
 }
 .item:hover {
-  background-color: rgb(67, 150, 202);
+  background: linear-gradient(45deg, #1A2980, #26D0CE);
   border-radius: 20%;
   color: white;
   transform: perspective(1000px) rotateX(1deg) rotateY(-5deg) scale(1.05)
@@ -148,3 +150,4 @@ window.addEventListener('resize', () => {
 });
 
 </script>
+<!--乐了 更新记录写了，但是你点提交并推送呀1-->

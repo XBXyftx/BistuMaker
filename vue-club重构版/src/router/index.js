@@ -1,10 +1,10 @@
 
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from "@/views/home/home.vue";
-import About from "@/views/about/about.vue";
+import About from "@/views/MessageBoard/MessageBoard.vue";
 import Enrollment from "@/views/enrollment/enrollment.vue";
 import Login from "@/views/login/login.vue";
-import learn from "@/views/learn/learn.vue";
+import learn from "@/views/resources/resources.vue";
 //定义路由关系
 const routes = [
     {
@@ -12,7 +12,7 @@ const routes = [
         name: 'home',
         component: Home,
         meta: {
-            title: '创客空间欢迎你~'
+            title: '创客空间'
         }
     },
     {
@@ -20,7 +20,7 @@ const routes = [
         name: 'about',
         component: About,
         meta: {
-            title: '关于创客空间'
+            title: '关于'
         }
     },
     {

@@ -1,6 +1,6 @@
 <template>
   <!-- 骨架屏，用于显示内容加载中的占位图形 -->
-  <div class='screen-root'  v-if="loading===false" v-for="item in 10">
+  <div class='screen-root'  v-if="loading===false">
     <ul>
       <li/>
       <li/>

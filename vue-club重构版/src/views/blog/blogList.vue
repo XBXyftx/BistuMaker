@@ -1,22 +1,13 @@
 <template>
   <div class="post" v-for="item in blogList" :style="isMobile? 'width: 90%;':'width: 50%;' " v-if="loading">
     <header class="entry-header">
-      <div class="entry-thumbnail" v-if="item.top===1">
-        置顶
-      </div>
-
-      <div class="entry-title">
+      <p class="entry-title">
         <a>{{item.title}}</a>
-      </div>
-      <el-image :src="`${baseURL+item.coverImage}`"    style="width: 60%;height: auto;"
-        v-if="item.coverImage"
-      ></el-image>
-
+      </p>
       <div class="entry-meta">
         <span class="post-category" v-if="item.label">标签:{{item.label}}</span>
-<br>
-        <span class="post-date">
 
+        <span class="post-date">
           <time class="entry-date">时间:{{item.createTime}}</time></span>
         <br>
         <span class="post-author">作者:{{item.author}}</span>
@@ -35,7 +26,7 @@
 
 <!--  骨架屏-->
   <div v-else>
-    <div class='screen-root'  v-if="loading===false" v-for="i in 10">
+    <div class='screen-root'  v-if="loading===false" v-for="i in 5">
       <ul>
         <li/>
         <li/>
@@ -75,11 +66,6 @@ const getArticle=(id)=>{
 //加载
 const loading = ref(false)
 
-
-import {getCurrentInstance} from "vue";
-
-const {proxy} = getCurrentInstance()
-const baseURL = proxy.$baseURL
 </script>
 
 
@@ -105,7 +91,7 @@ li {
 
 
 .post {
-  background: rgba(238, 238, 238, 0.75);
+  background: #fff;
   padding: 5px 5px 0;
 
   height: auto;
@@ -116,18 +102,20 @@ li {
   transition: all 0.3s ease;
   position: relative;
   text-align:center;
-
-  margin: 20px auto;
-
+  margin: auto;
+  //display: flex;
+  //flex-direction: column;
+  margin-top: 20px;
+  margin-bottom: 20px;
 
 }
 
 .entry-title {
   text-align: center;
   font-size: 1.9em;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   line-height: 1.6;
-  padding: 5px 20px 0;
+  padding: 10px 20px 0;
   color: #0a0a0a;
 }
 
@@ -154,7 +142,7 @@ li {
 }
 
 .read-more {
-
+  font-family: 'Ubuntu', sans-serif;
   font-weight: 400;
   word-spacing: 1px;
   letter-spacing: 0.01em;
@@ -238,18 +226,6 @@ li {
 }
 
 span{
-  font-size: 1rem;
-
-  padding: 5px;
-  font-weight: 100;
+  font-size: 1.1rem;
 }
-.entry-thumbnail{
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding: 7px;
-  background-color: rgba(210, 203, 203, 0.73);
-
-}
-
 </style>

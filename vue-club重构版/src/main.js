@@ -95,4 +95,3 @@ app.config.globalProperties.$baseURL = baseURL
 
 
 app.mount('#app')
-

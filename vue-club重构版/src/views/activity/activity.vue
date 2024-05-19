@@ -1,10 +1,9 @@
 <template>
+
   <TopNavBar>
   </TopNavBar>
 
   <ContentActivity></ContentActivity>
-
-
 
   <Footer>
   </Footer>

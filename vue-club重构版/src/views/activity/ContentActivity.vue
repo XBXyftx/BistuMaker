@@ -1,11 +1,11 @@
 <template>
   <div class="content-container" :style="{display: isMobile ? 'inline' : 'flex'}">
     <div class="text-content" :style="{width: isMobile ? '95%' : '60%' }">
-      <p style="font-size: 2.9rem;margin-top: 0;margin-bottom: 0;font-family: AlimamaDaoLiTi,serif;">
+      <p style="font-size: 2.9rem;margin-top: 0px;margin-bottom: 0px;font-family: AlimamaDaoLiTi,serif;">
         关于<br>创客空间<br>社团活动<br>
       </p>
       <p style="font-weight: 500;font-size: 1rem ">
-        平时社团活动也不仅仅有社课，我们还会举办讲座、夜烤、WorkShop、社游、期末聚…等超多活动给社员参加！当然，我们不只和葳格高中建立了长期的任教合作，身为志工性社团，我们还会和相关机构及国小一同举办各式各样的志工营队，落实将在社内所学回馈社会。
+        创客空间的活动主要为大三及大二学姐学长主办，
         <br>
         <br>
         iOS Club致力于软件开发，以及推广程序教育，但我们同时也期望能够给社员舒适的相处环境与丰富的交流活动，欢迎所有志在开发与充满教育热诚的人一起加入。
@@ -44,7 +44,7 @@
   </div>
 
 
-  <div class="shell" ref="shell">
+  <div class="demo" ref="shell">
     <div class="header">
       <h2 class="title">社团活动</h2>
     </div>
@@ -124,7 +124,7 @@ activities.value=null
 
 
 const setupTimeline = () => {
-  const shell = document.querySelector(".shell");
+  const shell = document.querySelector(".demo");
   const items = shell.querySelectorAll(".item");
   console.log(shell);
   console.log(items);
@@ -205,7 +205,7 @@ const getArticle=(id)=>{
   right: 40px;
 }
 
-.shell {
+.demo {
   background-size:100%;
   width: 100%;
   position: relative;
@@ -213,7 +213,7 @@ const getArticle=(id)=>{
 
 }
 
-.shell:before {
+.demo:before {
   position: absolute;
   left: 0;
   top: 0;
@@ -290,6 +290,7 @@ const getArticle=(id)=>{
 
 .item:before {
   content: attr(data-text);
+  letter-spacing: 3px;
   width: 100%;
   position: absolute;
   color: rgba(255, 255, 255, 0.5);
@@ -300,7 +301,7 @@ const getArticle=(id)=>{
   padding-left: 15px;
   opacity: 0;
   right: calc(-100% - 56px);
- 
+  font: 900 20px '';
   letter-spacing: 5px;
 }
 
@@ -400,14 +401,14 @@ const getArticle=(id)=>{
 }
 .el-pagination {
 }
-/*这里可能有坑这个100px,如果不设置手机端就回超出空白部分,有些难绷*/
+//这里可能有坑这个100px,如果不设置手机端就回超出空白部分,有些难绷
 /* 当屏幕宽度小于等于某个阈值时（例如768px，适合移动设备） */
 @media screen and (max-width: 768px) {
   .el-pagination {
     text-align: center;
     position: relative;
 
-    padding: 10px 1000px 0 0;
+    padding: 10px 1000px 0px 0px;
     background-color: red;
   }
 }
@@ -416,7 +417,7 @@ const getArticle=(id)=>{
 
     text-align: center;
     position: relative;
-    padding: 0 10px 10px 85px;
+    padding: 0px 10px 10px 85px;
   //padding-right: 10px;
   }
 }
