@@ -10,8 +10,8 @@ import java.util.List;
 @Mapper
 public interface MessagesMapper {
 
-    //查
-    @Select("select * from messages")
+    //查 根据时间降序
+    @Select("select * from messages order by create_time desc")
     List<Messages> selectAll();
     //增
     @Insert("insert into messages(username,message,ip,address,os,browser) values(#{username},#{message},#{ip},#{address},#{os},#{browser})")

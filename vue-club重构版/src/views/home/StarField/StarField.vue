@@ -11,7 +11,7 @@ window.addEventListener('resize', () => {
   Height.value = isMobile.value ? '200px' : '30rem';
 });
 
-import animate from 'animate.css'
+
 
 const scroll_ = number => {
 
@@ -19,7 +19,7 @@ const scroll_ = number => {
     top: innerHeight || document.documentElement.clientHeight || document.body.clientHeight,
     behavior: "smooth"
   });
-  console.log(1231)
+  // console.log(1231)
   // scrollTo(0,innerHeight||document.documentElement.clientHeight||document.body.clientHeight)
 }
 </script>

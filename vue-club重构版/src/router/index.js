@@ -102,6 +102,14 @@ const routes = [
                 meta: {
                     title: '后台主页'
                 }
+            },
+            {
+                path:'/admin/message',
+                name:'message1',
+                component:()=>import('@/views/layout/components/message/messageAllInfo.vue'),
+                meta: {
+                    title: '留言管理'
+                }
             }
         ]
 

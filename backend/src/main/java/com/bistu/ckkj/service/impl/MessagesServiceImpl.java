@@ -14,17 +14,17 @@ public class MessagesServiceImpl implements MessagesService {
 
     @Override
     public void insert(Messages message) {
-
+        messagesMapper.insert(message);
     }
 
     @Override
     public void delete(Integer id) {
-
+        messagesMapper.deleteById(id);
     }
 
     @Override
     public List<Messages> selectAll() {
-        return List.of();
+        return messagesMapper.selectAll();
     }
 
 

@@ -79,6 +79,18 @@
           </el-menu-item>
         </el-sub-menu>
 
+        <!--        留言墙管理-->
+        <el-sub-menu index="6">
+          <template #title>
+            <el-icon><Picture /></el-icon>
+            <span>留言墙表</span>
+          </template>
+          <el-menu-item index="/admin/message">
+            <el-icon><Edit /></el-icon>
+            <span>留言墙管理</span>
+          </el-menu-item>
+        </el-sub-menu>
+
 
 
         <!--        其他管理-->
