@@ -40,8 +40,7 @@ public class WebConfig implements WebMvcConfigurer {
                 "/article/blogAll",
                 "/article/addVisits",
                 "/messages/add",
-                "/messages/allInfo",
-                "/messages/delete"
+                "/messages/allInfo"
 
 
                 );

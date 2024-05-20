@@ -56,9 +56,7 @@ const getMessages = async () => {
   const res = await messageAllInfoService();
   messages.value = res.data;
 }
-onMounted(() => {
-  getMessages();
-});
+getMessages();
 
 const submitMessage = async () => {
   if (message.value.message === '') {
@@ -90,7 +88,6 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap');
 
 * {
   box-sizing: border-box;
