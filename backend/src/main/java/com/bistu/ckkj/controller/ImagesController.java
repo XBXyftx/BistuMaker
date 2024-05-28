@@ -26,7 +26,7 @@ public class ImagesController {
 
     @MyLog(value = "")
     @GetMapping("/imageType")
-    public Result selectImagesByImagesType(Integer imageType) {
+    public Result selectImagesByImagesType(String imageType) {
         return Result.success(imagesService.selectImagesType(imageType));
     }
 

@@ -20,7 +20,7 @@ public interface ImagesMapper {
     public void deleteById(Integer id);
 
     @Select("select * from images where image_type = #{imageType}")
-    public List<Images> selectByImageType(Integer imageType);
+    public List<Images> selectByImageType(String imageType);
 
 
     @Select("select * from images where id =#{id}")

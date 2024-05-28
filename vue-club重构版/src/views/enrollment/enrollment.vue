@@ -355,7 +355,6 @@ export default {
 };
 </script>
 
-
 <style scoped>
 * {
   list-style: none;
@@ -366,17 +365,19 @@ export default {
   user-select: none;
 }
 
+body {
+  font-family: Arial, sans-serif; /* Adding a default font family */
+  background-color: #ecf0f3;
+}
+
 .demo {
   position: relative;
   width: 100%;
-
   height: 100vh;
   padding: 25px;
   background-color: #ecf0f3;
   overflow: hidden;
 }
-
-
 
 .container {
   display: flex;
@@ -388,7 +389,7 @@ export default {
   height: 100%;
   padding: 25px;
   background-color: #ecf0f3;
-  transition: 1.25s;
+  transition: all 1.25s ease;
 }
 
 .form {
@@ -398,9 +399,8 @@ export default {
   flex-direction: column;
   width: 100%;
   height: 100%;
- padding-right: 20px;
+  padding-right: 20px;
 }
-
 
 .form_input {
   width: 350px;
@@ -412,7 +412,7 @@ export default {
   border: none;
   outline: none;
   background-color: #ecf0f3;
-  transition: 0.25s ease;
+  transition: all 0.25s ease;
   border-radius: 8px;
   box-shadow: inset 2px 2px 4px #d1d9e6, inset -2px -2px 4px #f9f9f9;
 }
@@ -432,6 +432,7 @@ export default {
   margin-top: 25px;
   border-bottom: 1px solid #a0a5a8;
   line-height: 2;
+  cursor: pointer;
 }
 
 .title {
@@ -462,17 +463,31 @@ export default {
   box-shadow: 8px 8px 16px #d1d9e6, -8px -8px 16px #f9f9f9;
   border: none;
   outline: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.button:hover {
+  box-shadow: 6px 6px 10px #d1d9e6, -6px -6px 10px #f9f9f9;
+  transform: scale(0.985);
+}
+
+.button:active {
+  box-shadow: 2px 2px 6px #d1d9e6, -2px -2px 6px #f9f9f9;
+  transform: scale(0.97);
 }
 
 .a-container {
   z-index: 100;
   left: calc(100% - 800px);
+  transition: all 1.25s ease;
 }
 
 .b-container {
   left: calc(100% - 800px);
   z-index: 0;
   margin-left: 120px;
+  transition: all 1.25s ease;
 }
 
 .switch {
@@ -486,10 +501,10 @@ export default {
   width: 400px;
   padding: 50px;
   z-index: 200;
-  transition: 1.25s;
   background-color: #ecf0f3;
-  overflow: hidden;
   box-shadow: 4px 4px 10px #d1d9e6, -4px -4px 10px #d1d9e6;
+  transition: all 1.25s ease;
+  overflow: hidden;
 }
 
 .switch_circle {
@@ -501,7 +516,7 @@ export default {
   box-shadow: inset 8px 8px 12px #b8bec7, inset -8px -8px 12px #fff;
   bottom: -60%;
   left: -60%;
-  transition: 1.25s;
+  transition: all 1.25s ease;
 }
 
 .switch_circle-t {
@@ -519,62 +534,53 @@ export default {
   position: absolute;
   width: 400px;
   padding: 50px 55px;
-  transition: 1.25s;
+  transition: all 1.25s ease;
 }
 
-.switch_container_moblic {
+.switch_container_mobile {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  //position: absolute;
   width: 100%;
   padding: 50px 55px;
-  transition: 1.25s;
+  transition: all 1.25s ease;
 }
-
-
 
 .switch_button {
   cursor: pointer;
+  transition: all 0.25s ease;
 }
 
-.switch_button:hover,
-.submit:hover {
+.switch_button:hover {
   box-shadow: 6px 6px 10px #d1d9e6, -6px -6px 10px #f9f9f9;
   transform: scale(0.985);
-  transition: 0.25s;
 }
 
 .switch_button:active,
 .switch_button:focus {
   box-shadow: 2px 2px 6px #d1d9e6, -2px -2px 6px #f9f9f9;
   transform: scale(0.97);
-  transition: 0.25s;
 }
 
 .is-txr {
   left: calc(100% - 400px);
-  transition: 1.25s;
   transform-origin: left;
 }
 
 .is-txl {
   left: 0;
-  transition: 1.25s;
   transform-origin: right;
 }
 
 .is-z {
   z-index: 200;
-  transition: 1.25s;
 }
 
 .is-hidden {
   visibility: hidden;
   opacity: 0;
   position: absolute;
-  transition: 1.25s;
 }
 
 .is-gx {
@@ -582,18 +588,11 @@ export default {
 }
 
 @keyframes is-gx {
-
-  0%,
-  10%,
-  100% {
+  0%, 10%, 100% {
     width: 400px;
   }
-
-  30%,
-  50% {
+  30%, 50% {
     width: 500px;
   }
 }
-
-
 </style>

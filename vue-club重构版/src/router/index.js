@@ -110,6 +110,14 @@ const routes = [
                 meta: {
                     title: '留言管理'
                 }
+            },
+            {
+                path:'/admin/imageshack',
+                name:'message1',
+                component:()=>import('@/views/layout/components/Imageshack/Imageshack.vue'),
+                meta: {
+                    title: '图床管理'
+                }
             }
         ]
 

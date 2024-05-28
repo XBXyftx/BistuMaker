@@ -21,7 +21,7 @@
       &nbsp;
       <a href="https://spring.io/projects/spring-boot"> <img src="https://img.shields.io/badge/Frame-SpringBoot-blue?style=flat&logo=springboot" alt=""> </a>
       &nbsp;
-      <a href="https://beian.miit.gov.cn/#/"> <img src="https://img.shields.io/badge/京ICP备-京ICP备xxxxxx号-yellow" alt=""> </a>
+      <a href="https://beian.miit.gov.cn/#/"> <img src="https://img.shields.io/badge/渝ICP备2024029131号-yellow" alt=""> </a>
       <br>
 
 
@@ -55,23 +55,22 @@
   </footer>
 </template>
 
-<script setup>
-</script>
 <style scoped>
-svg{
+svg {
   width: 30px;
   height: 30px;
 }
+
 body {
   margin: 0;
   padding: 0;
 }
 
-footer{
-  //position: fixed;
+footer {
   bottom: 0;
 }
-.footer-distributed{
+
+.footer-distributed {
   background-color: #292c2f;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
   box-sizing: border-box;
@@ -83,53 +82,51 @@ footer{
 
 .footer-distributed .footer-left,
 .footer-distributed .footer-center,
-.footer-distributed .footer-right{
+.footer-distributed .footer-right {
   display: inline-block;
   vertical-align: top;
 }
 
-.footer-distributed .footer-left{
+.footer-distributed .footer-left {
   width: 40%;
 }
 
-.footer-distributed h3{
-  color:  #ffffff;
+.footer-distributed h3 {
+  color: #ffffff;
   font: normal 36px 'Cookie', cursive;
   margin: 0;
 }
 
-.footer-distributed h3 span{
-  color:  #5383d3;
+.footer-distributed h3 span {
+  color: #5383d3;
 }
 
-
-.footer-distributed .footer-links{
-  color:  #ffffff;
+.footer-distributed .footer-links {
+  color: #ffffff;
   margin: 20px 0 12px;
   padding: 0;
 }
 
-.footer-distributed .footer-links a{
-  display:inline-block;
+.footer-distributed .footer-links a {
+  display: inline-block;
   line-height: 1.8;
   text-decoration: none;
-  color:  inherit;
+  color: inherit;
 }
 
-.footer-distributed .footer-company-name{
-  color:  #8f9296;
+.footer-distributed .footer-company-name {
+  color: #8f9296;
   font-size: 14px;
   font-weight: normal;
   margin: 0;
 }
 
-
-.footer-distributed .footer-center{
+.footer-distributed .footer-center {
   width: 35%;
 }
 
-.footer-distributed .footer-center i{
-  background-color:  #33383b;
+.footer-distributed .footer-center i {
+  background-color: #33383b;
   color: #ffffff;
   font-size: 25px;
   width: 38px;
@@ -141,95 +138,87 @@ footer{
   vertical-align: middle;
 }
 
-.footer-distributed .footer-center i.fa-envelope{
+.footer-distributed .footer-center i.fa-envelope {
   font-size: 17px;
   line-height: 38px;
 }
 
-.footer-distributed .footer-center p{
+.footer-distributed .footer-center p {
   display: inline-block;
   color: #ffffff;
   vertical-align: middle;
-  margin:0;
+  margin: 0;
 }
 
-.footer-distributed .footer-center p span{
-  display:block;
+.footer-distributed .footer-center p span {
+  display: block;
   font-weight: normal;
-  font-size:14px;
-  line-height:2;
+  font-size: 14px;
+  line-height: 2;
 }
 
-.footer-distributed .footer-center p a{
-  color:  #5383d3;
-  text-decoration: none;;
+.footer-distributed .footer-center p a {
+  color: #5383d3;
+  text-decoration: none;
 }
 
-.footer-distributed .footer-right{
+.footer-distributed .footer-right {
   width: 20%;
 }
 
-.footer-distributed .footer-company-about{
+.footer-distributed .footer-company-about {
   line-height: 20px;
-  color:  #92999f;
+  color: #92999f;
   font-size: 13px;
   font-weight: normal;
   margin: 0;
 }
 
-.footer-distributed .footer-company-about span{
+.footer-distributed .footer-company-about span {
   display: block;
-  color:  #ffffff;
+  color: #ffffff;
   font-size: 14px;
   font-weight: bold;
   margin-bottom: 20px;
 }
 
-.footer-distributed .footer-icons{
+.footer-distributed .footer-icons {
   margin-top: 25px;
 }
 
-.footer-distributed .footer-icons a{
+.footer-distributed .footer-icons a {
   display: inline-block;
   width: 35px;
   height: 35px;
   cursor: pointer;
-  background-color:  #33383b;
+  background-color: #33383b;
   border-radius: 2px;
-
   font-size: 20px;
   color: #ffffff;
   text-align: center;
   line-height: 35px;
-
   margin-right: 3px;
   margin-bottom: 5px;
 }
 
-
 @media (max-width: 880px) {
-
-  .footer-distributed{
+  .footer-distributed {
     font: bold 14px sans-serif;
-
   }
 
   .footer-distributed .footer-left,
   .footer-distributed .footer-center,
-  .footer-distributed .footer-right{
+  .footer-distributed .footer-right {
     display: block;
     width: 100%;
     margin-bottom: 40px;
     text-align: center;
   }
 
-  .footer-distributed .footer-center i{
+  .footer-distributed .footer-center i {
     margin-left: 0;
   }
-  .main {
-    line-height: normal;
-    //font-size: auto;
-  }
-
 }
 </style>
+
+

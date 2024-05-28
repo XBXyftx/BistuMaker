@@ -15,7 +15,7 @@ public interface ImagesService {
     public void delete(Integer id);
 
     //查询图片image_type
-    public List<Images> selectImagesType(Integer imageType);
+    public List<Images> selectImagesType(String imageType);
 
 //    public List<Images> selectAll();
 

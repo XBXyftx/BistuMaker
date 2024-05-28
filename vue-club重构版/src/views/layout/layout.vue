@@ -98,11 +98,11 @@
           <template #title>
             <el-icon><MagicStick /></el-icon>
 
-            <span>其他管理</span>
-          </template>
-          <el-menu-item index="/admin/other">
-            <el-icon><Edit /></el-icon>
             <span>其他</span>
+          </template>
+          <el-menu-item index="/admin/imageshack">
+            <el-icon><Edit /></el-icon>
+            <span>图床管理</span>
           </el-menu-item>
         </el-sub-menu>
       </el-menu>

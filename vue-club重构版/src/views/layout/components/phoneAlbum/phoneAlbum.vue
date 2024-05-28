@@ -179,11 +179,6 @@ let dialogVisible2 = ref(false)//删除相册弹窗
 const parentBorder = ref(false)
 const childBorder = ref(false)
 
-const url =
-    'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg'
-const list = [
-  'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg',
-]
 
 //点击图片
 const onImage = ref(false)

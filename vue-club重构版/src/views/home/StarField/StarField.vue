@@ -241,13 +241,13 @@ canvas {
   background: linear-gradient(100deg, #7F7FD5, #4286f4);
   width: 200px;
   position: absolute;
-  top: 75%; /* 将 top 设置为 50% */
-  left: 10%; /* 将 left 设置为 50% */
+  top: 80%; /* 将 top 设置为 50% */
+  left: 20%; /* 将 left 设置为 50% */
   transform: translate(-50%, -50%); /* 平移自身的宽度和高度的一半 */
 }
 
 .img1 {
-  width: 6vw;
+  width: 60vw;
   height: auto;
   top: 21%;
   left: 40%;

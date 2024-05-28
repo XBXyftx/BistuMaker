@@ -30,8 +30,8 @@ public class ImagesImpl implements ImagesService {
     }
 
     @Override
-    public List<Images> selectImagesType(Integer imageType) {
-        return imagesMapper.selectByImageType(imageType);
+    public List<Images> selectImagesType(String imageType) {
+        return imagesMapper.selectByImageType((imageType));
     }
 
     @Override

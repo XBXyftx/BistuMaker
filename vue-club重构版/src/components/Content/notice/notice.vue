@@ -50,31 +50,33 @@ getData()
 
 
 </script>
-
 <style scoped>
+/* General styling for SVG elements */
 svg {
-  //fill: #3b5998;
-  //height: 1em;
   margin-top: 15px;
   vertical-align: text-bottom;
 }
+
+/* Notice container styling */
 .notice {
   border: 1px solid rgba(204, 204, 204, 0.32);
   background: linear-gradient(45deg, #e7e7e7, #ffe5e5);
-  padding: 1px 20px 20px;
+  padding: 20px; /* Combined padding for consistency */
   cursor: pointer;
   width: 80%;
   border-radius: 15px;
-  margin: 10px auto 0;
+  margin: 1px auto; /* Simplified margin */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease; /* Added transition for hover effect */
 }
 
+/* Heading styling */
 h3 {
   color: #000000;
-  margin-bottom: 1px;
-
+  margin-bottom: 10px; /* Adjusted margin for better spacing */
 }
 
+/* Details section styling */
 .details {
   margin-top: 15px;
   padding: 15px;
@@ -84,20 +86,20 @@ h3 {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* 过渡动画的类名定义 */
+/* Transition animations for fade effects */
 .fade-enter-active, .fade-leave-active {
-  transition: opacity 0.1s;
+  transition: opacity 0.1s ease; /* Increased duration for smoother transition */
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+.fade-enter, .fade-leave-to {
   opacity: 0;
 }
 
-
+/* Focus and hover states for notice container */
 .notice:focus {
   outline: none;
 }
 
 .notice:hover {
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
 }
 </style>

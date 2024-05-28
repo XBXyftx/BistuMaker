@@ -41,11 +41,10 @@ window.addEventListener('resize', () => {
 <style scoped>
 .main {
   background: linear-gradient(135deg, #5C258D, #4389A2);
-  //background: linear-gradient(135deg, #001f3f, #0088a9, #00c9a7, #92d5c6, #ebf5ee);
+
 }
 
 .content-main {
-  //display: flex;
   align-items: center;
   width: 80%;
   justify-content: center;

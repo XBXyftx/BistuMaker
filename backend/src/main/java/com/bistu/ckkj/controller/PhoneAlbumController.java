@@ -43,7 +43,7 @@ public class PhoneAlbumController {
         List<Images> images =  new ArrayList<>();
         for (PhoneAlbum phoneAlbum : (phoneAlbumService.selectAllPhoneAlbum())) {
             int id = phoneAlbum.getId();
-            images.addAll(imagesService.selectImagesType(id));
+            images.addAll(imagesService.selectImagesType(String.valueOf(id)));
             if (images.size() > 10){
                 return Result.success(images);
             }

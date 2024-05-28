@@ -29,11 +29,11 @@
         <div class="commentItemCont" v-for='item in renderData' :key='item.id'>
           <!-- ！！！！一级评论 -->
           <div class="levelOneComment commentItem">
-            <!-- 头像 -->
-            <!--            <div class="userPhoto">-->
-            <!--              <img src="https://c2.im5i.com/2022/09/14/50syn.jpg" alt="">-->
-            <!--            </div>-->
-            <!-- 评论内容 -->
+
+                        <div class="userPhoto">
+                          <img src="@/assets/logo.jpg" alt="头像">
+                        </div>
+
             <div class="userComment">
               <p class="userName">{{item.nickName}}</p>
               <p class="content">{{item.content}}</p>
@@ -268,11 +268,12 @@ hr {
 
 /* 用户头像 */
 .userPhoto {
-  width: 50px;
-  height: 50px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
   overflow: hidden;
-  margin-right: 15px;
+  margin-right: 5px;
+  margin-top: 20px;
 }
 .userPhoto img {
   width: 100%;
