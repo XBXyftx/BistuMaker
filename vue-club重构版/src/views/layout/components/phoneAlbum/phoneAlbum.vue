@@ -277,6 +277,8 @@ const addImages = async () =>{
   formData.append('imageType', imagesInfo.value.imageType)
   formData.append('imageName', imagesInfo.value.imageName)
   const res =await uploadImg(formData)
+  ElMessage.success("添加成功")
+
   dialogVisible.value=false
   imagesInfo.value.image=''
   imagesInfo.value.imageName=''
