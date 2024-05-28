@@ -74,6 +74,22 @@ const submitMessage = async () => {
   message.value.os = sysTool.GetOs();
   await messageAddService(message.value);
   await getMessages();
+  //清空
+  message.value = ({
+    ip: '',
+    area: '未知',
+    browser: '',
+    os: '',
+    username: '',
+    message: '',
+    create_time: ''
+  });
+
+  ElMessage({
+    message:'评论成功！',
+    type:'success',
+    showClose:true
+  })
 }
 
 onMounted(() => {

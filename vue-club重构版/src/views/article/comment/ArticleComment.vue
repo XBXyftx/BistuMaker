@@ -68,8 +68,10 @@ let originCommentListData = reactive({
 })
 let loading = ref(false)
 import {commentInfoService} from "@/api/comment.js"
+
 const getCommentList = async (id)=>{
   let result= await commentInfoService(id)
+  renderData.value=[]
   renderData.value=result.data
   console.log(renderData.value)
   for (let i = 0; i < renderData.value.length; i++) {
@@ -164,7 +166,8 @@ let levelTwoCommentContent = ref()
 
 import { defineProps } from 'vue';
 import {commentAddService} from "@/api/comment.js";
-import article from "@/views/article/Article.vue";
+import {ElMessage} from "element-plus";
+
 
 // console.log(props)
 function  handlerlevelOneComment()
@@ -197,6 +200,7 @@ function  handlerlevelOneComment()
       };
       commentAddService(res);
       renderData.value.unshift(res)
+
       // getCommentList(props.articleId)
       //清空输入框
       levelOneCommentContent.value = ''

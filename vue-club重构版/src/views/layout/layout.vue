@@ -94,7 +94,7 @@
 
 
         <!--        其他管理-->
-        <el-sub-menu index="6">
+        <el-sub-menu index="7">
           <template #title>
             <el-icon><MagicStick /></el-icon>
 
