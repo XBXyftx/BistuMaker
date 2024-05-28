@@ -35,7 +35,9 @@ const scroll_ = number => {
            :class="isMobile?'img2IsMobile':''"
       >
       <div class="click animate__animated animate__fadeInDown animate__delay-1s animate__slow">
-        <a @click="scroll_(123)">
+        <a @click="scroll_(123)"
+
+        >
           Go to know more⬇️
         </a>
       </div>
@@ -221,12 +223,13 @@ export default {
   height: 100vh;
   background-image: linear-gradient(159deg, #360033 0%,#0b8793 100%);
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+  margin: 0 auto;
 }
 canvas {
   display: block;
-  width: 100%;
+  width: 99%;
   height: 100%;
-  position:absolute;
+
 }
 .click {
   text-align: center;
@@ -237,12 +240,14 @@ canvas {
   border-radius: 10px;
   background: linear-gradient(100deg, #7F7FD5, #4286f4);
   width: 200px;
-  top: 82%;
   position: absolute;
-  left: 42%;
+  top: 75%; /* 将 top 设置为 50% */
+  left: 10%; /* 将 left 设置为 50% */
+  transform: translate(-50%, -50%); /* 平移自身的宽度和高度的一半 */
 }
+
 .img1 {
-  width: 60vw;
+  width: 6vw;
   height: auto;
   top: 21%;
   left: 40%;
@@ -253,7 +258,7 @@ canvas {
 }
 
 .img1IsMobile {
-  width: 105vw;
+  width: 100vw;
   height: auto;
   top: 25%;
   left: 50%;
@@ -272,11 +277,14 @@ canvas {
 }
 
 .img2IsMobile {
-  width: 105vw;
+  width: 100vw;
   height: auto;
   top: 40%;
   left: 50%;
 }
+
+
+
 </style>
 
 
