@@ -34,6 +34,9 @@ export const userAllInfoService = ()=>{
 }
 
 export const userDeleteService = (deleteData)=>{
-    return request.delete('/user/delete',deleteData)
+    console.log(deleteData)
+
+    return request.delete('/user/delete',{params:{id:deleteData}})
 }
+
 

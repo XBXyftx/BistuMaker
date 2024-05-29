@@ -84,6 +84,7 @@ const addUser = async () => {
 import {ElMessageBox} from 'element-plus'
 const deleteCategory = (row) => {
   //提示用户  确认框
+  console.log(row)
 
   ElMessageBox.confirm(
       '你确认要删除该分类信息吗?',

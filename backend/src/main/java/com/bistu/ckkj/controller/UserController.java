@@ -60,8 +60,9 @@ public class UserController {
 
     //删除用户
     @MyLog(value = "删除用户")
-    @DeleteMapping("/{id}")
-    public Result deleteUser(@PathVariable Integer id){
+    @DeleteMapping("/delete")
+    public Result deleteUser( Integer id){
+        System.out.println("id+"+id);
         userService.deleteUser(id);
         return Result.success();
     }
@@ -131,6 +132,7 @@ public class UserController {
         String username = (String) map.get("username");
         User user = userService.findByUserName(username);
 //        System.out.println(user);
+        user.setPassword(null);
         return Result.success(user);
     }
 
@@ -140,14 +142,17 @@ public class UserController {
     public Result<List<User>> userAllInfo() {
         //查询所有用户表
         List<User> user = userService.selectAllUser();
-        System.out.println("123"+Arrays.toString(user.toArray()));
+        for (User user1 : user){
+            user1.setPassword(null);
+        }
+
         return Result.success(user);
 
     }
 
     @MyLog(value = "更新用户")
     @PutMapping("/update")
-    public Result update(@Validated User user) {
+    public Result update(@RequestBody  User user) {
         userService.updateUser(user);
         return Result.success();
     }

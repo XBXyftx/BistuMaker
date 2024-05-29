@@ -35,6 +35,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void updateUser(User user) {
+        User user1 = userMapper.selectByUsername(user.getUsername());
+
+
+        user.setId(user1.getId());
+        user.setPassword(Md5Util.getMD5String(user.getPassword()));
+//        user.setId(user1.getId());
         userMapper.update(user);
     }
 

@@ -19,13 +19,13 @@ public interface UserMapper {
     /*
      * 查询所有用户
      */
-     @Select("select * from users")
+     @Select("select id, username, create_time, modify_time, role from users")
      List<User> selectAllUser();
 
      /*
      *根据用户名
       */
-    @Select("select * from users where username = #{username}")
+    @Select("select  id, username, create_time, modify_time, role from users where username = #{username}")
     User selectByUsername(String username);
 
      /*
