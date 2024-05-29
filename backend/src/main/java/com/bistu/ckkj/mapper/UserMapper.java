@@ -25,7 +25,7 @@ public interface UserMapper {
      /*
      *根据用户名
       */
-    @Select("select  id, username, create_time, modify_time, role from users where username = #{username}")
+    @Select("select  * from users where username = #{username}")
     User selectByUsername(String username);
 
      /*

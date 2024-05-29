@@ -150,7 +150,13 @@ const updateUser = async () => {
   dialogVisible1.value = false;
 }
 
-
+import useUserInfoStore from '@/stores/userInfo.js'
+const userInfoStore = useUserInfoStore();
+const isAdmin = ref(false)
+if(userInfoStore.info.role === 'admin'){
+  isAdmin.value = true
+}
+console.log(userInfoStore.info)
 </script>
 <template>
 
@@ -168,7 +174,7 @@ const updateUser = async () => {
       <el-table-column label="序号" width="100" type="index"> </el-table-column>
       <el-table-column label="用户名" prop="username"></el-table-column>
       <el-table-column label="权限" prop="role"></el-table-column>
-      <el-table-column label="操作" width="100" prop="id">
+      <el-table-column label="操作" width="100" prop="id"  v-if="isAdmin">
         <template #default="{ row }">
           <el-button :icon="Edit" circle plain type="primary" @click="showDialog(row)"></el-button>
           <el-button :icon="Delete" circle plain type="danger" @click="deleteCategory(row)"></el-button>
@@ -193,7 +199,7 @@ const updateUser = async () => {
           <el-input v-model="registerData.rePassword" minlength="1" maxlength="10"></el-input>
         </el-form-item>
 
-        <el-form-item label="修改权限" prop="password1">
+        <el-form-item label="修改权限" prop="password1"  >
           <div class="mb-2 flex items-center text-sm">
             <el-radio-group v-model="registerData.role" class="ml-4">
               <el-radio label="admin" size="large">管理员</el-radio>
@@ -201,6 +207,7 @@ const updateUser = async () => {
             </el-radio-group>
           </div>
         </el-form-item>
+
       </el-form>
       <template #footer>
         <span class="dialog-footer">

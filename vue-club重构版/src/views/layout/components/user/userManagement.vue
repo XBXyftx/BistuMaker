@@ -2,17 +2,7 @@
 import userInfo from '@/views/layout/components/user/userInfo/userInfo.vue'
 import { ref } from 'vue'
 import UserAllInfo from "@/views/layout/components/user/userAllInfo/userAllInfo.vue";
-// const editableTabs = ref(
-//     [{
-//       title: 'Tab 1',
-//       name: '1',
-//       content: '<user-info></user-info>'
-//     }, {
-//       title: 'Tab 2',
-//       name: '2',
-//       content: 'Tab 2 content'
-//     }]
-// )
+
 </script>
 <template>
 
