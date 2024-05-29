@@ -70,7 +70,7 @@ let loading = ref(false)
 import {commentInfoService} from "@/api/comment.js"
 
 const getCommentList = async (id)=>{
-  let result= await commentInfoService(id)
+  let result= await commentInfoService(props.articleId)
   renderData.value=[]
   renderData.value=result.data
   console.log(renderData.value)
@@ -199,8 +199,8 @@ function  handlerlevelOneComment()
         creatorEmail: email.value
       };
       commentAddService(res);
-      renderData.value.unshift(res)
-
+      // renderData.value.unshift(res)
+      getCommentList(props.articleId)
       // getCommentList(props.articleId)
       //清空输入框
       levelOneCommentContent.value = ''

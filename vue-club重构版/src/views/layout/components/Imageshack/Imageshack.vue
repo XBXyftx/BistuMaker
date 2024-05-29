@@ -204,15 +204,17 @@ const changeState = () => {
   dialogVisible.value= true
 }
 
-const  copy = async (row) => {
+const  copy = (row) => {
 
   //点击后将1234复制到电脑的剪贴板
-  try {
-    await navigator.clipboard.writeText(row);
-  ElMessage.success("复制成功")
-  } catch (err) {
-    ElMessage.error("复制失败")
-  }
+  //这里正式上线有安全问题所以取消注释掉
+  // try {
+  //   navigator.clipboard.writeText(row);
+  // ElMessage.success("复制成功")
+  // } catch (err) {
+  //   console.error(err)
+  //   ElMessage.error("复制失败")
+  // }
 
 }
 
