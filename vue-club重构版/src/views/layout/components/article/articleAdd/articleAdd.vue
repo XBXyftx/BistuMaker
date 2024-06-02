@@ -44,7 +44,7 @@
   <v-md-editor
       v-model="ArticleModel.content"
       :disabled-menus="[]"
-      @upload-image="handleUploadImage"
+      @upload-image="handleUploadImage1"
       height="500px"
   />
 
@@ -95,10 +95,14 @@ const {proxy} = getCurrentInstance()
 
 const handleUploadImage =async (event,insertImage,files)=>{
   let url;
+  console.log(insertImage)
+  console.log(files)
   for(let i in files){
 
     const formData = new FormData()
     formData.append("file", files[i]);
+    formData.append('imageType', "封面")
+    formData.append('imageName', files[0].name)
     const res =await uploadImg(formData)
     url = res.data
   }
@@ -107,7 +111,24 @@ const handleUploadImage =async (event,insertImage,files)=>{
     desc: '',
   });
 }
-// articleStore.setInfo()
+const handleUploadImage1 =async (event,insertImage,files)=>{
+  let url;
+  console.log(insertImage)
+  console.log(files)
+  for(let i in files){
+
+    const formData = new FormData()
+    formData.append("file", files[i]);
+    formData.append('imageType', "图床")
+    formData.append('imageName', files[0].name)
+    const res =await uploadImg(formData)
+    url = res.data
+  }
+  insertImage({
+    url:proxy.$baseURL+url,
+    desc: '',
+  });
+}
 
 watch(ArticleModel, () => {
   // if (ArticleModel==null)return

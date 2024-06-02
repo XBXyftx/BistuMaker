@@ -8,6 +8,14 @@
       <el-menu active-text-color="#ffd04b" background-color="#232323" text-color="#fff"
                router>
 
+        <el-menu-item index="/">
+          <template #title>
+<!--            <el-icon><HomeFilled /></el-icon>-->
+            <el-icon><House /></el-icon>
+            <span>回到官网</span>
+          </template>
+        </el-menu-item>
+
         <el-menu-item index="/admin/home">
           <template #title>
             <el-icon><HomeFilled /></el-icon>
@@ -82,7 +90,7 @@
         <!--        留言墙管理-->
         <el-sub-menu index="6">
           <template #title>
-            <el-icon><Picture /></el-icon>
+            <el-icon><Notebook /></el-icon>
             <span>留言墙表</span>
           </template>
           <el-menu-item index="/admin/message">
@@ -158,7 +166,7 @@ import {
   Crop,
   EditPen,
   SwitchButton,
-  CaretBottom, Bell, Memo, Message, Picture, Edit, HomeFilled, MagicStick
+  CaretBottom, Bell, Memo, Message, Picture, Edit, HomeFilled, MagicStick, House, Notebook
 } from '@element-plus/icons-vue'
 // import avatar from '@/assets/default.png'
 

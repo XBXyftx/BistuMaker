@@ -92,7 +92,7 @@ const routes = [
                 name:'other',
                 component:()=>import('@/views/layout/components/other/other.vue'),
                 meta: {
-                    title: '相册管理'
+                    title: '其他'
                 }
             },
             {
@@ -113,7 +113,7 @@ const routes = [
             },
             {
                 path:'/admin/imageshack',
-                name:'message1',
+                name:'imageshack',
                 component:()=>import('@/views/layout/components/Imageshack/Imageshack.vue'),
                 meta: {
                     title: '图床管理'
