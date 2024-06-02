@@ -100,7 +100,7 @@ const getArticles = async () => {
   }
   activitiesNums.value = res.data;
   activities.value = activitiesNums.value.slice(0, 10);
-  console.log(activities.value.length)
+
 };
 
 onMounted(async () => {
@@ -117,7 +117,7 @@ const  handleCurrentChange = (i)=>{
 
 activities.value=null
   activities.value = activitiesNums.value.slice((i-1)*10,i*10)
-  console.log(activities.value)
+
 }
 
 
@@ -126,8 +126,7 @@ activities.value=null
 const setupTimeline = () => {
   const shell = document.querySelector(".demo");
   const items = shell.querySelectorAll(".item");
-  console.log(shell);
-  console.log(items);
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {

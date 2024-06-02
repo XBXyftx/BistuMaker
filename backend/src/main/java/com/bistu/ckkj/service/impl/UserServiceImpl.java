@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findByUserName(String username) {
-        System.out.println("用户名为"+username);
+
         return userMapper.selectByUsername(username);
     }
 

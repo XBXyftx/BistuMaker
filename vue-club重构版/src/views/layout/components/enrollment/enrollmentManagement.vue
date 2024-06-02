@@ -73,11 +73,11 @@ const xlsxList = ref(
 
     ])
 
-console.log(xlsxList.value)
+
 const exportToExcel = () => {
   // 创建一个工作簿
   const workbook = XLSX.utils.book_new();
-  console.log(xlsxList.value)
+
   // 创建一个工作表
   const worksheet = XLSX.utils.aoa_to_sheet( xlsxList.value);
 

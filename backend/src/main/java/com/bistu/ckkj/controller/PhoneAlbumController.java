@@ -22,7 +22,7 @@ public class PhoneAlbumController {
 
     @GetMapping("/add")
     public Result addPhoneAlbum(String phoneAlbum) {
-        System.out.println(phoneAlbum);
+
         phoneAlbumService.addPhoneAlbum(phoneAlbum);
         return Result.success("添加成功");
     }

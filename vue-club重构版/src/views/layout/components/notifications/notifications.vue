@@ -24,14 +24,14 @@ const notificationsList = ref([
 //回显用户数据
 const getNotificationsList = async () => {
   let result = await notificationsAllInfoService()
-  console.log(result.data)
+
   notificationsList.value = result.data
 }
 getNotificationsList()
 
 
 const addNotifications = async () => {
-  console.log(notificationsData.value)
+
   if (notificationsData.value.isRead===true){
     notificationsData.value.isRead=1
   }else{
@@ -49,7 +49,7 @@ const addNotifications = async () => {
 //删除用户
 import {ElMessageBox} from 'element-plus'
 const deleteCategory = (row) => {
-  console.log(row.id)
+
   //提示用户  确认框
   ElMessageBox.confirm(
       '你确认要删除该分类信息吗?',
@@ -79,7 +79,7 @@ const deleteCategory = (row) => {
 }
 
 const changeStatus = async (id) =>{
-  console.log("提交之前的id"+id)
+
   const result = await notificationsUpdateIsReadService(id)
   ElMessage.success(result.msg? result.msg : '修改成功')
 }

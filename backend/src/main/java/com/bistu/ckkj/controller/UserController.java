@@ -62,7 +62,7 @@ public class UserController {
     @MyLog(value = "删除用户")
     @DeleteMapping("/delete")
     public Result deleteUser( Integer id){
-        System.out.println("id+"+id);
+
         userService.deleteUser(id);
         return Result.success();
     }
@@ -93,7 +93,7 @@ public class UserController {
             claims.put("time",formattedDateTime);
 
             String token = JwtUtil.genToken(claims);
-            System.out.println("token"+token);
+
             //将token存入redis
 //            ValueOperations<String,String> operations = stringRedisTemplate.opsForValue();
 //            operations.set(token,token, 1,TimeUnit.HOURS);\

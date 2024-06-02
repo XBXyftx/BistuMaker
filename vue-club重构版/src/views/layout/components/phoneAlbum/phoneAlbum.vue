@@ -187,7 +187,7 @@ const onImageUrl = ref('')
 const onImageClick = (url)=>{
   onImageUrl.value=url
   onImage.value=true
-  // console.log(url)
+
 }
 const closeViewer = ()=>{
   onImage.value=false
@@ -215,7 +215,7 @@ const deleteCategory = (row,id) => {
         //调用接口
         // let result = await articleDeleteService(row.id)
         let result = await deleteImages(row.id)
-        console.log(result)
+
         if (result.code===0){
           ElMessage({
             type: 'success',
@@ -245,17 +245,17 @@ const deleteCategory = (row,id) => {
 
 
 const changeState = (row) => {
-  console.log(row.id)
+
   phoneAlbumId.value=row.id
   dialogVisible.value= true
 }
 const changeStateDeleteAlbum = (row)=>{
-  console.log(row.id)
+
   phoneAlbumId.value=row.id
   dialogVisible2.value= true
 }
 const deletePhoneAlbum= async () => {
-  console.log(phoneAlbumName.value)
+
   dialogVisible2.value=false
   const res = await phoneAlbumDeleteService(phoneAlbumId.value)
   imageAlbumAllList.value=[]
@@ -269,7 +269,7 @@ const addImages = async () =>{
     return
   }
   imagesInfo.value.imageType=phoneAlbumId.value
-  console.log(imagesInfo.value)
+
   var { file } = imagesInfo.value.image;
   var formData = new FormData();
   // formData.append("token", data.params.token);
@@ -303,13 +303,13 @@ const handleRequest = async (params) => {
   imageUrl.value = window.URL.createObjectURL(params.file)
   imagesInfo.value.image=params
   imagesInfo.value.imageType=phoneAlbumId.value
-  console.log(imageUrl)
+
 }
 
 
 const phoneAlbumName = ref('')
 const addPhoneAlbum= async () => {
-  console.log(phoneAlbumName.value)
+
   dialogVisible1.value=false
   if (phoneAlbumName.value===''){
     ElMessage.error("标题不能为空")
@@ -324,20 +324,20 @@ const getImageAlbumAllInfo = async () => {
   const res = await phoneAlbumAllInfoService()
 
   imageAlbumAllList.value=res.data
-  // console.log(imageAlbumAllList.value)
+
   for (let i = 0; i < imageAlbumAllList.value.length; i++) {
-    // console.log(imageAlbumAllList.value[i].id)
+
     imageAlbumAllList.value[i].List=await getImageAlbumList(imageAlbumAllList.value[i].id)
   }
   // PhoneAlbumNameList.value=res.data
-  // console.log(toRaw(imageAlbumAllList.value))
+
   pageSize.value=imageAlbumAllList.value.length
   handleCurrentChange(currentPage.value)
 }
 getImageAlbumAllInfo()
 const getImageAlbumList = async (type) => {
   const res = await selectImagesByImagesType(type)
-  // console.log(res)
+
   return res.data
 }
 getImageAlbumList()

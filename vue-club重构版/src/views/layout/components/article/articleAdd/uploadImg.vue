@@ -34,7 +34,7 @@ const imageUrl = ref('')
 //将图片预览为本地流形式
 const handleRequest = async (params) => {
   imageUrl.value = window.URL.createObjectURL(params.file)
-  console.log(imageUrl.value)
+
 }
 
 </script>

@@ -252,17 +252,17 @@ export default {
   methods: {
     submitForm(formType) {
       // Logic for form submission
-      console.log('Form submitted:', formType, this.formData);
+
     },
 
     async login(){
       //调用接口,完成登录
-      console.log('用户数据 ' + this.registerData )
+
       let result =  await userLoginService(this.registerData);
-      // console.log(result)
+
       ElMessage.success(result.msg ? result.msg : '登录成功')
       //把得到的token存储到pinia中
-      console.log(result.data)
+
 
       const tokenStore = useTokenStore();
       tokenStore.setToken(result.data)
@@ -274,7 +274,7 @@ export default {
     },
 
     async onSubmit () {
-      console.log(this.formData)
+
       if (this.formData.name!=='' && this.formData.phoneNumber!=='' && this.formData.department!=='' && this.formData.phoneNumber!=='' && this.formData.introduction!==''){
         // 提交表单数据逻辑
         let result = await enrollmentAddService(this.formData)
@@ -291,7 +291,7 @@ export default {
         this.formData.email='';
 
 
-        // console.log(formData);
+
       }else {
         ElMessage.error('请填写完整信息')
       }
@@ -314,7 +314,7 @@ export default {
     //监听窗口大小变化
     window.addEventListener('resize', () => {
       this.isMobile = window.innerWidth < 768;
-      console.log(this.isMobile)
+
     });
 
 

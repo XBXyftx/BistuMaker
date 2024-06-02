@@ -90,7 +90,7 @@ const articleAllInfo = async ()=> {
     }
   })
   articleList.value=result.data
-  // console.log(articleList.value)
+
 }
 articleAllInfo()
 import {Delete, Edit} from "@element-plus/icons-vue";
@@ -118,7 +118,7 @@ const dialogVisible = ref(false)
 
 const articleInfo = async (id) => {
   let result = await articleInfoService(id)
-  // console.log("查询"+result.data+id)
+
   ArticleModel.value=result.data
 }
 const showDialog = (row) => {
@@ -189,7 +189,7 @@ const handleUploadImage=async (event,insertImage,files)=>{
 
 
 const changeStatus = async (id) =>{
-  console.log("提交之前的id"+id)
+
   const result = await  articleTopService(id)
   ElMessage.success(result.msg? result.msg : '修改成功')
 }

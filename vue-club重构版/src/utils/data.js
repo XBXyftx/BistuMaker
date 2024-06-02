@@ -1854,4 +1854,3 @@ max(T,C+M)
 
 
 `
-console.log(text)

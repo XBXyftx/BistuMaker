@@ -67,14 +67,14 @@ let currentIndex = ref(0);
 const nextPage = () => {
   const nextIndex = (currentIndex.value + +1) % pages.length;
   currentIndex.value=nextIndex;
-  console.log(nextIndex);
+
   changeState(nextIndex);
 };
 
 const prevPage = () => {
   const prevIndex = (currentIndex.value - 1 + pages.length) % pages.length;
   currentIndex.value=prevIndex;
-  console.log(prevIndex);
+
   changeState(prevIndex);
 };
 </script>

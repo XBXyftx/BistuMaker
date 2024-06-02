@@ -223,7 +223,7 @@ const handleCommand = (command) => {
 //获取当前目录的路径
 let routePath = ref(router.currentRoute.value.path);
 
-console.log(routePath.value)
+
 router.afterEach((to) => {
   routePath.value = to.path;
 });

@@ -24,7 +24,7 @@ public class MessagesController {
 
     @PostMapping("/add")
     public Result addMessages(@RequestBody Messages message, HttpServletRequest request) {
-        System.out.println(message.toString());
+
 
 
         message.setIp(IpUtils.getIpAddr(request));

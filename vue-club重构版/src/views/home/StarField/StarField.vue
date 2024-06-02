@@ -19,7 +19,7 @@ const scroll_ = number => {
     top: innerHeight || document.documentElement.clientHeight || document.body.clientHeight,
     behavior: "smooth"
   });
-  // console.log(1231)
+
   // scrollTo(0,innerHeight||document.documentElement.clientHeight||document.body.clientHeight)
 }
 </script>

@@ -50,7 +50,7 @@ const blogList = ref([]);
 const getBlogList =async () => {
   let result = await blogQueryService();
   blogList.value=result.data;
-  console.log(result);
+
   loading.value=true;
 }
 getBlogList()

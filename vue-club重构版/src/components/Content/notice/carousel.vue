@@ -16,7 +16,7 @@ window.addEventListener('resize', () => {
   isMobile.value = window.innerWidth < 768;
   Height.value=isMobile.value? '200px' : '30rem';
 });
-// console.log("12312"+Height.value)
+
 
 const {proxy} = getCurrentInstance()
 const baseURL = proxy.$baseURL
@@ -25,8 +25,8 @@ const imagesList=ref({})
 const getImages = async () => {
   let res = await getPhoneAlbumAllImage()
   imagesList.value = res.data
-  // console.log(res.data)
-  // console.log(imagesList.value)
+
+
 }
 getImages()
 

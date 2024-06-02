@@ -49,18 +49,18 @@ const rules = {
 //回显用户数据
 const getUserList = async () => {
   let result = await userAllInfoService()
-  console.log(result)
+
   userList.value = result.data
 }
 getUserList()
-// console.log("用户信息+all:"+userList.value)
+
 
 const addUser = async () => {
   // let result = await  userRegisterService(categoryModel.value);
   // ElMessage.success(result.msg ? result.msg : '添加成功')
   // await getUserList()
   // dialogVisible.value = false;
-  // console.log('用户为+'+registerData.value.role)
+
   if(registerData.value.password === registerData.value.rePassword){
     let  data = {
       username:registerData.value.username,
@@ -84,7 +84,7 @@ const addUser = async () => {
 import {ElMessageBox} from 'element-plus'
 const deleteCategory = (row) => {
   //提示用户  确认框
-  console.log(row)
+
 
   ElMessageBox.confirm(
       '你确认要删除该分类信息吗?',
@@ -156,7 +156,7 @@ const isAdmin = ref(false)
 if(userInfoStore.info.role === 'admin'){
   isAdmin.value = true
 }
-console.log(userInfoStore.info)
+
 </script>
 <template>
 

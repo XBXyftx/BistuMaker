@@ -121,15 +121,15 @@ function toTime(oldDate) {
 }
 
 onMounted(async () => {
-  // console.log(text.value)
+
   await articleInfoService(id).then(res=>{
-    console.log(res.data)
+
     text.value = res.data.content
     title.value = res.data.title
     author.value = res.data.author
     date.value = (res.data.createTime)
     loading.value=true
-    console.log(res.data)
+
   })
   const anchors = preview.value.$el.querySelectorAll("h1,h2,h3,h4,h5,h6");
   titles.value = Array.from(anchors).filter(

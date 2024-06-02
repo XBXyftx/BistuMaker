@@ -19,7 +19,7 @@ public class ArticleController {
     @MyLog(value = "添加文章")  //这里添加了AOP的自定义注解
     @PostMapping("/add")
     public Result addArticle(@RequestBody Article article){
-        System.out.println("接口层测试"+article.toString());
+
         articleService.addArticle(article);
         return Result.success("添加成功");
     }

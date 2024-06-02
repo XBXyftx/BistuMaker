@@ -17,7 +17,7 @@ public class CommentController {
     @MyLog(value = "添加评论")  //这里添加了AOP的自定义注解
     @PostMapping("/add")
     public Result addComment(@RequestBody Comment comment){
-        System.out.println(comment.toString());
+
         commentService.addComment(comment);
         return Result.success("添加成功");
     }

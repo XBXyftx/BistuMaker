@@ -73,7 +73,7 @@ const getCommentList = async (id)=>{
   let result= await commentInfoService(props.articleId)
   renderData.value=[]
   renderData.value=result.data
-  console.log(renderData.value)
+
   for (let i = 0; i < renderData.value.length; i++) {
     renderData.value[i].createTime= formatISOStringToLocalDateString(renderData.value[i].createTime)
   }
@@ -134,8 +134,8 @@ let renderData = ref([])
 //     })
 //   }
 //   renderData.value = JSON.parse(JSON.stringify(newRenderData))
-//   console.log(renderData.value)
-//   // console.log(JSON.parse(JSON.stringify(renderData.value)))
+
+
 //   // 返回筛出数据
 //   return newRenderData
 // }
@@ -143,9 +143,9 @@ let renderData = ref([])
 // function showChild(_id){
 //   renderData.value.map(item=>{
 //     if(item.itemId===_id) {
-//       // console.log(item.isShowChild)
+
 //       item.isShowChild = !item.isShowChild
-//       // console.log(item.isShowChild)
+
 //
 //     }
 //   })
@@ -169,7 +169,7 @@ import {commentAddService} from "@/api/comment.js";
 import {ElMessage} from "element-plus";
 
 
-// console.log(props)
+
 function  handlerlevelOneComment()
 {
   //请为我写个判断邮箱是否正确的格式
@@ -177,7 +177,7 @@ function  handlerlevelOneComment()
     if(levelOneCommentContent.value && email.value && nike.value){
       // 时间处理
       let nowTime = new Date()
-      console.log(nowTime+'---')
+
       // 增加 评论
       originCommentListData.data.push({
         id: originCommentListData.data.length+1,
@@ -190,7 +190,7 @@ function  handlerlevelOneComment()
 
 
 
-      // console.log(props.articleId+'---')
+
       const res = {
         articleId: props.articleId,
         nickName: nike.value,

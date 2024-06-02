@@ -45,12 +45,12 @@ const getAllInfo = async () => {
   if (messagesAllInfo.value.length<=10){
     messagesPageList.value=messagesAllInfo.value
   }
-  // console.log(messagesAllInfo.value)
+
 }
  getAllInfo()
 
 const delete1 = (row) => {
-  console.log(row.id)
+
   //提示用户  确认框
   ElMessageBox.confirm(
       '你确认要删除该分类信息吗?',
@@ -86,7 +86,7 @@ const  handleCurrentChange = (i)=>{
   // imageAlbumAllList.value=null
   currentPage.value=i
   messagesPageList.value=messagesAllInfo.value.slice((i-1)*10,i*2)
-  console.log(messagesPageList.value)
+
 }
 
 </script>

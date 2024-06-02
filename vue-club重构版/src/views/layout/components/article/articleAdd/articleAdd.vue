@@ -92,7 +92,7 @@ let ArticleModel = ref({
 
 import { uploadImg } from "@/api/uploadImg.js"
 const {proxy} = getCurrentInstance()
-console.log(proxy.$baseURL)
+
 const handleUploadImage =async (event,insertImage,files)=>{
   let url;
   for(let i in files){
@@ -111,15 +111,15 @@ const handleUploadImage =async (event,insertImage,files)=>{
 
 watch(ArticleModel, () => {
   // if (ArticleModel==null)return
-  console.log(ArticleModel)
+
   articleStore.setInfo(ArticleModel)
 })
 
 const publish = async()=>{
-  console.log(ArticleModel.value)
+
   // const userStore = useArticleInfoStore();
   // ArticleModel.value.author=userStore.info.username
-  // console.log("上传前的数据"+ArticleModel)
+
   if(ArticleModel.value.title==null||ArticleModel.value.title===""){
     ElMessage.error("标题不能为空")
     return
@@ -135,7 +135,7 @@ const publish = async()=>{
     top: ArticleModel.value.top===false?0:1,
     visits:0
   }
-  console.log(Data)
+
   let result = await articleAddService(Data)
   ElMessage.success(result.msg ? result.msg : '上传成功')
 }
@@ -149,10 +149,10 @@ const handleRequest = async (params) => {
   formData.append("file", file);
   const res =await uploadImg(formData)
   ArticleModel.coverImage = (res.data)
-  // console.log(ArticleModel.coverImage)
+
   imageUrl.value = (res.data)
 
   imageUrl1.value = window.URL.createObjectURL(params.file)
-  console.log(imageUrl1.value)
+
 }
 </script>

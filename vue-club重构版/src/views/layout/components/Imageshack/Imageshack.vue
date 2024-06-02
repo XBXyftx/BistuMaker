@@ -159,7 +159,7 @@ const getImageAllInfo = async () => {
   }else{
     handleCurrentChange(page.value)
   }
-  console.log(imageList.value)
+
 
 }
 getImageAllInfo()
@@ -220,7 +220,7 @@ const  copy = (row) => {
 
 const deleteCategory = (row) => {
 
-  console.log(row)
+
   ElMessageBox.confirm(
       '你确认要删除该分类信息吗?',
       '温馨提示',
@@ -232,7 +232,7 @@ const deleteCategory = (row) => {
   )
       .then(async () => {
         let result = await deleteImages(row.id)
-        console.log(result)
+
         if (result.code===0){
           ElMessage({
             type: 'success',

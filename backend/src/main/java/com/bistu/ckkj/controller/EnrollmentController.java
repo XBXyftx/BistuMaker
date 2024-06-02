@@ -17,7 +17,7 @@ public class EnrollmentController {
     @MyLog(value = "添加报名")  //这里添加了AOP的自定义注解
     @PostMapping("/add")
     public Result addEnrollment(@RequestBody Enrollment enrollment){
-        System.out.println(enrollment.toString());
+
         enrollmentService.addEnrollment(enrollment);
         return Result.success("添加成功");
     }

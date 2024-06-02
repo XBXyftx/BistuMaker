@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -49,16 +51,22 @@ public class uploadController {
         if (file == null) {
             return Result.error("上传失败");
         }
+        long fileSize = file.getSize();
+        BufferedImage originalImage = ImageIO.read(file.getInputStream());
+        int imageWidth = originalImage.getWidth();
+        int imageHeight = originalImage.getHeight();
 
-        if (file.isEmpty() || file.getSize() > 20 * 1024 * 1024) {
+        if (file.isEmpty() || file.getSize() > 10 * 1024 * 1024) {
             return Result.error("文件太大了");
         }
-        float scale = 1.0F;
-        float quality = 0.75F;
+
+
+        float scale = 0.8F;
+        float quality = 0.65F;
 
         if (file.getSize() < 10 * 1024 * 1024 && file.getSize() > 5 *1024 * 1024) {
-            scale = 0.8F;
-            quality = 0.6F;
+            scale = 0.5F;
+            quality = 0.4F;
         }
 
         // Step 2: 图片压缩（使用thumbnailator）

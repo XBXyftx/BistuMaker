@@ -4,7 +4,7 @@
  *  回调函数有一个参数，base64的字符串数据
  */
 export function compress(fileObj, callback) {
-    // console.log('压缩前文件大小', fileObj.size)
+
     try {
         const image = new Image()
         image.src = URL.createObjectURL(fileObj)
@@ -37,10 +37,10 @@ export function compress(fileObj, callback) {
             // 压缩完成执行回调
             const newFile = convertBase64UrlToBlob(data)
             callback(newFile)
-            // console.log('压缩后文件信息', newFile)
+
         }
     } catch (e) {
-        console.log('压缩失败!')
+
     }
 }
 

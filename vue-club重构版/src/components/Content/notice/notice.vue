@@ -37,12 +37,12 @@ const noticeList = ref([]);
 const isRead = ref({});
 const getData =async () => {
  const result =await notificationsGetIsReadService()
-  // console.log(result.data)
+
   //将result.data.id依次遍历到isRead中
   result.data.forEach((item) => {
     isRead.value[item.id] = false;
   })
-  // console.log(isRead.value)
+
   noticeList.value = result.data;
 }
 

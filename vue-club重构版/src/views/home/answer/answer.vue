@@ -61,9 +61,9 @@ function submit(answer,question) {
       show.value=false;
     }, 1000);
     // answer = answer.filter(item => item.id === 1);
-    // console.log(answer);
+
     show.value=false;
-    // console.log(show.value)
+
   }else{
 
   }

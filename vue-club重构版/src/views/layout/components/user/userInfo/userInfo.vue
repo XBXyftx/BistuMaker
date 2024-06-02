@@ -8,7 +8,7 @@ const password = ref({
   rePassword: ''
 })
 // const userInfo = ref({...userInfoStore.info,...password})
-console.log(userInfoStore.info)
+
 let userInfo = ref(
     {
       id: userInfoStore.info.id,
@@ -35,7 +35,7 @@ const updateUserInfo = async ()=>{
   userInfo.value.password=password.value.password
   //调用接口
   let result = await userInfoUpdateService(userInfo.value);
-  console.log(userInfo.value)
+
 
   ElMessage.success(result.msg? result.msg : '修改成功');
 

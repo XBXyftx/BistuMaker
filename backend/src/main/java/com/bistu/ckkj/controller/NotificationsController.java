@@ -19,7 +19,7 @@ public class NotificationsController {
     @MyLog(value = "")
     @PostMapping("/add")
     public Result addNotifications(@RequestBody Notifications notifications){
-        System.out.println(notifications.toString());
+
         notificationsController.addNotifications(notifications);
         return Result.success("添加成功");
     }
@@ -47,7 +47,7 @@ public class NotificationsController {
 
     @GetMapping("/updateIsRead")
     public Result updateIsRead(Integer id){
-        System.out.println("id"+id);
+
         notificationsController.updateIsRead(id);
         return Result.success("更新成功");
     }
