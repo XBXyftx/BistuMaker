@@ -3,7 +3,8 @@
   <TopNavBar>
   </TopNavBar>
 
-  <ContentActivity></ContentActivity>
+  <ContentActivity>
+  </ContentActivity>
 
   <Footer>
   </Footer>

@@ -60,12 +60,9 @@ import animate from 'animate.css'
       <!-- 文字 -->
       <div class="text-Content" :style="isMobile?' ':'  margin-top: 2vw;'">
         <div class="title">{{item.title}}</div>
-
         <div style="width: 100%;height: 10px;background: linear-gradient(135deg, #2BC0E4, #EAECC6)"></div>
         <br>
         <div v-html="item.content"></div>
-        <!-- 按钮 -->
-        <!--        <button class="btn" @click>Learn More</button>-->
       </div>
     </div>
 

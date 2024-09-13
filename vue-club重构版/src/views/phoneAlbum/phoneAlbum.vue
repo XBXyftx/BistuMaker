@@ -2,9 +2,6 @@
   <TopNavBar>
   </TopNavBar>
 
-  <br>
-  <br>
-
   <content></content>
 
 
@@ -26,5 +23,8 @@ import Content from "@/views/phoneAlbum/content/content.vue";
 </script>
 
 <style scoped>
+.main{
+  background: linear-gradient(135deg, #5C258D, #4389A2);
+}
 
 </style>

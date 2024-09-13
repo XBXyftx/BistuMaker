@@ -27,17 +27,17 @@
     <div class="container">
       <div class="item">
         <div class="icon" >
-          <el-icon><SwitchFilled/></el-icon>
+          <el-icon><ChromeFilled /></el-icon>
         </div>
         <p>软件学习</p>
         <a>
-          鸿蒙app、前端设计、客户端小游戏
+          鸿蒙APP、WEB设计
         </a>
       </div>
       <div class="item">
         <i class="fas fa-chart-line"></i>
         <div class="icon" >
-          <el-icon><Platform /></el-icon>
+          <el-icon><Cpu /></el-icon>
         </div>
         <p>硬件学习</p>
         <a>
@@ -70,7 +70,7 @@
   justify-content: space-evenly;
 }
 .item:hover {
-  background: linear-gradient(45deg, #1A2980, #26D0CE);
+  background: linear-gradient(135deg, #4d31e8, #2BC0E4 );
   border-radius: 20%;
   color: white;
   transform: perspective(1000px) rotateX(1deg) rotateY(-5deg) scale(1.05)
@@ -139,7 +139,7 @@
 </style>
 
 <script setup>// 这个脚本部分无需编写任何逻辑，因为这个组件没有动态数据或方法
-import {MessageBox, Platform, SwitchFilled} from "@element-plus/icons-vue";
+import {ChromeFilled, Cpu, MessageBox, Platform, SwitchFilled} from "@element-plus/icons-vue";
 import {ref} from "vue";
 
 const img = new URL('@/assets/img/homeImages/1.jpg',import.meta.url )

@@ -15,7 +15,7 @@
       <!-- 图片卡片的模板定义 -->
       <template #item="{ item, url, index }">
         <div class="card" >
-          <LazyImg :url="`${baseURL+item.imagesUrl}`" :title="item.imageName"/>
+          <img :src="`${baseURL + item.imagesUrl}`" :alt="item.imageName">
         </div>
       </template>
     </Waterfall>
@@ -132,4 +132,31 @@ li:last-child {
     background-position: 0 50%;
   }
 }
+
+/* 图片卡片样式 */
+.card {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 10px; /* 内边距 */
+  margin: 10px;
+}
+
+.card img {
+  width: 100%; /* 确保图片填满卡片 */
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.1); /* 整个卡片放大 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* 放大后的阴影 */
+}
+
+.card:hover img {
+  transform: scale(1.1); /* 图片放大 */
+}
+
+
 </style>

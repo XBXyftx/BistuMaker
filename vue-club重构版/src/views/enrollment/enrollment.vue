@@ -2,7 +2,7 @@
 
   <TopNavBar></TopNavBar>
   <div  v-if="isMobile===false">
-    <div class="demo" >
+    <div class="waterFall" >
       <div class="container a-container" ref="aContainer"
 
       >
@@ -100,12 +100,12 @@
         <div class="switch_container" id="switch-c1" :class="{ 'is-hidden': isC2Visible }">
           <h2 class="switch_title title" style="letter-spacing: 0;">👈Welcome！</h2>
           <p class="switch_description description">是管理员喔？由此登录</p>
-          <button class="switch_button button switch-btn" @click="toggleForm">切换报名</button>
+          <button class="switch_button button switch-btn" @click="toggleForm">切换登录</button>
         </div>
 
         <div class="switch_container" id="switch-c2" :class="{ 'is-hidden': !isC2Visible }">
-          <h2 class="switch_title title" style="letter-spacing: 0;">Hello Friend！👉</h2>
-          <p class="switch_description description">是新生嘛？点此报名</p>
+          <h2 class="switch_title title" style="letter-spacing: 0;">Hello！👉</h2>
+          <p class="switch_description description">是新生嘛？此处报名</p>
           <button class="switch_button button switch-btn" @click="toggleForm">切换管理员</button>
         </div>
       </div>
@@ -370,7 +370,7 @@ body {
   background-color: #ecf0f3;
 }
 
-.demo {
+.waterFall {
   position: relative;
   width: 100%;
   height: 100vh;

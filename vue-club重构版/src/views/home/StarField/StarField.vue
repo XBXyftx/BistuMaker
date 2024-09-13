@@ -35,9 +35,7 @@ const scroll_ = number => {
            :class="isMobile?'img2IsMobile':''"
       >
       <div class="click animate__animated animate__fadeInDown animate__delay-1s animate__slow">
-        <a @click="scroll_(123)"
-
-        >
+        <a @click="scroll_(123)">
           Go to know more⬇️
         </a>
       </div>

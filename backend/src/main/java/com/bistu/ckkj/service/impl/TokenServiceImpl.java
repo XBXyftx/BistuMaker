@@ -25,10 +25,11 @@ public class TokenServiceImpl implements TokenService {
 
     @Override
     public List<Token> selectAllToken() {
-        if (tokenMapper.selectAllToken().size() == 0){
-            return null;
+        List<Token> tokens = tokenMapper.selectAllToken();
+        if (tokens.isEmpty()) {
+            return List.of(); // 返回空列表
         }
-        return tokenMapper.selectAllToken();
+        return tokens;
     }
 
     @Override

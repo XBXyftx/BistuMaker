@@ -1,7 +1,7 @@
 
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from "@/views/home/home.vue";
-import About from "@/views/MessageBoard/MessageBoard.vue";
+import MessageBoard from "@/views/MessageBoard/MessageBoard.vue";
 import Enrollment from "@/views/enrollment/enrollment.vue";
 import Login from "@/views/login/login.vue";
 import learn from "@/views/resources/resources.vue";
@@ -16,11 +16,11 @@ const routes = [
         }
     },
     {
-        path: '/about',
-        name: 'about',
-        component: About,
+        path: '/messages',
+        name: 'messages',
+        component: MessageBoard,
         meta: {
-            title: '关于'
+            title: '留言板'
         }
     },
     {
@@ -42,7 +42,7 @@ const routes = [
     {
         path:'/admin',
         name:'admin',
-        component:()=>import('@/views/layout/layout.vue'),
+        component:()=>import('@/views/background/background.vue'),
         meta: {
             title: '后台管理'
         },
@@ -50,7 +50,7 @@ const routes = [
             {
                 path:'/admin/user',
                 name:'user',
-                component:()=>import('@/views/layout/components/user/userManagement.vue'),
+                component:()=>import('@/views/background/components/user/userManagement.vue'),
                 meta: {
                     title: '用户管理'
                 }
@@ -58,7 +58,7 @@ const routes = [
             {
                 path:'/admin/article',
                 name:'article',
-                component:()=>import('@/views/layout/components/article/articleManagement.vue'),
+                component:()=>import('@/views/background/components/article/articleManagement.vue'),
                 meta: {
                     title: '文章管理'
                 }
@@ -66,7 +66,7 @@ const routes = [
             {
                 path:'/admin/enrollment',
                 name:'enrollment',
-                component:()=>import('@/views/layout/components/enrollment/enrollmentManagement.vue'),
+                component:()=>import('@/views/background/components/enrollment/enrollmentManagement.vue'),
                 meta: {
                     title: '报名管理'
                 }
@@ -74,7 +74,7 @@ const routes = [
             {
                 path:'/admin/notifications',
                 name:'notifications',
-                component:()=>import('@/views/layout/components/notifications/notifications.vue'),
+                component:()=>import('@/views/background/components/notifications/notifications.vue'),
                 meta: {
                     title: '通知管理'
                 }
@@ -82,7 +82,7 @@ const routes = [
             {
                 path:'/admin/phoneAlbum',
                 name:'phoneAlbum1',
-                component:()=>import('@/views/layout/components/phoneAlbum/phoneAlbum.vue'),
+                component:()=>import('@/views/background/components/phoneAlbum/phoneAlbum.vue'),
                 meta: {
                     title: '相册管理'
                 }
@@ -90,7 +90,7 @@ const routes = [
             {
                 path:'/admin/other',
                 name:'other',
-                component:()=>import('@/views/layout/components/other/other.vue'),
+                component:()=>import('@/views/background/components/other/other.vue'),
                 meta: {
                     title: '其他'
                 }
@@ -98,7 +98,7 @@ const routes = [
             {
                 path:'/admin/home',
                 name:'adminHome',
-                component:()=>import('@/views/layout/components/adminHome/adminHome.vue'),
+                component:()=>import('@/views/background/components/adminHome/adminHome.vue'),
                 meta: {
                     title: '后台主页'
                 }
@@ -106,7 +106,7 @@ const routes = [
             {
                 path:'/admin/message',
                 name:'message1',
-                component:()=>import('@/views/layout/components/message/messageAllInfo.vue'),
+                component:()=>import('@/views/background/components/message/messageAllInfo.vue'),
                 meta: {
                     title: '留言管理'
                 }
@@ -114,7 +114,7 @@ const routes = [
             {
                 path:'/admin/imageshack',
                 name:'imageshack',
-                component:()=>import('@/views/layout/components/Imageshack/Imageshack.vue'),
+                component:()=>import('@/views/background/components/Imageshack/Imageshack.vue'),
                 meta: {
                     title: '图床管理'
                 }
@@ -164,7 +164,7 @@ const routes = [
     },
     {
         path:'/blog',
-        name:'博问',
+        name:'博文',
         component:()=>import('@/views/blog/blog.vue'),
         meta: {
             title: '博文'

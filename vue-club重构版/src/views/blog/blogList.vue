@@ -19,7 +19,7 @@
     <div class="entry-content clearfix">
       <p> </p>
       <div class="read-more cl-effect-14">
-        <a class="more-link" @click="getArticle(item.id)">继续阅读 <span class="meta-nav">→</span></a>
+        <a class="more-link" @click="getArticle(item.id)">阅读 <span class="meta-nav">→</span></a>
       </div>
     </div>
   </div>
@@ -93,9 +93,7 @@ li {
 .post {
   background: #fff;
   padding: 5px 5px 0;
-
   height: auto;
-
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   overflow: hidden;
@@ -106,7 +104,7 @@ li {
   //display: flex;
   //flex-direction: column;
   margin-top: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 
 }
 

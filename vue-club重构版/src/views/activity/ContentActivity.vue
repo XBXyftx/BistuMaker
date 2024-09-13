@@ -1,52 +1,43 @@
 <template>
-  <div class="content-container" :style="{display: isMobile ? 'inline' : 'flex'}">
-    <div class="text-content" :style="{width: isMobile ? '95%' : '60%' }">
-      <p style="font-size: 2.9rem;margin-top: 0px;margin-bottom: 0px;font-family: AlimamaDaoLiTi,serif;">
-        关于<br>创客空间<br>社团活动<br>
-      </p>
-      <p style="font-weight: 500;font-size: 1rem ">
-        创客空间的活动主要为大三及大二学姐学长主办，
-        <br>
-        <br>
-        iOS Club致力于软件开发，以及推广程序教育，但我们同时也期望能够给社员舒适的相处环境与丰富的交流活动，欢迎所有志在开发与充满教育热诚的人一起加入。
-      </p>
-    </div>
-    <div class="image-content">
-      <!-- 右侧图片 -->
-      <img :src="hezhao" alt="右侧图片描述"
-           style="height: auto;"
-           :style="{width: isMobile ? '100%' : '650px' }"
-      >
+  <div style="background: linear-gradient(135deg, #5C258D, #4389A2);">
+    <div class="content-container" :style="{display: isMobile ? 'inline' : 'flex'}">
+      <div class="text-content" :style="{width: isMobile ? '95%' : '60%' }">
+        <p style="font-size: 2.9rem;margin:0 40px;font-family: AlimamaDaoLiTi,serif;">
+          <br>创客空间
+        </p>
+        <p style="font-weight: 500;font-size: 1rem" :style="{padding: isMobile ? '0' : '50px' }">
+          创客空间社团，发于北京信息科技大学计算机学院，于去年由院级社团注册为校级社团，希望帮助更多的新生了解考研与实习的实际信息，也为新生提供学习上的帮助。
+          <br><br>
+          本社团代理学校计算机实验中心，向同学们提供嵌入式小车、3d打印机、各类树莓派开发板等硬件设备，同时引导新生入门鸿蒙生态、学习人工智能机器学习和大模型训练、web全栈开发等软件技术。
+        </p>
+      </div>
+      <div class="image-content">
+        <img :src="hezhao" alt="社团合照"
+             style="height: auto;border-radius:10px;box-shadow: #232323 0 0 20px"
+             :style="{width: isMobile ? '100%' : '750px' }"
+        >
+      </div>
     </div>
   </div>
 
-
-  <div style="width: auto;height: 150px;background-color: rgba(177,196,210);">
-    <p style="text-align:center;padding-top: 40px">
-      往下看更多
+  <div style="width: auto;height: 100px;background-color: rgb(0,0,0);">
+    <p style="margin:0;text-align:center;padding-top: 30px;color: #fff;font-size: 1.5rem;">
+      Go see more👇
     </p>
 
-    <div class="animate__animated  animate__infinite" style="text-align:center">
-      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
-           class="iconify" width="1em" height="1em" viewBox="0 0 24 24" style="color: rgb(128, 152, 181);">
-        <g transform="rotate(180 12 12)">
-          <path fill="currentColor"
-                d="M10.285 3.858c.777-1.294 2.653-1.294 3.43 0l8.468 14.113c.8 1.333-.16 3.029-1.715 3.029H3.532c-1.554 0-2.514-1.696-1.715-3.029z"></path>
-        </g>
-      </svg>
-    </div>
-
-    <el-pagination layout="prev, pager, next"
+    <!--分页器 暂时省略-->
+    <!--el-pagination style="margin-bottom:10px"
+                   layout="prev, pager, next"
                    :total="activitiesNums.length"
                    @current-change="handleCurrentChange"
-    />
+    /-->
 
   </div>
 
 
   <div class="demo" ref="shell">
     <div class="header">
-      <h2 class="title">社团活动</h2>
+      <h2 class="title" style="padding-top: 20px">社团活动</h2>
     </div>
     <div class="timeline">
       <div
@@ -79,7 +70,7 @@ import {ref, getCurrentInstance} from "vue";
 const {proxy} = getCurrentInstance()
 import {articleTypeQueryService} from '@/api/article.js';
 
-const hezhao = new URL('@/assets/合照.jpg', import.meta.url)
+const hezhao = new URL('@/assets/2023.png', import.meta.url)
 const activities = ref([]);
 const activitiesNums = ref([]);
 //判断是否是移动端
@@ -115,7 +106,7 @@ let queryInfo = ref({
 });
 const  handleCurrentChange = (i)=>{
 
-activities.value=null
+  activities.value=null
   activities.value = activitiesNums.value.slice((i-1)*10,i*10)
 
 }
@@ -147,8 +138,6 @@ const getArticle=(id)=>{
   }
 }
 
-
-
 </script>
 
 
@@ -175,13 +164,13 @@ const getArticle=(id)=>{
 
 
 .content-container {
-  display: flex; //align-items: center; /* 保持垂直居中 */ //justify-content: center; /* 添加这一行以实现水平居中 */ //margin: 0 auto; /* 如果父元素不是绝对定位，则可使用这种方式进行水平居中 */
-  margin: 100px;
+  display: flex;
+  padding: 80px;
 }
 
 .text-content {
   box-sizing: border-box;
-//align-items: center; /* 保持垂直居中 */ //justify-content: center; /* 添加这一行以实现水平居中 */ //width: 90%; /* 或者给一个固定宽度，并且需要设置其父元素的定位为相对定位 */ //max-width: 90%; /* 示例：最大宽度为800px */ margin: 0 auto 0 10px; //left: 100px; right: 0; //margin:100px auto;
+  color: #fff;
 }
 
 .image-content {
@@ -208,7 +197,7 @@ const getArticle=(id)=>{
   background-size:100%;
   width: 100%;
   position: relative;
-//padding: 80px 0; transition: 0.3s ease 0s; background-attachment: fixed;
+  //padding: 80px 0; transition: 0.3s ease 0s; background-attachment: fixed;
 
 }
 
@@ -335,7 +324,7 @@ const getArticle=(id)=>{
 }
 
 .content {
-//display: flex; position: relative; justify-content: center; /* 添加这一行以实现水平居中 */
+  //display: flex; position: relative; justify-content: center; /* 添加这一行以实现水平居中 */
   align-items: center; /* 如果需要垂直居中，可以添加这一行 */
 }
 
@@ -368,7 +357,7 @@ const getArticle=(id)=>{
     padding: 0 !important;
     top: 50px;
     text-align: center !important;
-  //width: 60px; border: none !important;
+    //width: 60px; border: none !important;
   }
 
   .item:last-child {
@@ -417,7 +406,7 @@ const getArticle=(id)=>{
     text-align: center;
     position: relative;
     padding: 0px 10px 10px 85px;
-  //padding-right: 10px;
+    //padding-right: 10px;
   }
 }
 </style>

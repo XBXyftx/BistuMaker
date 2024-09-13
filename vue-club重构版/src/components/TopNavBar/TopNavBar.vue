@@ -13,7 +13,7 @@
         <li><a href="/activity">社团活动</a></li>
         <li><a href="/phoneAlbum">社团相册</a></li>
         <li><a href="/blog">博文</a></li>
-        <li><a href="/about">留言板</a></li>
+        <li><a href="/messages">留言板</a></li>
         <li class="nav-enrollment">
           <a href="/enrollment" class="enrollment-button">
             加入我们
@@ -39,7 +39,7 @@
         <li><a href="/activity" @click="toggleMenu">社团活动</a></li>
         <li><a href="/phoneAlbum" @click="toggleMenu">社团相册</a></li>
         <li><a href="/blog" @click="toggleMenu">博文</a></li>
-        <li><a href="/about" @click="toggleMenu">留言板</a></li>
+        <li><a href="/messages" @click="toggleMenu">留言板</a></li>
 <!--        <li><a href="/enrollment" @click="toggleMenu" class="enrollment-button-mobile">加入我们</a></li>-->
       </ul>
     </div>
