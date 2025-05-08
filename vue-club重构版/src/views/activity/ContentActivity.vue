@@ -64,11 +64,12 @@
 </template>
 
 <script setup>
+import { useRoute, useRouter } from 'vue-router'
 import {onMounted} from "vue";
 import {ref, getCurrentInstance} from "vue";
-
-const {proxy} = getCurrentInstance()
 import {articleTypeQueryService} from '@/api/article.js';
+const {proxy} = getCurrentInstance()
+
 
 const hezhao = new URL('@/assets/2023.png', import.meta.url)
 const activities = ref([]);
@@ -80,18 +81,130 @@ window.addEventListener('resize', () => {
   isMobile.value = window.innerWidth < 768;
 });
 const getArticles = async () => {
-  let res = await articleTypeQueryService("活动");
-  //格式化时间成2024年03月28日样
-  for (let i = 0; i < res.data.length; i++) {
-    res.data[i].coverImage = proxy.$baseURL + res.data[i].coverImage
-    let ary = res.data[i].createTime.split(/(?: |-|:)/g);
-    res.data[i].createTime = ary[0] + '年' + ary[1] + '月' + ary[2] + '';
-    res.data[i].createTime = res.data[i].createTime.replace(/T\S*/g, '');
-    res.data[i].createTime = res.data[i].createTime + '日';
-  }
-  activitiesNums.value = res.data;
-  activities.value = activitiesNums.value.slice(0, 10);
-
+  // 注释原有API请求逻辑
+  // let res = await articleTypeQueryService("活动");
+  
+  // 使用本地测试数据
+  activitiesNums.value = [
+  {
+    id: 1,
+    coverImage: 'http://bistumaker.cn/images/2024/06/02/be8cfadf-5982-44bc-8f2b-63eca68c97ca.jpg',
+    createTime: '2024年03月15日',
+    synopsis: '春季招新宣讲会，欢迎新同学加入创客大家庭',
+    title: '招新活动'
+  },
+  // 重复10次类似结构，这里展示5个示例
+  {
+    id: 2,
+    coverImage: 'http://bistumaker.cn/images/2024/06/02/b44f453b-9806-4b35-9adb-5aa76720ffb1.jpg',
+    createTime: '2024年03月20日',
+    synopsis: '嵌入式开发入门工作坊',
+    title: '嵌入式培训'
+  },
+  {
+    id: 3,
+    coverImage: 'http://bistumaker.cn/images/2024/06/02/be8cfadf-5982-44bc-8f2b-63eca68c97ca.jpg',
+    createTime: '2024年03月25日',
+    synopsis: '机器学习基础理论与实践',
+    title: 'AI训练营'
+  },
+  {
+    id: 4,
+    coverImage: 'http://bistumaker.cn/images/2024/06/02/b44f453b-9806-4b35-9adb-5aa76720ffb1.jpg',
+    createTime: '2024年04月01日',
+    synopsis: '鸿蒙应用开发实战教学',
+    title: '鸿蒙开发'
+  },
+  {
+    id: 5,
+    coverImage: 'http://bistumaker.cn/images/2024/06/02/be8cfadf-5982-44bc-8f2b-63eca68c97ca.jpg',
+    createTime: '2024年04月05日',
+    synopsis: 'Vue3 + SpringBoot全栈开发课程',
+    title: '全栈训练'
+  },
+  {
+    id: 6,
+    coverImage: 'http://bistumaker.cn/images/2024/06/02/b44f453b-9806-4b35-9adb-5aa76720ffb1.jpg',
+    createTime: '2024年03月15日',
+    synopsis: '春季招新宣讲会，欢迎新同学加入创客大家庭',
+    title: '招新活动'
+  },
+  // 重复10次类似结构，这里展示5个示例
+  {
+    id: 7,
+    coverImage: 'http://bistumaker.cn/images/2024/06/02/b44f453b-9806-4b35-9adb-5aa76720ffb1.jpg',
+    createTime: '2024年03月20日',
+    synopsis: '嵌入式开发入门工作坊',
+    title: '嵌入式培训'
+  },
+  {
+    id: 8,
+    coverImage: 'http://bistumaker.cn/images/2024/06/02/b44f453b-9806-4b35-9adb-5aa76720ffb1.jpg',
+    createTime: '2024年03月25日',
+    synopsis: '机器学习基础理论与实践',
+    title: 'AI训练营'
+  },
+  {
+    id: 9,
+    coverImage: 'http://bistumaker.cn/images/2024/06/02/be8cfadf-5982-44bc-8f2b-63eca68c97ca.jpg',
+    createTime: '2024年04月01日',
+    synopsis: '鸿蒙应用开发实战教学',
+    title: '鸿蒙开发'
+  },
+  {
+    id: 10,
+    coverImage: 'http://bistumaker.cn/images/2024/06/02/b44f453b-9806-4b35-9adb-5aa76720ffb1.jpg',
+    createTime: '2024年04月05日',
+    synopsis: 'Vue3 + SpringBoot全栈开发课程',
+    title: '全栈训练'
+  },
+  {
+    id: 11,
+    coverImage: 'http://bistumaker.cn/images/2024/06/02/be8cfadf-5982-44bc-8f2b-63eca68c97ca.jpg',
+    createTime: '2024年03月15日',
+    synopsis: '春季招新宣讲会，欢迎新同学加入创客大家庭',
+    title: '招新活动'
+  },
+  // 重复10次类似结构，这里展示5个示例
+  {
+    id: 12,
+    coverImage: 'http://bistumaker.cn/images/2024/06/02/b44f453b-9806-4b35-9adb-5aa76720ffb1.jpg',
+    createTime: '2024年03月20日',
+    synopsis: '嵌入式开发入门工作坊',
+    title: '嵌入式培训'
+  },
+  {
+    id: 13,
+    coverImage: 'http://bistumaker.cn/images/2024/06/02/be8cfadf-5982-44bc-8f2b-63eca68c97ca.jpg',
+    createTime: '2024年03月25日',
+    synopsis: '机器学习基础理论与实践',
+    title: 'AI训练营'
+  },
+  {
+    id: 14,
+    coverImage: 'http://bistumaker.cn/images/2024/06/02/b44f453b-9806-4b35-9adb-5aa76720ffb1.jpg',
+    createTime: '2024年04月01日',
+    synopsis: '鸿蒙应用开发实战教学',
+    title: '鸿蒙开发'
+  },
+  {
+    id: 15,
+    coverImage: 'http://bistumaker.cn/images/2024/06/02/b44f453b-9806-4b35-9adb-5aa76720ffb1.jpg',
+    createTime: '2024年04月05日',
+    synopsis: 'Vue3 + SpringBoot全栈开发课程',
+    title: '全栈训练'
+  }];
+  // //格式化时间成2024年03月28日样
+  // for (let i = 0; i < res.data.length; i++) {
+  //   res.data[i].coverImage = proxy.$baseURL + res.data[i].coverImage
+  //   let ary = res.data[i].createTime.split(/(?: |-|:)/g);
+  //   res.data[i].createTime = ary[0] + '年' + ary[1] + '月' + ary[2] + '';
+  //   res.data[i].createTime = res.data[i].createTime.replace(/T\S*/g, '');
+  //   res.data[i].createTime = res.data[i].createTime + '日';
+  // }
+  // activitiesNums.value = res.data;
+  // activities.value = activitiesNums.value.slice(0, 10);
+  activities.value = activitiesNums.value
 };
 
 onMounted(async () => {
@@ -130,7 +243,7 @@ const setupTimeline = () => {
   items.forEach(item => observer.observe(item));
 };
 
-import { useRoute, useRouter } from 'vue-router'
+
 const router = useRouter()
 const getArticle=(id)=>{
   if (id) {
