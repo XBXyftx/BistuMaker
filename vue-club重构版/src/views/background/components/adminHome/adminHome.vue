@@ -38,6 +38,21 @@
               <br>QQ:1335527061
             </p>
           </div>
+          <div class="box" style="background: linear-gradient(
+        to bottom right,
+        rgb(255,255,255),
+        rgb(100,137,255),
+        rgb(214,160,255),
+        rgb(250,255,152),
+        rgb(156,255,198),
+        rgb(255,161,173)
+    );">
+            <h3>XBXyftx</h3>
+            <p>
+              <br>微信:XBX13671018992
+              <br>博客:<a href="https://xbxyftx.top/">xbxyftx.top</a>
+            </p>
+          </div>
         </p>
       </li>
     </ul>
