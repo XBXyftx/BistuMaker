@@ -9,13 +9,29 @@
   </div>
 
   <!-- 加载完成后的实际内容展示 -->
-  <div v-for="item1 in imageAlbumAllList"  v-if="loading!==false">
+  <div v-for="item1 in imageAlbumAllList" :key="item1.id" v-if="loading!==false">
     <h1 class="">{{item1.phoneAlbumName}}</h1>
-    <Waterfall :list="item1.List" :gutter="40"  :width="550" :crossOrigin="false">
+    <Waterfall
+      :list="item1.List"
+      :gutter="20"
+      :width="calculateColumnWidth()"
+      :crossOrigin="false"
+      :breakpoints="{
+        1200: { rowPerView: 4 },
+        900: { rowPerView: 3 },
+        600: { rowPerView: 2 },
+        300: { rowPerView: 1 }
+      }"
+    >
       <!-- 图片卡片的模板定义 -->
       <template #item="{ item, url, index }">
-        <div class="card" >
-          <img :src="`${baseURL + item.imagesUrl}`" :alt="item.imageName">
+        <div class="card" :key="item.id || index">
+          <img
+            :src="`${baseURL + item.imagesUrl}`"
+            :alt="item.imageName"
+            @load="handleImageLoad"
+            @error="handleImageError"
+          >
         </div>
       </template>
     </Waterfall>
@@ -26,7 +42,7 @@
 <script setup>
 import { LazyImg, Waterfall } from 'vue-waterfall-plugin-next'
 import 'vue-waterfall-plugin-next/dist/style.css'
-import {getCurrentInstance, ref, toRaw} from 'vue'
+import {getCurrentInstance, ref, toRaw, onMounted, nextTick} from 'vue'
 import {phoneAlbumAllInfoService} from "@/api/phoneAlbum.js";
 import {selectImagesByImagesType} from "@/api/Images.js";
 
@@ -36,20 +52,62 @@ let imageAlbumAllList = ref([])
 // 加载状态控制
 let loading = ref(false)
 
+// 响应式屏幕宽度
+const screenWidth = ref(window.innerWidth)
+
+// 监听窗口大小变化
+window.addEventListener('resize', () => {
+  screenWidth.value = window.innerWidth
+})
+
+// 计算瀑布流列宽度
+const calculateColumnWidth = () => {
+  const width = screenWidth.value
+  if (width >= 1200) return 280
+  if (width >= 900) return 250
+  if (width >= 600) return 200
+  return 150
+}
+
+// 图片加载成功处理
+const handleImageLoad = (event) => {
+  // 图片加载完成后，可以触发瀑布流重新计算布局
+  nextTick(() => {
+    // 这里可以添加重新布局的逻辑
+    console.log('Image loaded successfully')
+  })
+}
+
+// 图片加载失败处理
+const handleImageError = (event) => {
+  console.error('Image failed to load:', event.target.src)
+  // 可以设置默认图片
+  // event.target.src = '/default-image.jpg'
+}
+
 /**
  * 获取全部相册信息。
  * 该函数会首先请求所有相册的信息，然后为每个相册请求其图片列表，
  * 最后更新加载状态。
  */
 const getImageAlbumAllInfo = async () => {
-  const res = await phoneAlbumAllInfoService()
-  imageAlbumAllList.value=res.data
-  for (let i = 0; i < imageAlbumAllList.value.length; i++) {
-    imageAlbumAllList.value[i].List=await getImageAlbumList(imageAlbumAllList.value[i].id)
+  try {
+    const res = await phoneAlbumAllInfoService()
+    imageAlbumAllList.value = res.data
+
+    // 为每个相册获取图片列表
+    for (let i = 0; i < imageAlbumAllList.value.length; i++) {
+      imageAlbumAllList.value[i].List = await getImageAlbumList(imageAlbumAllList.value[i].id)
+    }
+
+    // 等待DOM更新完成再设置加载状态
+    await nextTick()
+    loading.value = true
+  } catch (error) {
+    console.error('Failed to load album info:', error)
+    loading.value = true
   }
-  loading.value=true
 }
-getImageAlbumAllInfo()
 
 /**
  * 根据相册ID获取图片列表。
@@ -57,11 +115,19 @@ getImageAlbumAllInfo()
  * @returns {Promise<Array>} 返回图片信息数组的Promise。
  */
 const getImageAlbumList = async (type) => {
-  const res = await selectImagesByImagesType(type)
-
-  return res.data
+  try {
+    const res = await selectImagesByImagesType(type)
+    return res.data
+  } catch (error) {
+    console.error('Failed to load images for album:', type, error)
+    return []
+  }
 }
-getImageAlbumList()
+
+// 组件挂载后获取数据
+onMounted(() => {
+  getImageAlbumAllInfo()
+})
 
 // 实例化基本信息，用于获取基础URL
 const {proxy} = getCurrentInstance()
@@ -138,24 +204,54 @@ li:last-child {
   position: relative;
   overflow: hidden;
   cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  padding: 10px; /* 内边距 */
-  margin: 10px;
+  transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+  border-radius: 8px;
+  background: #fff;
+  /* 移除 margin 和 padding，让瀑布流组件来控制间距 */
 }
 
 .card img {
-  width: 100%; /* 确保图片填满卡片 */
+  width: 100%;
   height: auto;
-  transition: transform 0.3s ease;
+  display: block;
+  transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+  /* 确保图片完全加载后再显示 */
+  opacity: 0;
+  animation: fadeIn 0.3s ease-in-out forwards;
 }
 
 .card:hover {
-  transform: scale(1.1); /* 整个卡片放大 */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* 放大后的阴影 */
+  /* 减小缩放比例，避免影响布局 */
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  z-index: 10;
 }
 
 .card:hover img {
-  transform: scale(1.1); /* 图片放大 */
+  /* 移除图片的额外缩放，避免双重缩放效果 */
+  transform: none;
+}
+
+/* 图片淡入动画 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* 瀑布流容器样式优化 */
+:deep(.vue-waterfall) {
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* 确保瀑布流列项目的正确定位 */
+:deep(.vue-waterfall-item) {
+  position: absolute !important;
+  transition: all 0.3s ease;
 }
 
 
