@@ -24,14 +24,6 @@
     <p style="margin:0;text-align:center;padding-top: 30px;color: #fff;font-size: 1.5rem;">
       Go see more👇
     </p>
-
-    <!--分页器 暂时省略-->
-    <!--el-pagination style="margin-bottom:10px"
-                   layout="prev, pager, next"
-                   :total="activitiesNums.length"
-                   @current-change="handleCurrentChange"
-    /-->
-
   </div>
 
 
@@ -60,6 +52,19 @@
         </div>
       </div>
     </div>
+
+    <!-- 分页器组件 -->
+    <div class="pagination-container">
+      <el-pagination
+        style="margin: 20px 0;"
+        layout="prev, pager, next"
+        :total="activitiesNums.length"
+        :page-size="pageSize"
+        :current-page="currentPage"
+        @current-change="handleCurrentChange"
+        background
+      />
+    </div>
   </div>
 </template>
 
@@ -74,6 +79,9 @@ const {proxy} = getCurrentInstance()
 const hezhao = new URL('@/assets/2023.png', import.meta.url)
 const activities = ref([]);
 const activitiesNums = ref([]);
+// 分页相关变量
+const currentPage = ref(1);
+const pageSize = ref(5);
 //判断是否是移动端
 const isMobile = ref(window.innerWidth < 768);
 //监听窗口大小变化
@@ -194,6 +202,9 @@ const getArticles = async () => {
 //     synopsis: 'Vue3 + SpringBoot全栈开发课程',
 //     title: '全栈训练'
 //   }];
+  // 先按创建时间降序排序，最新的活动排在前面（使用原始时间进行排序）
+  res.data.sort((a, b) => new Date(b.createTime) - new Date(a.createTime));
+
   // //格式化时间成2024年03月28日样
   for (let i = 0; i < res.data.length; i++) {
     res.data[i].coverImage = proxy.$baseURL + res.data[i].coverImage
@@ -202,9 +213,10 @@ const getArticles = async () => {
     res.data[i].createTime = res.data[i].createTime.replace(/T\S*/g, '');
     res.data[i].createTime = res.data[i].createTime + '日';
   }
+
   activitiesNums.value = res.data;
-  // activities.value = activitiesNums.value.slice(0, 10);
-  activities.value = activitiesNums.value
+  // 初始化显示第一页（5个活动）
+  updateDisplayedActivities();
 };
 
 onMounted(async () => {
@@ -212,17 +224,23 @@ onMounted(async () => {
   setupTimeline();
 });
 
-let queryInfo = ref({
-  query: '', // 查询参数
-  pageNum: 1, // 当前页码
-  pageSize: 10 // 每页显示条数
-});
-const  handleCurrentChange = (i)=>{
+// 更新显示的活动数据
+const updateDisplayedActivities = () => {
+  const startIndex = (currentPage.value - 1) * pageSize.value;
+  const endIndex = startIndex + pageSize.value;
+  activities.value = activitiesNums.value.slice(startIndex, endIndex);
 
-  activities.value=null
-  activities.value = activitiesNums.value.slice((i-1)*10,i*10)
+  // 重新设置时间轴动画
+  setTimeout(() => {
+    setupTimeline();
+  }, 100);
+};
 
-}
+// 分页器页码改变事件
+const handleCurrentChange = (page) => {
+  currentPage.value = page;
+  updateDisplayedActivities();
+};
 
 
 
@@ -486,40 +504,51 @@ const getArticle=(id)=>{
 
 </style>
 <style>
-.el-pagination .number,
-.el-pagination button:disabled,
-.el-pagination .btn-next {
+/* 分页器容器样式 */
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 0;
+  background: rgba(99, 99, 99, 0.8);
+  position: relative;
+}
+
+/* 分页器样式 */
+.pagination-container .el-pagination {
   background: transparent;
 }
-.el-pagination .btn-first {
-  background: transparent;
+
+.pagination-container .el-pagination .number,
+.pagination-container .el-pagination button:disabled,
+.pagination-container .el-pagination .btn-next,
+.pagination-container .el-pagination .btn-prev {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
-.el-pagination .btn-prev {
-  background: transparent;
+
+.pagination-container .el-pagination .number:hover,
+.pagination-container .el-pagination .btn-next:hover,
+.pagination-container .el-pagination .btn-prev:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
 }
-.el-pagination .btn-next {
-  background: transparent;
+
+.pagination-container .el-pagination .number.is-active {
+  background: rgba(255, 255, 255, 0.3);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.5);
 }
-.el-pagination {
-}
-//这里可能有坑这个100px,如果不设置手机端就回超出空白部分,有些难绷
-/* 当屏幕宽度小于等于某个阈值时（例如768px，适合移动设备） */
+
+/* 响应式设计 */
 @media screen and (max-width: 768px) {
-  .el-pagination {
-    text-align: center;
-    position: relative;
-
-    padding: 10px 1000px 0px 0px;
-    background-color: red;
+  .pagination-container {
+    padding: 20px 10px;
   }
-}
-@media screen and (min-width: 769px) {
-  .el-pagination {
 
-    text-align: center;
-    position: relative;
-    padding: 0px 10px 10px 85px;
-    //padding-right: 10px;
+  .pagination-container .el-pagination {
+    scale: 0.8;
   }
 }
 </style>
